@@ -1,6 +1,7 @@
 .buildpath
 .project
 .settings/*
+src/settings.php
 deployment.properties
 deployment.xml
 logs/*

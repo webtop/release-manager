@@ -1,0 +1,6 @@
+[submodule "vendor/webtop/github-php-client"]
+	path = vendor/webtop/github-php-client
+	url = git@github.com:webtop/github-php-client.git
+[submodule "vendor/digital-pig/github-php-client"]
+	path = vendor/digital-pig/github-php-client
+	url = git@github.com:webtop/github-php-client.git
