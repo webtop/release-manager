@@ -1,5 +1,6 @@
 <?php
-return [
+
+$settings = [
     'settings' => [
         'mode' => 'development',
         'debug' => true,
@@ -19,9 +20,8 @@ return [
         ],
         
         // Github settings
-        'github' => [
-            'token' => '0e17dac7b70a737f61797873fadcf7b8acfbd475',
-            'owner' => 'webtop'
-        ],
+        'github' => require 'github.php'
     ],
 ];
+
+return $settings;
