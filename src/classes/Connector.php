@@ -11,9 +11,11 @@ class Connector {
     private $lastError = '';
     private $config;
     private $client;
+    private $owner;
     
     private function __construct($config) {
         $this->config = $config;
+        $this->owner = $this->config['github']['owner'];
     }
     
     public static function getInstance($config = '') {
@@ -38,10 +40,6 @@ class Connector {
             $this->client = new \GitHubClient();
             $this->client->setAuthType(\GitHubClientBase::GITHUB_AUTH_TYPE_OAUTH_BASIC);
             $this->client->setOauthKey($this->config['github']['token']);
-            
-            if ($this->config['mode'] == Common::MODE_DEVELOPMENT) {
-                //$this->client->setDebug(true);
-            }
             $success = true;
         } catch (\GitHubClientException $e) {
             $this->lastError = $e->getMessage();
@@ -51,7 +49,7 @@ class Connector {
     
     public function getRepos() {
         $repos = [];
-        $objects = $this->client->repos->listUserRepositories($this->config['github']['owner'], 'owner');
+        $objects = $this->client->repos->listUserRepositories($this->owner, 'owner');
         foreach ($objects as $repo) {
             $repos[$repo->getId()] = [
                 'name' => $repo->getName(),
@@ -63,8 +61,8 @@ class Connector {
     }
     
     public function getRepo($repoName) {
-        $repo = $this->client->repos->get($this->config['github']['owner'], $repoName);
-        $master = $this->client->repos->getBranch($this->config['github']['owner'], $repoName, 'master');
+        $repo = $this->client->repos->get($this->owner, $repoName);
+        $master = $this->client->repos->getBranch($this->owner, $repoName, 'master');
         $size = $repo->getSize();
         $lastPushed = $repo->getPushedAt();
         
@@ -77,8 +75,29 @@ class Connector {
     }
     
     public function getBranches($repoName) {
-        $branches = $this->client->repos->listBranches($this->config['github']['owner'], $repoName);
-        
+        $branches = [];
+        $objects = $this->client->repos->listBranches($this->owner, $repoName);
+        foreach ($objects as $branch) {
+            $branches[] = [
+                'name' => $branch->getName()
+            ];
+        }
         return $branches;
+    }
+    
+    public function getBranch($repoName, $branchName) {
+        $properties = $this->client->repos->getBranch($this->owner, $repoName, $branchName);
+        $lastCommit = $properties->getCommit()->getCommit();
+        $branch = [
+            'name' => $properties->getName(),
+            'last_commit_author' => [
+                'name' => $lastCommit->getCommitter()->getName(),
+                'email' => $lastCommit->getCommitter()->getEmail(),
+                'date' => $lastCommit->getCommitter()->getDate()
+            ],
+            'last_commit_msg' => $lastCommit->getMessage()
+        ];
+        
+        return $branch;
     }
 }

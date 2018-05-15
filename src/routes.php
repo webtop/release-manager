@@ -33,5 +33,8 @@ $app->get('/repo/{repo}/branches', function (Request $request, Response $respons
 });
 
 $app->get('/repo/{repo}/branch/{branch}', function (Request $request, Response $response, array $args) use ($app) {
+    $connector = Connector::getInstance($this->get('settings'));
+    $branch = $connector->getBranch($args['repo'], $args['branch']);
     
+    return $response->withJson($branch);
 });
