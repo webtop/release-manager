@@ -2,6 +2,7 @@
 
 namespace DigitalPig\ReleaseManager;
 
+use Client\GitHubClient;
 use DigitalPig\ReleaseManager\Common;
 
 class Connector {
@@ -9,21 +10,18 @@ class Connector {
     private static $instance = null;
     private $connected = false;
     private $lastError = '';
-    private $config;
+    private $git;
     private $client;
     private $owner;
     
-    private function __construct($config) {
-        $this->config = $config;
-        $this->owner = $this->config['github']['owner'];
+    private function __construct($git) {
+        $this->git = $git;
+        $this->owner = $this->git->getOwner();
     }
     
-    public static function getInstance($config = '') {
+    public static function getInstance($git) {
         if (is_null(self::$instance)) {
-            if (empty($config)) {
-                throw new \Exception('Must have configuration for new instances');
-            }
-            self::$instance = new Connector($config);
+            self::$instance = new Connector($git);
             self::$instance->connected = self::$instance->connect();
         }
         
@@ -37,9 +35,10 @@ class Connector {
     private function connect() {
         $success = false;
         try {
-            $this->client = new \GitHubClient();
-            $this->client->setAuthType(\GitHubClientBase::GITHUB_AUTH_TYPE_OAUTH_BASIC);
-            $this->client->setOauthKey($this->config['github']['token']);
+            $this->client = new GitHubClient();
+            $this->client->setUrl($this->git->getApiUrl());
+            $this->client->setAuthType(GitHubClientBase::GITHUB_AUTH_TYPE_OAUTH_BASIC);
+            $this->client->setOauthKey($this->git->getToken());
             $success = true;
         } catch (\GitHubClientException $e) {
             $this->lastError = $e->getMessage();

@@ -19,9 +19,13 @@ $settings = [
             'level' => \Monolog\Logger::DEBUG,
         ],
         
-        // Github settings
-        'github' => require 'github.php'
+        // Git host settings
+        'git-source' => 'github' // should be github or gitlab
     ],
 ];
+
+if (empty($settings['git-source'])) {
+    exit('No defined git source!');
+}
 
 return $settings;
