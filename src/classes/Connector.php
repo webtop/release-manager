@@ -3,7 +3,6 @@
 namespace DigitalPig\ReleaseManager;
 
 use Client\GitHubClient;
-use DigitalPig\ReleaseManager\Common;
 
 class Connector {
     

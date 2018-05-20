@@ -6,3 +6,4 @@ deployment.properties
 deployment.xml
 logs/*
 vendor/*
+node_modules/*

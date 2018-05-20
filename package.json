@@ -1,0 +1,31 @@
+{
+  "name": "release-manager",
+  "version": "1.0.0",
+  "description": "Deployment tool",
+  "main": "public/js/index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webtop/release-manager.git"
+  },
+  "keywords": [
+    "deployment",
+    "release",
+    "git"
+  ],
+  "author": "Paul Allsopp <paul.allsopp@digital-pig.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/webtop/release-manager/issues"
+  },
+  "homepage": "https://github.com/webtop/release-manager#readme",
+  "dependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  }
+}
