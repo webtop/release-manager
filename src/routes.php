@@ -2,7 +2,7 @@
 
 use Slim\Http\Request;
 use Slim\Http\Response;
-use DigitalPig\ReleaseManager\Connector;
+use Classes\Connector;
 
 // Routes
 $app->get('/', function (Request $request, Response $response, array $args) {

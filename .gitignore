@@ -7,3 +7,5 @@ deployment.xml
 logs/*
 vendor/*
 node_modules/*
+/node_modules/
+/vendor/

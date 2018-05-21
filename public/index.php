@@ -10,7 +10,6 @@ if (PHP_SAPI == 'cli-server') {
 }
 
 require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/../vendor/webtop/github-client/client/GitHubClient.php';
 
 session_start();
 

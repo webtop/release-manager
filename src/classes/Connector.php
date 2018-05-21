@@ -1,8 +1,10 @@
 <?php
 
-namespace DigitalPig\ReleaseManager;
+namespace Classes;
 
-use Client\GitHubClient;
+use Library\GitHubClient\Client\GitHubClient;
+use Library\GitHubClient\Client\GitHubClientBase;
+use Library\GitHubClient\Client\GitHubClientException;
 
 class Connector {
     
@@ -39,7 +41,7 @@ class Connector {
             $this->client->setAuthType(GitHubClientBase::GITHUB_AUTH_TYPE_OAUTH_BASIC);
             $this->client->setOauthKey($this->git->getToken());
             $success = true;
-        } catch (\GitHubClientException $e) {
+        } catch (GitHubClientException $e) {
             $this->lastError = $e->getMessage();
         }
         return $success;

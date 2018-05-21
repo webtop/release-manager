@@ -1,5 +1,7 @@
 <?php
 
+namespace Library\GitHubClient;
+
 /**
  * Interface to ensure Git sources are adhered to
  * 
@@ -7,24 +9,6 @@
  */
 interface GitConfig
 {
-    /**
-     * List of access URLs
-     * @var array
-     */
-    private $urls;
-    
-    /**
-     * Git source owner
-     * @var string
-     */
-    private $owner;
-    
-    /**
-     * Personal access token for source
-     * @var string
-     */
-    private $token;
-
     /**
      * Get the URL for the Git API
      * @return string
