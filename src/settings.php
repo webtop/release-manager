@@ -20,11 +20,11 @@ $settings = [
         ],
         
         // Git host settings
-        'git-source' => 'github' // should be github or gitlab
+        'git-source' => 'GitHub'
     ],
 ];
 
-if (empty($settings['git-source'])) {
+if (empty($settings['settings']['git-source'])) {
     exit('No defined git source!');
 }
 

@@ -1,5 +1,5 @@
 <?php
-// DIC configuration
+
 
 $container = $app->getContainer();
 
@@ -20,7 +20,8 @@ $container['logger'] = function($c) {
 
 // git source
 $container['git'] = function($c) {
-    $sourceClass = ucfirst($c->get('settings')['git-source']) . 'Config';
-    $git = new $sourceClass();
+    $sourceClass = $c->get('settings')['git-source'] . 'Config';
+    require_once __DIR__ . '/private/' . $sourceClass . '.php';
+    $git = new $sourceClass;
     return $git;
 };
