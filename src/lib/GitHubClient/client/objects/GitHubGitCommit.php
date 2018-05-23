@@ -1,6 +1,8 @@
 <?php
 
-require_once(__DIR__ . '/../GitHubObject.php');
+namespace Library\GitHubClient\Client\Objects;
+
+use Library\GitHubClient\Client\GitHubObject;
 require_once(__DIR__ . '/GitHubGitCommitAuthor.php');
 require_once(__DIR__ . '/GitHubGitCommitCommitter.php');
 require_once(__DIR__ . '/GitHubGitCommitTree.php');

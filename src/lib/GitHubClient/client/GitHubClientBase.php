@@ -2,7 +2,7 @@
 
 namespace Library\GitHubClient\Client;
 
-require_once(__DIR__ . '/GitHubClientException.php');
+use Library\GitHubClient\Client\GitHubClientException;
 
 abstract class GitHubClientBase
 {

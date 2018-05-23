@@ -1,14 +1,16 @@
 <?php
 
-require_once(__DIR__ . '/../GitHubClient.php');
-require_once(__DIR__ . '/../GitHubService.php');
-require_once(__DIR__ . '/GitHubActivityEvents.php');
-require_once(__DIR__ . '/GitHubActivityFeeds.php');
-require_once(__DIR__ . '/GitHubActivityNotifications.php');
-require_once(__DIR__ . '/GitHubActivitySettings.php');
-require_once(__DIR__ . '/GitHubActivityStarring.php');
-require_once(__DIR__ . '/GitHubActivityWatching.php');
-	
+namespace Library\GitHubClient\Client\Services;
+
+use Library\GitHubClient\Client\GitHubClient;
+use Library\GitHubClient\Client\GitHubService;
+use Library\GitHubClient\Client\Services\GitHubActivityEvents;
+use Library\GitHubClient\Client\Services\GitHubActivityFeeds;
+use Library\GitHubClient\Client\Services\GitHubActivityNotifications;
+use Library\GitHubClient\Client\Services\GitHubActivitySettings;
+use Library\GitHubClient\Client\Services\GitHubActivityStarring;
+use Library\GitHubClient\Client\Services\GitHubActivityWatching;
+
 
 class GitHubActivity extends GitHubService
 {

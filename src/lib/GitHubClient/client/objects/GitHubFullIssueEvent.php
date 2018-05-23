@@ -1,9 +1,11 @@
 <?php
 
-require_once(__DIR__ . '/GitHubIssueEvent.php');
-require_once(__DIR__ . '/GitHubUser.php');
-require_once(__DIR__ . '/GitHubMilestone.php');
-require_once(__DIR__ . '/GitHubIssuePullRequest.php');
+namespace Library\GitHubClient\Client\Objects;
+
+use Library\GitHubClient\Client\GitHubObject;
+use Library\GitHubClient\Client\Objects\GitHubIssuePullRequest;
+use Library\GitHubClient\Client\Objects\GitHubMilestone;
+use Library\GitHubClient\Client\Objects\GitHubUser;
 	
 
 class GitHubFullIssueEvent extends GitHubObject

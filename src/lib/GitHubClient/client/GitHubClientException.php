@@ -2,7 +2,7 @@
 
 namespace Library\GitHubClient\Client;
 
-class GitHubClientException extends Exception
+class GitHubClientException extends \Exception
 {
 	const CLASS_NOT_FOUND = 1;
 	const PAGE_INVALID = 2;

@@ -1,26 +1,27 @@
 <?php
 
-require_once(__DIR__ . '/../GitHubClient.php');
-require_once(__DIR__ . '/../GitHubService.php');
-require_once(__DIR__ . '/GitHubReposCollaborators.php');
-require_once(__DIR__ . '/GitHubReposComments.php');
-require_once(__DIR__ . '/GitHubReposCommits.php');
-require_once(__DIR__ . '/GitHubReposContents.php');
-require_once(__DIR__ . '/GitHubReposDownloads.php');
-require_once(__DIR__ . '/GitHubReposForks.php');
-require_once(__DIR__ . '/GitHubReposHooks.php');
-require_once(__DIR__ . '/GitHubReposKeys.php');
-require_once(__DIR__ . '/GitHubReposMerging.php');
-require_once(__DIR__ . '/GitHubReposReleases.php');
-require_once(__DIR__ . '/GitHubReposStatistics.php');
-require_once(__DIR__ . '/GitHubReposStatuses.php');
-require_once(__DIR__ . '/../objects/GitHubSimpleRepo.php');
-require_once(__DIR__ . '/../objects/GitHubFullRepo.php');
-require_once(__DIR__ . '/../objects/GitHubContributor.php');
-require_once(__DIR__ . '/../objects/GitHubTeam.php');
-require_once(__DIR__ . '/../objects/GitHubTag.php');
-require_once(__DIR__ . '/../objects/GitHubBranches.php');
-require_once(__DIR__ . '/../objects/GitHubBranch.php');
+namespace Library\GitHubClient\Client\Services;
+
+use Library\GitHubClient\Client\GitHubClient;
+use Library\GitHubClient\Client\GitHubService;
+use Library\GitHubClient\Client\Objects\GitHubBranch;
+use Library\GitHubClient\Client\Objects\GitHubBranches;
+use Library\GitHubClient\Client\Objects\GitHubContributor;
+use Library\GitHubClient\Client\Objects\GitHubFullRepo;
+use Library\GitHubClient\Client\Objects\GitHubSimpleRepo;
+use Library\GitHubClient\Client\Objects\GitHubTag;
+use Library\GitHubClient\Client\Objects\GitHubTeam;
+use Library\GitHubClient\Client\Services\GitHubReposCollaborators;
+use Library\GitHubClient\Client\Services\GitHubReposComments;
+use Library\GitHubClient\Client\Services\GitHubReposCommits;
+use Library\GitHubClient\Client\Services\GitHubReposContents;
+use Library\GitHubClient\Client\Services\GitHubReposDownloads;
+use Library\GitHubClient\Client\Services\GitHubReposForks;
+use Library\GitHubClient\Client\Services\GitHubReposHooks;
+use Library\GitHubClient\Client\Services\GitHubReposKeys;
+use Library\GitHubClient\Client\Services\GitHubReposMerging;
+use Library\GitHubClient\Client\Services\GitHubReposStatistics;
+use Library\GitHubClient\Client\Services\GitHubReposStatuses;
 	
 
 class GitHubRepos extends GitHubService

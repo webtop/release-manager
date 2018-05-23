@@ -1,5 +1,7 @@
 <?php
 
+namespace Library\GitHubClient\Client\Objects;
+
 require_once(__DIR__ . '/GitHubPull.php');
 require_once(__DIR__ . '/GitHubUser.php');
 	

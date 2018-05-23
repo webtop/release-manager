@@ -1,9 +1,11 @@
 <?php
 
-require_once(__DIR__ . '/../GitHubClient.php');
-require_once(__DIR__ . '/../GitHubService.php');
-require_once(__DIR__ . '/../objects/GitHubTemplates.php');
-require_once(__DIR__ . '/../objects/GitHubTemplate.php');
+namespace Library\GitHubClient\Client\Services;
+
+use Library\GitHubClient\Client\GitHubClient;
+use Library\GitHubClient\Client\GitHubService;
+use Library\GitHubClient\Client\Objects\GitHubTemplates;
+use Library\GitHubClient\Client\Objects\GitHubTemplate;
 	
 
 class GitHubGitignore extends GitHubService

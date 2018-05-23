@@ -1,5 +1,7 @@
 <?php
 
+namespace Library\GitHubClient\Client\Objects;
+
 require_once(__DIR__ . '/GitHubSimpleRepo.php');
 
 	

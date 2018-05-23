@@ -1,8 +1,10 @@
 <?php
 
-require_once(__DIR__ . '/GitHubGitCommitAuthor.php');
-require_once(__DIR__ . '/GitHubReposReleaseAsset.php');
+namespace Library\GitHubClient\Client\Objects;
 
+use Library\GitHubClient\Client\GitHubObject;
+use Library\GitHubClient\Client\Objects\GitHubGitCommitAuthor;
+use Library\GitHubClient\Client\Objects\GitHubReposReleaseAsset;
 	
 
 class GitHubReposRelease extends GitHubObject

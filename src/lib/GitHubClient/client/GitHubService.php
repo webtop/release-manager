@@ -2,8 +2,6 @@
 
 namespace Library\GitHubClient\Client;
 
-require_once(__DIR__ . '/GitHubClient.php');
-
 class GitHubService
 {
 	/**

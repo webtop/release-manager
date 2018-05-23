@@ -29,7 +29,7 @@ class GitHubObject
 	/**
 	 * @param stdClass $json
 	 */
-	public function __construct(stdClass $json)
+	public function __construct(\stdClass $json)
 	{
 		$attributes = $this->getAttributes();
 		

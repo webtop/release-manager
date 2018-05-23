@@ -2,24 +2,23 @@
 
 namespace Library\GitHubClient\Client;
 
-require_once __DIR__ . '/GitHubClientBase.php';
-require_once __DIR__ . '/services/GitHubActivity.php';
-require_once __DIR__ . '/services/GitHubChangelog.php';
-require_once __DIR__ . '/services/GitHubGists.php';
-require_once __DIR__ . '/services/GitHubGit.php';
-require_once __DIR__ . '/services/GitHubGitignore.php';
-require_once __DIR__ . '/services/GitHubIssues.php';
-require_once __DIR__ . '/services/GitHubLibraries.php';
-require_once __DIR__ . '/services/GitHubMarkdown.php';
-require_once __DIR__ . '/services/GitHubMedia.php';
-require_once __DIR__ . '/services/GitHubMeta.php';
-require_once __DIR__ . '/services/GitHubOauth.php';
-require_once __DIR__ . '/services/GitHubOrgs.php';
-require_once __DIR__ . '/services/GitHubPulls.php';
-require_once __DIR__ . '/services/GitHubRepos.php';
-require_once __DIR__ . '/services/GitHubSearch.php';
-require_once __DIR__ . '/services/GitHubUsers.php';
-
+use Library\GitHubClient\Client\GitHubClientBase;
+use Library\GitHubClient\Client\Services\GitHubActivity;
+use Library\GitHubClient\Client\Services\GitHubChangelog;
+use Library\GitHubClient\Client\Services\GitHubGists;
+use Library\GitHubClient\Client\Services\GitHubGit;
+use Library\GitHubClient\Client\Services\GitHubGitignore;
+use Library\GitHubClient\Client\Services\GitHubIssues;
+use Library\GitHubClient\Client\Services\GitHubLibraries;
+use Library\GitHubClient\Client\Services\GitHubMarkdown;
+use Library\GitHubClient\Client\Services\GitHubMedia;
+use Library\GitHubClient\Client\Services\GitHubMeta;
+use Library\GitHubClient\Client\Services\GitHubOauth;
+use Library\GitHubClient\Client\Services\GitHubOrgs;
+use Library\GitHubClient\Client\Services\GitHubPulls;
+use Library\GitHubClient\Client\Services\GitHubRepos;
+use Library\GitHubClient\Client\Services\GitHubSearch;
+use Library\GitHubClient\Client\Services\GitHubUsers;
 
 class GitHubClient extends GitHubClientBase
 {
@@ -110,7 +109,7 @@ class GitHubClient extends GitHubClientBase
 	 */
 	public function __construct()
 	{
-		$this->activity = new GitHubActivity($this);
+	    $this->activity = new GitHubActivity($this);
 		$this->changelog = new GitHubChangelog($this);
 		$this->gists = new GitHubGists($this);
 		$this->git = new GitHubGit($this);

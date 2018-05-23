@@ -1,10 +1,11 @@
 <?php
 
-require_once(__DIR__ . '/../GitHubClient.php');
-require_once(__DIR__ . '/../GitHubService.php');
-require_once(__DIR__ . '/../objects/GitHubReposReleaseAsset.php');
+namespace Library\GitHubClient\Client\Services;
 
-	
+use Library\GitHubClient\Client\GitHubClient;
+use Library\GitHubClient\Client\GitHubService;
+use Library\GitHubClient\Client\Objects\GitHubReposReleaseAsset;
+
 
 class GitHubReposReleasesAssets extends GitHubService
 {

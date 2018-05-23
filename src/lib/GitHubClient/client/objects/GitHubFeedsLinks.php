@@ -1,6 +1,8 @@
 <?php
 
-require_once(__DIR__ . '/../GitHubObject.php');
+namespace Library\GitHubClient\Client\Objects;
+
+use Library\GitHubClient\Client\GitHubObject;
 require_once(__DIR__ . '/GitHubFeedsLinksTimeline.php');
 require_once(__DIR__ . '/GitHubFeedsLinksUser.php');
 require_once(__DIR__ . '/GitHubFeedsLinksCurrentUserPublic.php');

@@ -1,13 +1,15 @@
 <?php
 
-require_once(__DIR__ . '/../GitHubClient.php');
-require_once(__DIR__ . '/../GitHubService.php');
-require_once(__DIR__ . '/GitHubUsersEmails.php');
-require_once(__DIR__ . '/GitHubUsersFollowers.php');
-require_once(__DIR__ . '/GitHubUsersKeys.php');
-require_once(__DIR__ . '/../objects/GitHubFullUser.php');
-require_once(__DIR__ . '/../objects/GitHubPrivateUser.php');
-require_once(__DIR__ . '/../objects/GitHubUser.php');
+namespace Library\GitHubClient\Client\Services;
+
+use Library\GitHubClient\Client\GitHubClient;
+use Library\GitHubClient\Client\GitHubService;
+use Library\GitHubClient\Client\Services\GitHubUsersEmails;
+use Library\GitHubClient\Client\Services\GitHubUsersFollowers;
+use Library\GitHubClient\Client\Services\GitHubUsersKeys;
+use Library\GitHubClient\Client\Objects\GitHubFullUser;
+use Library\GitHubClient\Client\Objects\GitHubPrivateUser;
+use Library\GitHubClient\Client\Objects\GitHubUser;
 	
 
 class GitHubUsers extends GitHubService

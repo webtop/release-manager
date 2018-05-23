@@ -1,14 +1,16 @@
 <?php
 
-require_once(__DIR__ . '/../GitHubClient.php');
-require_once(__DIR__ . '/../GitHubService.php');
-require_once(__DIR__ . '/GitHubIssuesAssignees.php');
-require_once(__DIR__ . '/GitHubIssuesComments.php');
-require_once(__DIR__ . '/GitHubIssuesEvents.php');
-require_once(__DIR__ . '/GitHubIssuesLabels.php');
-require_once(__DIR__ . '/GitHubIssuesMilestones.php');
-require_once(__DIR__ . '/../objects/GitHubIssue.php');
-	
+namespace Library\GitHubClient\Client\Services;
+
+use Library\GitHubClient\Client\GitHubClient;
+use Library\GitHubClient\Client\GitHubService;
+use Library\GitHubClient\Client\Services\GitHubIssuesAssignees;
+use Library\GitHubClient\Client\Services\GitHubIssuesComments;
+use Library\GitHubClient\Client\Services\GitHubIssuesEvents;
+use Library\GitHubClient\Client\Services\GitHubIssuesLabels;
+use Library\GitHubClient\Client\Services\GitHubIssuesMilestones;
+use Library\GitHubClient\Client\Objects\GitHubIssue;
+
 
 class GitHubIssues extends GitHubService
 {

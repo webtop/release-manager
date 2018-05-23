@@ -1,6 +1,8 @@
 <?php
 
-require_once(__DIR__ . '/GitHubGist.php');
+namespace Library\GitHubClient\Client\Objects;
+
+use Library\GitHubClient\Client\GitHubObject;
 
 	
 

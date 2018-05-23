@@ -1,6 +1,8 @@
 <?php
 
-require_once(__DIR__ . '/../GitHubObject.php');
+namespace Library\GitHubClient\Client\Objects;
+
+use Library\GitHubClient\Client\GitHubObject;
 require_once(__DIR__ . '/GitHubUser.php');
 require_once(__DIR__ . '/GitHubPullLinks.php');
 require_once(__DIR__ . '/GitHubPullBranch.php');

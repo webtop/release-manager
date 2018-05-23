@@ -1,11 +1,13 @@
 <?php
 
-require_once(__DIR__ . '/../GitHubClient.php');
-require_once(__DIR__ . '/../GitHubService.php');
-require_once(__DIR__ . '/../objects/GitHubTeam.php');
-require_once(__DIR__ . '/../objects/GitHubFullTeam.php');
-require_once(__DIR__ . '/../objects/GitHubUser.php');
-require_once(__DIR__ . '/../objects/GitHubRepo.php');
+namespace Library\GitHubClient\Client\Services;
+
+use Library\GitHubClient\Client\GitHubClient;
+use Library\GitHubClient\Client\GitHubService;
+use Library\GitHubClient\Client\Objects\GitHubTeam;
+use Library\GitHubClient\Client\Objects\GitHubFullTeam;
+use Library\GitHubClient\Client\Objects\GitHubUser;
+use Library\GitHubClient\Client\Objects\GitHubRepo;
 	
 
 class GitHubOrgsTeams extends GitHubService
