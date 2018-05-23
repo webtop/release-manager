@@ -20,8 +20,7 @@ $container['logger'] = function($c) {
 
 // git source
 $container['git'] = function($c) {
-    $sourceClass = $c->get('settings')['git-source'] . 'Config';
-    require_once __DIR__ . '/private/' . $sourceClass . '.php';
+    $sourceClass = '\\Config\\' . $c->get('settings')['git-source'] . 'Config';
     $git = new $sourceClass;
     return $git;
 };
