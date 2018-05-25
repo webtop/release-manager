@@ -39,7 +39,7 @@ class Connector {
             $this->client = new GitHubClient();
             $this->client->setUrl($this->git->getApiUrl());
             $this->client->setAuthType(GitHubClientBase::GITHUB_AUTH_TYPE_OAUTH_BASIC);
-            $this->client->setOauthKey($this->git->getToken());
+            $this->client->setOauthKey($this->git->getAccessToken());
             $success = true;
         } catch (GitHubClientException $e) {
             $this->lastError = $e->getMessage();
