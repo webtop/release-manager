@@ -36,10 +36,7 @@ class Connector {
     private function connect() {
         $success = false;
         try {
-            $this->client = new GitHubClient();
-            $this->client->setUrl($this->git->getApiUrl());
-            $this->client->setAuthType(GitHubClientBase::GITHUB_AUTH_TYPE_OAUTH_BASIC);
-            $this->client->setOauthKey($this->git->getAccessToken());
+            $this->client = $this->clientSetup();
             $success = true;
         } catch (GitHubClientException $e) {
             $this->lastError = $e->getMessage();
@@ -47,9 +44,20 @@ class Connector {
         return $success;
     }
     
+    private function clientSetup()
+    {
+        $client = new GitHubClient();
+        $client->setUrl($this->git->getApiUrl());
+        $client->setAuthType(GitHubClientBase::GITHUB_AUTH_TYPE_OAUTH_BASIC);
+        $client->setOauthKey($this->git->getAccessToken());
+        $client->setPageSize(4);
+        
+        return $client;
+    }
+    
     public function getRepos() {
         $repos = [];
-        $objects = $this->client->repos->listUserRepositories($this->owner, 'owner');
+        $objects = $this->client->repos->listYourRepositories();
         foreach ($objects as $repo) {
             $repos[$repo->getId()] = [
                 'name' => $repo->getName(),

@@ -4,101 +4,114 @@ namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-	
-
 class GitHubTree extends GitHubObject
 {
-	/* (non-PHPdoc)
-	 * @see GitHubObject::getAttributes()
-	 */
-	protected function getAttributes()
-	{
-		return array_merge(parent::getAttributes(), array(
-			'path' => 'string',
-			'mode' => 'string',
-			'type' => 'string', 
-			'size' => 'int',
-			'sha' => 'string',
-			'url' => 'string',
-		));
-	}
-	
-	/**
-	 * @var string
-	 */
-	protected $sha;
 
-	/**
-	 * @var string
-	 */
-	protected $url;
+    /*
+     * (non-PHPdoc)
+     * @see GitHubObject::getAttributes()
+     */
+    protected function getAttributes()
+    {
+        return array_merge(parent::getAttributes(), 
+                array(
+                        'path' => 'string',
+                        'mode' => 'string',
+                        'type' => 'string',
+                        'size' => 'int',
+                        'sha' => 'string',
+                        'url' => 'string'
+                ));
+    }
+    
+    /**
+     *
+     * @var string
+     */
+    protected $sha;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $url;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $path;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $mode;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $type;
+    
+    /**
+     *
+     * @var int
+     */
+    protected $size;
 
-	/**
-	 * @var string
-	 */
-	protected $path;
+    /**
+     *
+     * @return string
+     */
+    public function getSha()
+    {
+        return $this->sha;
+    }
 
-	/**
-	 * @var string
-	 */
-	protected $mode;
+    /**
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
 
-	/**
-	 * @var string
-	 */
-	protected $type;
+    /**
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
 
-	/**
-	 * @var int
-	 */
-	protected $size;
+    /**
+     *
+     * @return string
+     */
+    public function getMode()
+    {
+        return $this->mode;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getSha()
-	{
-		return $this->sha;
-	}
+    /**
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getUrl()
-	{
-		return $this->url;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getPath()
-	{
-		return $this->path;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getMode()
-	{
-		return $this->mode;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getType()
-	{
-		return $this->type;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getSize()
-	{
-		return $this->size;
-	}
+    /**
+     *
+     * @return int
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
 }
 

@@ -4,74 +4,82 @@ namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-	
-
 class GitHubOrg extends GitHubObject
 {
-	/* (non-PHPdoc)
-	 * @see GitHubObject::getAttributes()
-	 */
-	protected function getAttributes()
-	{
-		return array_merge(parent::getAttributes(), array(
-			'login' => 'string',
-			'id' => 'int',
-			'url' => 'string',
-			'avatar_url' => 'string',
-		));
-	}
-	
-	/**
-	 * @var string
-	 */
-	protected $login;
 
-	/**
-	 * @var int
-	 */
-	protected $id;
+    /*
+     * (non-PHPdoc)
+     * @see GitHubObject::getAttributes()
+     */
+    protected function getAttributes()
+    {
+        return array_merge(parent::getAttributes(), 
+                array(
+                        'login' => 'string',
+                        'id' => 'int',
+                        'url' => 'string',
+                        'avatar_url' => 'string'
+                ));
+    }
+    
+    /**
+     *
+     * @var string
+     */
+    protected $login;
+    
+    /**
+     *
+     * @var int
+     */
+    protected $id;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $url;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $avatar_url;
 
-	/**
-	 * @var string
-	 */
-	protected $url;
+    /**
+     *
+     * @return string
+     */
+    public function getLogin()
+    {
+        return $this->login;
+    }
 
-	/**
-	 * @var string
-	 */
-	protected $avatar_url;
+    /**
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getLogin()
-	{
-		return $this->login;
-	}
+    /**
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
 
-	/**
-	 * @return int
-	 */
-	public function getId()
-	{
-		return $this->id;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getUrl()
-	{
-		return $this->url;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getAvatarUrl()
-	{
-		return $this->avatar_url;
-	}
-
+    /**
+     *
+     * @return string
+     */
+    public function getAvatarUrl()
+    {
+        return $this->avatar_url;
+    }
 }
 

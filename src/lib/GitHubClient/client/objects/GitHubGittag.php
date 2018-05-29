@@ -3,104 +3,117 @@
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
-require_once(__DIR__ . '/GitHubGittagTagger.php');
-require_once(__DIR__ . '/GitHubGittagObject.php');
-	
+require_once (__DIR__ . '/GitHubGittagTagger.php');
+require_once (__DIR__ . '/GitHubGittagObject.php');
 
 class GitHubGittag extends GitHubObject
 {
-	/* (non-PHPdoc)
-	 * @see GitHubObject::getAttributes()
-	 */
-	protected function getAttributes()
-	{
-		return array_merge(parent::getAttributes(), array(
-			'tag' => 'string',
-			'sha' => 'string',
-			'url' => 'string',
-			'message' => 'string',
-			'tagger' => 'GitHubGittagTagger',
-			'object' => 'GitHubGittagObject',
-		));
-	}
-	
-	/**
-	 * @var string
-	 */
-	protected $tag;
 
-	/**
-	 * @var string
-	 */
-	protected $sha;
+    /*
+     * (non-PHPdoc)
+     * @see GitHubObject::getAttributes()
+     */
+    protected function getAttributes()
+    {
+        return array_merge(parent::getAttributes(), 
+                array(
+                        'tag' => 'string',
+                        'sha' => 'string',
+                        'url' => 'string',
+                        'message' => 'string',
+                        'tagger' => 'GitHubGittagTagger',
+                        'object' => 'GitHubGittagObject'
+                ));
+    }
+    
+    /**
+     *
+     * @var string
+     */
+    protected $tag;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $sha;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $url;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $message;
+    
+    /**
+     *
+     * @var GitHubGittagTagger
+     */
+    protected $tagger;
+    
+    /**
+     *
+     * @var GitHubGittagObject
+     */
+    protected $object;
 
-	/**
-	 * @var string
-	 */
-	protected $url;
+    /**
+     *
+     * @return string
+     */
+    public function getTag()
+    {
+        return $this->tag;
+    }
 
-	/**
-	 * @var string
-	 */
-	protected $message;
+    /**
+     *
+     * @return string
+     */
+    public function getSha()
+    {
+        return $this->sha;
+    }
 
-	/**
-	 * @var GitHubGittagTagger
-	 */
-	protected $tagger;
+    /**
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
 
-	/**
-	 * @var GitHubGittagObject
-	 */
-	protected $object;
+    /**
+     *
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getTag()
-	{
-		return $this->tag;
-	}
+    /**
+     *
+     * @return GitHubGittagTagger
+     */
+    public function getTagger()
+    {
+        return $this->tagger;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getSha()
-	{
-		return $this->sha;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getUrl()
-	{
-		return $this->url;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getMessage()
-	{
-		return $this->message;
-	}
-
-	/**
-	 * @return GitHubGittagTagger
-	 */
-	public function getTagger()
-	{
-		return $this->tagger;
-	}
-
-	/**
-	 * @return GitHubGittagObject
-	 */
-	public function getObject()
-	{
-		return $this->object;
-	}
-
+    /**
+     *
+     * @return GitHubGittagObject
+     */
+    public function getObject()
+    {
+        return $this->object;
+    }
 }
 

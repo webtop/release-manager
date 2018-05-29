@@ -4,89 +4,98 @@ namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-
-
 class GitHubPullBranch extends GitHubObject
 {
-	/* (non-PHPdoc)
-	 * @see GitHubObject::getAttributes()
-	 */
-	protected function getAttributes()
-	{
-		return array_merge(parent::getAttributes(), array(
-			'label' => 'string',
-			'ref' => 'string',
-			'sha' => 'string',
-			'user' => 'GitHubUser',
-			'repo' => 'GitHubRepo',
-		));
-	}
 
+    /*
+     * (non-PHPdoc)
+     * @see GitHubObject::getAttributes()
+     */
+    protected function getAttributes()
+    {
+        return array_merge(parent::getAttributes(), 
+                array(
+                        'label' => 'string',
+                        'ref' => 'string',
+                        'sha' => 'string',
+                        'user' => 'GitHubUser',
+                        'repo' => 'GitHubRepo'
+                ));
+    }
+    
+    /**
+     *
+     * @var string
+     */
+    protected $label;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $ref;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $sha;
+    
+    /**
+     *
+     * @var GitHubUser
+     */
+    protected $user;
+    
+    /**
+     *
+     * @var GitHubRepo
+     */
+    protected $repo;
 
-	/**
-	 * @var string
-	 */
-	protected $label;
+    /**
+     *
+     * @return string
+     */
+    public function getLabel()
+    {
+        return $this->label;
+    }
 
-	/**
-	 * @var string
-	 */
-	protected $ref;
+    /**
+     *
+     * @return string
+     */
+    public function getRef()
+    {
+        return $this->ref;
+    }
 
-	/**
-	 * @var string
-	 */
-	protected $sha;
+    /**
+     *
+     * @return string
+     */
+    public function getSha()
+    {
+        return $this->sha;
+    }
 
-	/**
-	 * @var GitHubUser
-	 */
-	protected $user;
+    /**
+     *
+     * @return GitHubUser
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 
-	/**
-	 * @var GitHubRepo
-	 */
-	protected $repo;
-
-
-	/**
-	 * @return string
-	 */
-	public function getLabel()
-	{
-		return $this->label;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getRef()
-	{
-		return $this->ref;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getSha()
-	{
-		return $this->sha;
-	}
-
-	/**
-	 * @return GitHubUser
-	 */
-	public function getUser()
-	{
-		return $this->user;
-	}
-
-	/**
-	 * @return GitHubRepo
-	 */
-	public function getRepo()
-	{
-		return $this->repo;
-	}
+    /**
+     *
+     * @return GitHubRepo
+     */
+    public function getRepo()
+    {
+        return $this->repo;
+    }
 }
 

@@ -4,158 +4,178 @@ namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-	
-
 class GitHubRepoContent extends GitHubObject
 {
-	/* (non-PHPdoc)
-	 * @see GitHubObject::getAttributes()
-	 */
-	protected function getAttributes()
-	{
-		return array_merge(parent::getAttributes(), array(
-			'type' => 'string',
-			'encoding' => 'string',
-			'size' => 'int',
-			'name' => 'string',
-			'path' => 'string',
-			'content' => 'string',
-			'sha' => 'string',
-			'url' => 'string',
-			'git_url' => 'string',
-			'html_url' => 'string',
-		));
-	}
-	
-	/**
-	 * @var string
-	 */
-	protected $type;
 
-	/**
-	 * @var string
-	 */
-	protected $encoding;
+    /*
+     * (non-PHPdoc)
+     * @see GitHubObject::getAttributes()
+     */
+    protected function getAttributes()
+    {
+        return array_merge(parent::getAttributes(), 
+                array(
+                        'type' => 'string',
+                        'encoding' => 'string',
+                        'size' => 'int',
+                        'name' => 'string',
+                        'path' => 'string',
+                        'content' => 'string',
+                        'sha' => 'string',
+                        'url' => 'string',
+                        'git_url' => 'string',
+                        'html_url' => 'string'
+                ));
+    }
+    
+    /**
+     *
+     * @var string
+     */
+    protected $type;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $encoding;
+    
+    /**
+     *
+     * @var int
+     */
+    protected $size;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $name;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $path;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $content;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $sha;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $url;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $git_url;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $html_url;
 
-	/**
-	 * @var int
-	 */
-	protected $size;
+    /**
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
 
-	/**
-	 * @var string
-	 */
-	protected $name;
+    /**
+     *
+     * @return string
+     */
+    public function getEncoding()
+    {
+        return $this->encoding;
+    }
 
-	/**
-	 * @var string
-	 */
-	protected $path;
+    /**
+     *
+     * @return int
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
 
-	/**
-	 * @var string
-	 */
-	protected $content;
+    /**
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
-	/**
-	 * @var string
-	 */
-	protected $sha;
+    /**
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
 
-	/**
-	 * @var string
-	 */
-	protected $url;
+    /**
+     *
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
 
-	/**
-	 * @var string
-	 */
-	protected $git_url;
+    /**
+     *
+     * @return string
+     */
+    public function getSha()
+    {
+        return $this->sha;
+    }
 
-	/**
-	 * @var string
-	 */
-	protected $html_url;
+    /**
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getType()
-	{
-		return $this->type;
-	}
+    /**
+     *
+     * @return string
+     */
+    public function getGitUrl()
+    {
+        return $this->git_url;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getEncoding()
-	{
-		return $this->encoding;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getSize()
-	{
-		return $this->size;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getName()
-	{
-		return $this->name;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getPath()
-	{
-		return $this->path;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getContent()
-	{
-		return $this->content;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getSha()
-	{
-		return $this->sha;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getUrl()
-	{
-		return $this->url;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getGitUrl()
-	{
-		return $this->git_url;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getHtmlUrl()
-	{
-		return $this->html_url;
-	}
-
+    /**
+     *
+     * @return string
+     */
+    public function getHtmlUrl()
+    {
+        return $this->html_url;
+    }
 }
 

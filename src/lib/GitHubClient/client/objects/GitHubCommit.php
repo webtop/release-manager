@@ -3,119 +3,134 @@
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
-require_once(__DIR__ . '/GitHubUser.php');
-require_once(__DIR__ . '/GitHubCommitCommit.php');
-require_once(__DIR__ . '/GitHubCommitParents.php');
-	
+require_once (__DIR__ . '/GitHubUser.php');
+require_once (__DIR__ . '/GitHubCommitCommit.php');
+require_once (__DIR__ . '/GitHubCommitParents.php');
 
 class GitHubCommit extends GitHubObject
 {
-	/* (non-PHPdoc)
-	 * @see GitHubObject::getAttributes()
-	 */
-	protected function getAttributes()
-	{
-		return array_merge(parent::getAttributes(), array(
-			'url' => 'string',
-			'html_url' => 'string',
-			'sha' => 'string',
-			'author' => 'GitHubUser',
-			'committer' => 'GitHubUser',
-			'commit' => 'GitHubCommitCommit',
-			'parents' => 'array<GitHubCommitParents>',
-		));
-	}
-	
-	/**
-	 * @var string
-	 */
-	protected $url;
-	
-	/**
-	 * @var string
-	 */
-	protected $html_url;
-	
-	/**
-	 * @var string
-	 */
-	protected $sha;
 
-	/**
-	 * @var GitHubUser
-	 */
-	protected $author;
+    /*
+     * (non-PHPdoc)
+     * @see GitHubObject::getAttributes()
+     */
+    protected function getAttributes()
+    {
+        return array_merge(parent::getAttributes(), 
+                array(
+                        'url' => 'string',
+                        'html_url' => 'string',
+                        'sha' => 'string',
+                        'author' => 'GitHubUser',
+                        'committer' => 'GitHubUser',
+                        'commit' => 'GitHubCommitCommit',
+                        'parents' => 'array<GitHubCommitParents>'
+                ));
+    }
+    
+    /**
+     *
+     * @var string
+     */
+    protected $url;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $html_url;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $sha;
+    
+    /**
+     *
+     * @var GitHubUser
+     */
+    protected $author;
+    
+    /**
+     *
+     * @var GitHubUser
+     */
+    protected $committer;
+    
+    /**
+     *
+     * @var GitHubCommitCommit
+     */
+    protected $commit;
+    
+    /**
+     *
+     * @var array<GitHubCommitParents>
+     */
+    protected $parents;
 
-	/**
-	 * @var GitHubUser
-	 */
-	protected $committer;
+    /**
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
 
-	/**
-	 * @var GitHubCommitCommit
-	 */
-	protected $commit;
+    /**
+     *
+     * @return string
+     */
+    public function getHtmlUrl()
+    {
+        return $this->html_url;
+    }
 
-	/**
-	 * @var array<GitHubCommitParents>
-	 */
-	protected $parents;
+    /**
+     *
+     * @return string
+     */
+    public function getSha()
+    {
+        return $this->sha;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getUrl()
-	{
-		return $this->url;
-	}
+    /**
+     *
+     * @return GitHubUser
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getHtmlUrl()
-	{
-		return $this->html_url;
-	}
-        
-	/**
-	 * @return string
-	 */
-	public function getSha()
-	{
-		return $this->sha;
-	}
+    /**
+     *
+     * @return GitHubUser
+     */
+    public function getCommitter()
+    {
+        return $this->committer;
+    }
 
-	/**
-	 * @return GitHubUser
-	 */
-	public function getAuthor()
-	{
-		return $this->author;
-	}
+    /**
+     *
+     * @return GitHubCommitCommit
+     */
+    public function getCommit()
+    {
+        return $this->commit;
+    }
 
-	/**
-	 * @return GitHubUser
-	 */
-	public function getCommitter()
-	{
-		return $this->committer;
-	}
-
-	/**
-	 * @return GitHubCommitCommit
-	 */
-	public function getCommit()
-	{
-		return $this->commit;
-	}
-
-	/**
-	 * @return array<GitHubCommitParents>
-	 */
-	public function getParents()
-	{
-		return $this->parents;
-	}
-
+    /**
+     *
+     * @return array<GitHubCommitParents>
+     */
+    public function getParents()
+    {
+        return $this->parents;
+    }
 }
 

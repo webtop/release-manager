@@ -3,91 +3,102 @@
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
-require_once(__DIR__ . '/GitHubCommitCommitAuthor.php');
-require_once(__DIR__ . '/GitHubCommitCommitCommitter.php');
-require_once(__DIR__ . '/GitHubCommitCommitTree.php');
-	
+require_once (__DIR__ . '/GitHubCommitCommitAuthor.php');
+require_once (__DIR__ . '/GitHubCommitCommitCommitter.php');
+require_once (__DIR__ . '/GitHubCommitCommitTree.php');
 
 class GitHubCommitCommit extends GitHubObject
 {
-	/* (non-PHPdoc)
-	 * @see GitHubObject::getAttributes()
-	 */
-	protected function getAttributes()
-	{
-		return array_merge(parent::getAttributes(), array(
-			'url' => 'string',
-			'message' => 'string',
-			'author' => 'GitHubCommitCommitAuthor',
-			'committer' => 'GitHubCommitCommitCommitter',
-			'tree' => 'GitHubCommitCommitTree',
-		));
-	}
-	
-	/**
-	 * @var string
-	 */
-	protected $url;
 
-	/**
-	 * @var string
-	 */
-	protected $message;
+    /*
+     * (non-PHPdoc)
+     * @see GitHubObject::getAttributes()
+     */
+    protected function getAttributes()
+    {
+        return array_merge(parent::getAttributes(), 
+                array(
+                        'url' => 'string',
+                        'message' => 'string',
+                        'author' => 'GitHubCommitCommitAuthor',
+                        'committer' => 'GitHubCommitCommitCommitter',
+                        'tree' => 'GitHubCommitCommitTree'
+                ));
+    }
+    
+    /**
+     *
+     * @var string
+     */
+    protected $url;
+    
+    /**
+     *
+     * @var string
+     */
+    protected $message;
+    
+    /**
+     *
+     * @var GitHubCommitCommitAuthor
+     */
+    protected $author;
+    
+    /**
+     *
+     * @var GitHubCommitCommitCommitter
+     */
+    protected $committer;
+    
+    /**
+     *
+     * @var GitHubCommitCommitTree
+     */
+    protected $tree;
 
-	/**
-	 * @var GitHubCommitCommitAuthor
-	 */
-	protected $author;
+    /**
+     *
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
 
-	/**
-	 * @var GitHubCommitCommitCommitter
-	 */
-	protected $committer;
+    /**
+     *
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
 
-	/**
-	 * @var GitHubCommitCommitTree
-	 */
-	protected $tree;
+    /**
+     *
+     * @return GitHubCommitCommitAuthor
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getUrl()
-	{
-		return $this->url;
-	}
+    /**
+     *
+     * @return GitHubCommitCommitCommitter
+     */
+    public function getCommitter()
+    {
+        return $this->committer;
+    }
 
-	/**
-	 * @return string
-	 */
-	public function getMessage()
-	{
-		return $this->message;
-	}
-
-	/**
-	 * @return GitHubCommitCommitAuthor
-	 */
-	public function getAuthor()
-	{
-		return $this->author;
-	}
-
-	/**
-	 * @return GitHubCommitCommitCommitter
-	 */
-	public function getCommitter()
-	{
-		return $this->committer;
-	}
-
-	/**
-	 * @return GitHubCommitCommitTree
-	 */
-	public function getTree()
-	{
-		return $this->tree;
-	}
-
+    /**
+     *
+     * @return GitHubCommitCommitTree
+     */
+    public function getTree()
+    {
+        return $this->tree;
+    }
 }
 
