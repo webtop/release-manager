@@ -26,8 +26,8 @@
 	"autoload" : {
 		"psr-4" : {
 			"Classes\\" : "src/classes",
-			"Library\\" : "src/lib",
-			"Config\\" : "src/private"
+			"Config\\" : "src/private",
+			"Library\\" : "lib"
 		}
 	},
 	"autoload-dev" : {
