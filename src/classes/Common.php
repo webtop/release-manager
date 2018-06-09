@@ -1,6 +1,6 @@
 <?php
 
-namespace DigitalPig\ReleaseManager;
+namespace Classes;
 
 class Common {
     const MODE_DEVELOPMENT = 'development';
