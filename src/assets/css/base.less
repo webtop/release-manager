@@ -1,17 +1,81 @@
-@base-background-color: #1d365d;
+@base-background-color: #808080;
 @base-foreground-color: #b9c8e0;
-@base-border-color: #808080;
+@base-border-color: #000;
 
 html * {
 	padding: 0;
 	margin: 0;
-	background-color: #fff;
 }
 
 body {
-	width: 900px;
-	margin: auto;
+	background-color: #f5f5f5;
+}
+
+.app {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	
+	.header {
+		.titleBar {
+			position: relative;
+			margin: 5px;
+			width: 90%;
+			padding: 4px;
+			border: 1px inset;
+			float: left;
+		}
+		
+		.btn {
+			float: right;
+			width: 32px;
+			height: 32px;
+		}
+	}
+	
+	.content {
+		.clearfix;
+	}
+}
+
+.mainContent {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	overflow: auto;
 	background-color: @base-background-color;
 	color: @base-foreground-color;
 	border-left: 1px solid @base-border-color;
 }
+
+.mainContentNormal {
+	.mainContent;
+	left: 12%;
+	right: 12%;
+}
+
+.mainContentMaximized {
+	.mainContent;
+	left: 0;
+	right: 0;
+}
+
+/**
+ * CSS hacks we may need anywhere
+ */
+.clearfix {
+    display: block;
+    zoom: 1;
+
+    &:after {
+    	content: " ";
+    	display: block;
+    	font-size: 0;
+    	height: 0;
+    	clear: both;
+    	visibility: hidden;
+  	}
+}
+

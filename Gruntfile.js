@@ -1,29 +1,56 @@
+const webpackConfig = require('./webpack.config');
+
 module.exports = function(grunt) {
 	
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+		webpack: {
+		    options: {
+		        stats: !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+		    },
+		    dev: webpackConfig
+		},
 		uglify: {
 			options: {
 				banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
 			},
 			build: {
-				src: 'src/<%= pkg.name %>.js',
-				dest: 'dist/public/js/<%= pkg.name %>.js'
+				src: 'src/assets/js/bundle.js',
+				dest: 'public/js/<%= pkg.name %>.js'
 			}
 		},
 		less: {
-			paths: ['src/assets/css'],
-			compress: true,
-			ieCompat: true,
-			files: {
-				'dist/public/css/style.css': 'src/assets/css/style.less',
+			allTargets: {
+				files: {
+					'public/css/<%= pkg.name %>.css': 'src/assets/css/style.less',
+				}
+			},
+			options: {
+				compress: true,
+				ieCompat: true,
+			}
+		},
+		watch: {
+			webpack: {
+				files: ['src/assets/js/jsx/*.js'],
+				tasks: ['webpack']
+			},
+			uglify: {
+				files: 'src/assets/js/*.js',
+				tasks: ['uglify']
+			},
+			less: {
+				files: 'src/assets/css/**/*.less',
+				tasks: ['less']
 			}
 		}
 	});
 
-	grunt.loadNpmTasks('grunt-config-uglify');
-	grunt.loadNpmTasks('grunt-config-less');
+	grunt.loadNpmTasks('grunt-webpack');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-less');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 
-	grunt.registerTask('default', ['uglify', 'less']);
+	grunt.registerTask('default', ['watch']);
 
 };
