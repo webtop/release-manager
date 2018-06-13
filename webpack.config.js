@@ -4,7 +4,7 @@ const bundlePath = path.resolve(__dirname, "./src/assets/js/");
 
 module.exports = {
 	mode : 'development',
-	entry : './src/assets/js/jsx/index.js',
+	entry : './src/assets/js/index.js',
 	module : {
 		rules : [{
 			test : /\.(js|jsx)$/,

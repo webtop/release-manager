@@ -16,13 +16,13 @@ module.exports = function(grunt) {
 			},
 			build: {
 				src: 'src/assets/js/bundle.js',
-				dest: 'public/js/<%= pkg.name %>.js'
+				dest: 'public/js/<%= pkg.name %>.min.js'
 			}
 		},
 		less: {
 			allTargets: {
 				files: {
-					'public/css/<%= pkg.name %>.css': 'src/assets/css/style.less',
+					'public/css/<%= pkg.name %>.min.css': 'src/assets/css/style.less',
 				}
 			},
 			options: {
@@ -32,11 +32,11 @@ module.exports = function(grunt) {
 		},
 		watch: {
 			webpack: {
-				files: ['src/assets/js/jsx/*.js'],
+				files: ['src/assets/js/components/*.js'],
 				tasks: ['webpack']
 			},
 			uglify: {
-				files: 'src/assets/js/*.js',
+				files: 'src/assets/js/bundle.js',
 				tasks: ['uglify']
 			},
 			less: {
