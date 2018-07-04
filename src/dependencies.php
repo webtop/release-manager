@@ -1,12 +1,19 @@
 <?php
 
+use Classes\Connector;
 
 $container = $app->getContainer();
 
 // view renderer
-$container['renderer'] = function($c) {
-    $settings = $c->get('settings')['renderer'];
+$container['view'] = function($c) {
+    $settings = $c->get('settings')['view'];
     return new Slim\Views\PhpRenderer($settings['template_path']);
+};
+
+// Git connector class
+$container['connector'] = function($c) {
+    $connector = Connector::getInstance($c->git);
+    return $connector;
 };
 
 // monolog

@@ -5,40 +5,47 @@ use Slim\Http\Response;
 use Classes\Connector;
 use Classes\Config;
 
-// Routes
+/**
+ * ========================
+ *  Renderable routes
+ * ========================
+ */
 $app->get('/', function (Request $request, Response $response, array $args) {
-    return $this->renderer->render($response, 'index.phtml', $args);
+    $viewArgs = [
+        'pageTitle' => 'Release Manager'
+    ];
+    return $this->view->render($response, 'index.phtml', $viewArgs);
 });
 
 $app->get('/config', function(Request $request, Response $response, array $args) use ($app) {
-    $config = new Config($request, $response, $args);
-    return $config->getBaseConfig($app);
+    //$config = new Config($request, $response, $args);
+    // $configData = $config->getBaseConfig($app);
+    return $this->view->render($response, 'config.phtml', $args);
 });
 
+
+
+/**
+ * ========================
+ *  API routes to get data
+ * ========================
+ */
 $app->get('/repos', function (Request $request, Response $response, array $args) use ($app) {
-    $connector = Connector::getInstance($this->git);
-    $repos = $connector->getRepos();
-    
+    $repos = $this->connector->getRepos();
     return $response->withJson($repos);
 });
 
 $app->get('/repo/{repo}', function (Request $request, Response $response, array $args) use ($app) {
-    $connector = Connector::getInstance($this->git);
-    $repo = $connector->getRepo($args['repo']);
-    
+    $repo = $this->connector->getRepo($args['repo']);
     return $response->withJson($repo);
 });
 
 $app->get('/repo/{repo}/branches', function (Request $request, Response $response, array $args) use ($app) {
-    $connector = Connector::getInstance($this->git);
-    $branches = $connector->getBranches($args['repo']);
-    
+    $branches = $this->connector->getBranches($args['repo']);
     return $response->withJson($branches);
 });
 
 $app->get('/repo/{repo}/branch/{branch}', function (Request $request, Response $response, array $args) use ($app) {
-    $connector = Connector::getInstance($this->git);
-    $branch = $connector->getBranch($args['repo'], $args['branch']);
-    
+    $branch = $this->connector->getBranch($args['repo'], $args['branch']);
     return $response->withJson($branch);
 });

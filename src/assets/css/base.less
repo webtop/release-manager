@@ -1,7 +1,29 @@
-@base-background-color: #808080;
-@base-foreground-color: #b9c8e0;
-@base-border-color: #000;
 
 body {
-	background-color: #dfdfdf;
+	background-color: @background-color;
+	
+	header {
+		
+	}
+	
+	footer {
+		position: fixed;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		height: 64px;
+		background-color: @base-border-color; 
+	}
+	
+	.text-primary {
+		color: @primary-color;
+	}
+	
+	.mdi-rm {
+		color: @icon-color;
+		margin-right: 4px;
+	}
+	
+	
 }
+
