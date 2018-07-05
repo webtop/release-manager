@@ -30,7 +30,8 @@
     "bootstrap": "^4.1.1",
     "jquery": "^3.3.1",
     "muicss": "^0.9.39",
-    "popper.js": "^1.14.3"
+    "popper.js": "^1.14.3",
+    "select2": "^4.0.6-rc.1"
   },
   "devDependencies": {
     "grunt": "^1.0.3",

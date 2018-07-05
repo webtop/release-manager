@@ -4,6 +4,7 @@ namespace Config;
 
 use Library\GitHubClient\GitConfig;
 
+
 class GitLabConfig implements GitConfig {
     
     /**
@@ -11,28 +12,28 @@ class GitLabConfig implements GitConfig {
      * @var array
      */
     private $urls = [
-        'api' => 'http://gitlab.test:8000/',
-        'files' => 'https://uploads.gitlab.test:8000'
+        'api' => 'http://gitlab.local/',
+        'files' => 'https://uploads.gitlab.local'
     ];
     
     /**
      * Git source owner
      * @var string
      */
-    private  $owner = 'webtop';
+    private  $owner = 'paul.allsopp';
     
     /**
      * Git personal access token
      * @var string
      */
-    private $token = 'Zx_bTbKdctDgbdANJ8P4';
+    private $token = 'bzBUYv5Ay2YCrDZ3GuBn';
     
     /**
      * {@inheritDoc}
      * @see \Library\GitHubClient\GitConfig::getApiUrl()
      */
     public function getApiUrl() {
-        
+        return $this->urls['api'];
     }
     
     /**
@@ -40,7 +41,7 @@ class GitLabConfig implements GitConfig {
      * @see \Library\GitHubClient\GitConfig::getFilesUrl()
      */
     public function getFilesUrl() {
-        
+        return $this->urls['files'];
     }
     
     /**
@@ -48,14 +49,17 @@ class GitLabConfig implements GitConfig {
      * @see \Library\GitHubClient\GitConfig::getOwner()
      */
     public function getOwner() {
-        
+        return $this->owner;
     }
     
-    /**
-     * {@inheritDoc}
-     * @see \Library\GitHubClient\GitConfig::getAccessToken()
-     */
-    public function getAccessToken() {
-        
+    public function connect() {
+        try {
+            $client = \Gitlab\Client::create($this->urls['api'])
+                ->authenticate($this->token, \Gitlab\Client::AUTH_URL_TOKEN);
+        } catch (\Exception $e) {
+            $client = false;
+            
+        }
+        return $client;
     }
 }

@@ -2,10 +2,6 @@
 
 namespace Classes;
 
-use Library\GitHubClient\Client\GitHubClient;
-use Library\GitHubClient\Client\GitHubClientBase;
-use Library\GitHubClient\Client\GitHubClientException;
-
 class Connector {
     
     private static $instance = null;
@@ -36,25 +32,14 @@ class Connector {
     private function connect() {
         $success = false;
         try {
-            $this->client = $this->clientSetup();
+            $this->client = $this->git->connect();
             $success = true;
-        } catch (GitHubClientException $e) {
+        } catch (\Exception $e) {
             $this->lastError = $e->getMessage();
         }
         return $success;
     }
-    
-    private function clientSetup()
-    {
-        $client = new GitHubClient();
-        $client->setUrl($this->git->getApiUrl());
-        $client->setAuthType(GitHubClientBase::GITHUB_AUTH_TYPE_OAUTH_BASIC);
-        $client->setOauthKey($this->git->getAccessToken());
-        $client->setPageSize(4);
         
-        return $client;
-    }
-    
     public function getRepos() {
         $repos = [];
         $objects = $this->client->repos->listYourRepositories();

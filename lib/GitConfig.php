@@ -31,9 +31,9 @@ interface GitConfig
     public function getOwner (): string;
 
     /**
-     * Get the personal access token for the Git soure
+     * Make a connection to the source
      * 
-     * @return string
+     * @return class|boolean
      */
-    public function getAccessToken (): string;
+    public function connect();
 }

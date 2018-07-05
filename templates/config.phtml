@@ -1,1 +1,56 @@
-<h1>Here!</h1>
+<?php if (!empty($configError)) { ?>
+<div class="full-width">
+	<p class="text-danger">Error: <?php print $configError; ?></p>
+</div>
+<?php } ?>
+
+<div class="card text-secondary">
+	<div class="card-header">
+		Configure Git Source
+	</div>
+	<div class="card-body">
+		<p class="card-text">Select the git source type, then confiure it.</p>
+		<form class="form">
+			<div class="form-group">
+				<label class="control-label" for="git-source-select">Git Source</label>
+				<select class="select form-control" id="git-source-select">
+					<option>Select a Git Source...</option>
+					<option value="github">GitHub</option>
+					<option value="gitlab">GitLab</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="git-api-url">Git API URL</label>
+				<input class="form-control" type="text" id="git-api-url" placeholder="required" />
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="git-file-url">Git Files URL</label>
+				<input class="form-control" type="text" id="git-file-url" placeholder="optional" />
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="git-source-auth">Authorization Type</label>
+				<select class="select form-control" id="git-source-auth">
+					<option>Select an Authorization method...</option>
+					<option value="user-pass">Username/Password</option>
+					<option value="access-token">Personal Access Token</option>
+				</select>
+			</div>
+			<div class="auth-type-container border rounded" data-for="user-pass">
+    			<div class="form-group">
+    				<label class="control-label" for="git-auth-username">Username</label>
+    				<input class="form-control" type="text" id="git-auth-username" placeholder="required" />
+    			</div>
+    			<div class="form-group">
+    				<label class="control-label" for="git-auth-password">Password</label>
+    				<input class="form-control" type="password" id="git-auth-password" placeholder="required" />
+    			</div>
+    		</div>
+    		<div class="auth-type-container border rounded" data-for="access-token">
+    			<div class="form-group">
+    				<label class="control-label" for="git-auth-token">Token</label>
+    				<input class="form-control" type="text" id="git-auth-token" placeholder="required" />
+    			</div>
+    		</div>
+		</form>
+	</div>
+</div>

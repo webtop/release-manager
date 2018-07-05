@@ -1,9 +1,30 @@
 
 body {
 	background-color: @background-color;
+	color: @white-color;
 	
 	header {
+		.nav-item a:active  {
+			color: @teal-color;
+		}
+		.nav-seperator {
+			border-right: 1px solid @gray-500-color;
+			border-left: 1px solid @gray-600-color;
+		}
+	}
+	
+	#app {
+		margin-top: 80px;
 		
+		.auth-type-container {
+			background-color: @gray-200-color;
+			border-color: @gray-400-color;
+		
+			.form-group {
+				width: 95%;
+				margin-left: 2%;
+			}
+		}
 	}
 	
 	footer {
@@ -12,7 +33,9 @@ body {
 		bottom: 0;
 		right: 0;
 		height: 64px;
-		background-color: @base-border-color; 
+		text-align: left;
+		verticle-align: middle;
+		background-color: @gray-400-color; 
 	}
 	
 	.text-primary {

@@ -4,6 +4,7 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 use Classes\Connector;
 use Classes\Config;
+use Classes\Common;
 
 /**
  * ========================
@@ -11,16 +12,34 @@ use Classes\Config;
  * ========================
  */
 $app->get('/', function (Request $request, Response $response, array $args) {
+    if (empty($this->settings['git-source'])) {
+        return $response->withRedirect('/config', 303);
+    }
     $viewArgs = [
         'pageTitle' => 'Release Manager'
     ];
-    return $this->view->render($response, 'index.phtml', $viewArgs);
+    
+    return Common::buildView($response, $this->view, 'index.phtml', $viewArgs);
 });
 
 $app->get('/config', function(Request $request, Response $response, array $args) use ($app) {
-    //$config = new Config($request, $response, $args);
-    // $configData = $config->getBaseConfig($app);
-    return $this->view->render($response, 'config.phtml', $args);
+    $configError = '';
+    $configData = [];
+    
+    if (empty($this->settings['git-source'])) {
+        $configError = 'Please set up the git source configuration';
+    } else {
+        $config = new Config($request, $response, $args);
+        $configData = $config->getBaseConfig($app);
+    }
+    
+    $viewArgs = [
+        'pageTitle' => 'Configuration',
+        'configData' => $configData,
+        'configError' => $configError
+    ];
+    
+    return Common::buildView($response, $this->view, 'config.phtml', $viewArgs);
 });
 
 
