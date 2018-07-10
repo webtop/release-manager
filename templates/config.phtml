@@ -1,7 +1,9 @@
 <?php if (!empty($configError)) { ?>
-<div class="full-width">
-	<p class="text-danger">Error: <?php print $configError; ?></p>
-</div>
+<script type="text/javascript">
+(function() {
+	App.notifier.show('Configuration Notice', "<?php print $configError; ?>");
+})();
+</script>
 <?php } ?>
 
 <div class="card text-secondary">

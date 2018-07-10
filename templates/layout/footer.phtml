@@ -2,7 +2,7 @@
 use Classes\Common;
 ?>
 
-	<script src="<?php print Common::cache('/js/vendor/jquery.slim.min.js'); ?>"></script>
+	<script src="<?php print Common::cache('/js/vendor/jquery.min.js'); ?>"></script>
 	<script src="<?php print Common::cache('/js/vendor/popper.min.js'); ?>"></script>
 	<script src="<?php print Common::cache('/js/vendor/bootstrap.min.js'); ?>"></script>
 	<script src="<?php print Common::cache('/js/vendor/select2.min.js'); ?>"></script>
@@ -11,6 +11,7 @@ use Classes\Common;
 	<script type="text/javascript">
 		$(document).ready(function() {
 			App.releaseManager();
+			App.notifier();
 		});
 	</script>
 </body>

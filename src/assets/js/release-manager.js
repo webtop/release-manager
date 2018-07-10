@@ -10,6 +10,8 @@ var App = (function(App) {
 			$('div[data-for="' + $(this).val() + '"]').show();
 			$('input:first', 'div[data-for="' + $(this).val() + '"]').focus();
 		});
+		
+		return this;
 	};
 	
 	return App;

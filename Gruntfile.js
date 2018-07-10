@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 				banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
 			},
 			build: {
-				src: 'src/assets/js/release-manager.js',
+				src: 'src/assets/js/*.js',
 				dest: 'public/js/<%= pkg.name %>.js'
 			}
 		},
@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 		},
 		watch: {
 			uglify: {
-				files: 'src/assets/js/release-manager.js',
+				files: 'src/assets/js/*.js',
 				tasks: ['uglify']
 			},
 			less: {
@@ -34,7 +34,7 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-uglify-es');
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-watch');
 
