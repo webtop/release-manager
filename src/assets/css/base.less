@@ -12,10 +12,19 @@ body {
 			border-right: 1px solid @gray-500-color;
 			border-left: 1px solid @gray-600-color;
 		}
+		
+		div#notifier {
+			position: absolute;
+			z-index: 1000;
+			top: 0;
+			opacity: 0;
+			cursor: pointer;
+		}
 	}
 	
 	#app {
 		margin-top: 80px;
+		overflow-y: auto;
 		
 		.auth-type-container {
 			background-color: @gray-200-color;
@@ -33,7 +42,7 @@ body {
 		left: 0;
 		bottom: 0;
 		right: 0;
-		height: 64px;
+		height: 32px;
 		text-align: left;
 		verticle-align: middle;
 		background-color: @gray-400-color; 

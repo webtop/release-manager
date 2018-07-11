@@ -9,14 +9,9 @@ var App = (function(App) {
 		};
 		
 		$('#notifier').css({
-			position: 'absolute',
-			zIndex: 1000,
-			top: 0,
 			left: $('.card:first').offset().left + 'px',
 			right: $('.card:first').offset().left + 'px',
-			maxWidth: $('.card:first').css('width'),
-			opacity: 0,
-			cursor: 'pointer'
+			maxWidth: $('.card:first').css('width')
 		});
 		
 		$('#notifier').on('click', App.notifier.hide);
@@ -27,6 +22,13 @@ var App = (function(App) {
 			
 			App.notifier.show();
 		};
+		
+		// If there are any unseen notices show ad then remove them
+		$('.unseen-notification').each(function() {
+			App.showNotice($(this).attr('data-title'), $(this).text());
+			$(this).remove();
+		});
+		
 		
 		return this;
 	};

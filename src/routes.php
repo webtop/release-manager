@@ -42,7 +42,12 @@ $app->get('/config', function(Request $request, Response $response, array $args)
     return Common::buildView($response, $this->view, 'config.phtml', $viewArgs);
 });
 
-
+$app->get('/oauth', function(Request $request, Response $response, array $args) use($app) {
+    Common::debug($request);
+    Common::debug($args);
+    
+    exit;
+});
 
 /**
  * ========================
