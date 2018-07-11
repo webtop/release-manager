@@ -43,10 +43,10 @@ $app->get('/config', function(Request $request, Response $response, array $args)
 });
 
 $app->get('/oauth', function(Request $request, Response $response, array $args) use($app) {
-    Common::debug($request);
-    Common::debug($args);
+    error_log($request);
+    error_log($args);
     
-    exit;
+    return true;
 });
 
 /**
