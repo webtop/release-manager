@@ -57,4 +57,11 @@ class GitHubConfig implements GitConfig {
     public function getAccessToken():string {
         return $this->token;
     }
+     
+    /**
+     * {@inheritDoc}
+     * @see \Library\GitHubClient\GitConfig::connect()
+     */
+    public function connect() {}
+
 }

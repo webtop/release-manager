@@ -7,10 +7,13 @@ use Classes\Common;
 	<script src="<?php print Common::cache('/js/vendor/bootstrap.min.js'); ?>"></script>
 	<script src="<?php print Common::cache('/js/vendor/select2.min.js'); ?>"></script>
 	<script src="<?php print Common::cache('/js/release-manager.js'); ?>"></script>
+	<script src="<?php print Common::cache('/js/connector.js'); ?>"></script>
+	<script src="<?php print Common::cache('/js/notifier.js'); ?>"></script>
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
 			App.releaseManager();
+			App.connector();
 			App.notifier();
 		});
 	</script>

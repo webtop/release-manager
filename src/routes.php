@@ -5,6 +5,7 @@ use Slim\Http\Response;
 use Classes\Connector;
 use Classes\Config;
 use Classes\Common;
+use function GuzzleHttp\json_encode;
 
 /**
  * ========================
@@ -48,6 +49,13 @@ $app->get('/oauth', function(Request $request, Response $response, array $args) 
     
     return true;
 });
+
+$app->post('/test-connection', function(Request $request, Response $response, array $args) use($app) {
+    return json_encode([
+        'success' => true
+    ]);
+});
+
 
 /**
  * ========================
