@@ -1,38 +1,34 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-class GitHubRefObject extends GitHubObject
-{
+class GitHubRefObject extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'type' => 'string',
-                        'sha' => 'string',
-                        'url' => 'string'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'type' => 'string',
+            'sha' => 'string',
+            'url' => 'string'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $type;
-    
+
     /**
      *
      * @var string
      */
     protected $sha;
-    
+
     /**
      *
      * @var string
@@ -43,8 +39,7 @@ class GitHubRefObject extends GitHubObject
      *
      * @return string
      */
-    public function getType()
-    {
+    public function getType() {
         return $this->type;
     }
 
@@ -52,8 +47,7 @@ class GitHubRefObject extends GitHubObject
      *
      * @return string
      */
-    public function getSha()
-    {
+    public function getSha() {
         return $this->sha;
     }
 
@@ -61,8 +55,7 @@ class GitHubRefObject extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 }

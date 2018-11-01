@@ -1,89 +1,85 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 require_once (__DIR__ . '/GitHubUser.php');
 require_once (__DIR__ . '/GitHubPullCommentLinks.php');
 
-class GitHubPullComment extends GitHubObject
-{
+class GitHubPullComment extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'url' => 'string',
-                        'id' => 'int',
-                        'body' => 'string',
-                        'path' => 'string',
-                        'position' => 'int',
-                        'commit_id' => 'string',
-                        'user' => 'GitHubUser',
-                        'created_at' => 'string',
-                        'updated_at' => 'string',
-                        'links' => 'GitHubPullCommentLinks'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'url' => 'string',
+            'id' => 'int',
+            'body' => 'string',
+            'path' => 'string',
+            'position' => 'int',
+            'commit_id' => 'string',
+            'user' => 'GitHubUser',
+            'created_at' => 'string',
+            'updated_at' => 'string',
+            'links' => 'GitHubPullCommentLinks'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var int
      */
     protected $id;
-    
+
     /**
      *
      * @var string
      */
     protected $body;
-    
+
     /**
      *
      * @var string
      */
     protected $path;
-    
+
     /**
      *
      * @var int
      */
     protected $position;
-    
+
     /**
      *
      * @var string
      */
     protected $commit_id;
-    
+
     /**
      *
      * @var GitHubUser
      */
     protected $user;
-    
+
     /**
      *
      * @var string
      */
     protected $created_at;
-    
+
     /**
      *
      * @var string
      */
     protected $updated_at;
-    
+
     /**
      *
      * @var GitHubPullCommentLinks
@@ -94,8 +90,7 @@ class GitHubPullComment extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -103,8 +98,7 @@ class GitHubPullComment extends GitHubObject
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -112,8 +106,7 @@ class GitHubPullComment extends GitHubObject
      *
      * @return string
      */
-    public function getBody()
-    {
+    public function getBody() {
         return $this->body;
     }
 
@@ -121,8 +114,7 @@ class GitHubPullComment extends GitHubObject
      *
      * @return string
      */
-    public function getPath()
-    {
+    public function getPath() {
         return $this->path;
     }
 
@@ -130,8 +122,7 @@ class GitHubPullComment extends GitHubObject
      *
      * @return int
      */
-    public function getPosition()
-    {
+    public function getPosition() {
         return $this->position;
     }
 
@@ -139,8 +130,7 @@ class GitHubPullComment extends GitHubObject
      *
      * @return string
      */
-    public function getCommitId()
-    {
+    public function getCommitId() {
         return $this->commit_id;
     }
 
@@ -148,8 +138,7 @@ class GitHubPullComment extends GitHubObject
      *
      * @return GitHubUser
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->user;
     }
 
@@ -157,8 +146,7 @@ class GitHubPullComment extends GitHubObject
      *
      * @return string
      */
-    public function getCreatedAt()
-    {
+    public function getCreatedAt() {
         return $this->created_at;
     }
 
@@ -166,8 +154,7 @@ class GitHubPullComment extends GitHubObject
      *
      * @return string
      */
-    public function getUpdatedAt()
-    {
+    public function getUpdatedAt() {
         return $this->updated_at;
     }
 
@@ -175,8 +162,7 @@ class GitHubPullComment extends GitHubObject
      *
      * @return GitHubPullCommentLinks
      */
-    public function getLinks()
-    {
+    public function getLinks() {
         return $this->links;
     }
 }

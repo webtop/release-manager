@@ -1,123 +1,119 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\Objects\GitHubUser;
 
-class GitHubFullUser extends GitHubUser
-{
+class GitHubFullUser extends GitHubUser {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'login' => 'string',
-                        'name' => 'string',
-                        'company' => 'string',
-                        'blog' => 'string',
-                        'location' => 'string',
-                        'email' => 'string',
-                        'hireable' => 'boolean',
-                        'bio' => 'string',
-                        'public_repos' => 'int',
-                        'public_gists' => 'int',
-                        'followers' => 'int',
-                        'following' => 'int',
-                        'html_url' => 'string',
-                        'created_at' => 'string',
-                        'type' => 'string',
-                        'avatar_url' => 'string'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'login' => 'string',
+            'name' => 'string',
+            'company' => 'string',
+            'blog' => 'string',
+            'location' => 'string',
+            'email' => 'string',
+            'hireable' => 'boolean',
+            'bio' => 'string',
+            'public_repos' => 'int',
+            'public_gists' => 'int',
+            'followers' => 'int',
+            'following' => 'int',
+            'html_url' => 'string',
+            'created_at' => 'string',
+            'type' => 'string',
+            'avatar_url' => 'string'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $login;
-    
+
     /**
      *
      * @var string
      */
     protected $name;
-    
+
     /**
      *
      * @var string
      */
     protected $company;
-    
+
     /**
      *
      * @var string
      */
     protected $blog;
-    
+
     /**
      *
      * @var string
      */
     protected $location;
-    
+
     /**
      *
      * @var string
      */
     protected $email;
-    
+
     /**
      *
      * @var boolean
      */
     protected $hireable;
-    
+
     /**
      *
      * @var string
      */
     protected $bio;
-    
+
     /**
      *
      * @var int
      */
     protected $public_repos;
-    
+
     /**
      *
      * @var int
      */
     protected $public_gists;
-    
+
     /**
      *
      * @var int
      */
     protected $followers;
-    
+
     /**
      *
      * @var int
      */
     protected $following;
-    
+
     /**
      *
      * @var string
      */
     protected $html_url;
-    
+
     /**
      *
      * @var string
      */
     protected $created_at;
-    
+
     /**
      *
      * @var string
@@ -128,8 +124,7 @@ class GitHubFullUser extends GitHubUser
      *
      * @return string
      */
-    public function getLogin()
-    {
+    public function getLogin() {
         return $this->login;
     }
 
@@ -137,8 +132,7 @@ class GitHubFullUser extends GitHubUser
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -146,8 +140,7 @@ class GitHubFullUser extends GitHubUser
      *
      * @return string
      */
-    public function getCompany()
-    {
+    public function getCompany() {
         return $this->company;
     }
 
@@ -155,8 +148,7 @@ class GitHubFullUser extends GitHubUser
      *
      * @return string
      */
-    public function getBlog()
-    {
+    public function getBlog() {
         return $this->blog;
     }
 
@@ -164,8 +156,7 @@ class GitHubFullUser extends GitHubUser
      *
      * @return string
      */
-    public function getLocation()
-    {
+    public function getLocation() {
         return $this->location;
     }
 
@@ -173,8 +164,7 @@ class GitHubFullUser extends GitHubUser
      *
      * @return string
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
 
@@ -182,8 +172,7 @@ class GitHubFullUser extends GitHubUser
      *
      * @return boolean
      */
-    public function getHireable()
-    {
+    public function getHireable() {
         return $this->hireable;
     }
 
@@ -191,8 +180,7 @@ class GitHubFullUser extends GitHubUser
      *
      * @return string
      */
-    public function getBio()
-    {
+    public function getBio() {
         return $this->bio;
     }
 
@@ -200,8 +188,7 @@ class GitHubFullUser extends GitHubUser
      *
      * @return int
      */
-    public function getPublicRepos()
-    {
+    public function getPublicRepos() {
         return $this->public_repos;
     }
 
@@ -209,8 +196,7 @@ class GitHubFullUser extends GitHubUser
      *
      * @return int
      */
-    public function getPublicGists()
-    {
+    public function getPublicGists() {
         return $this->public_gists;
     }
 
@@ -218,8 +204,7 @@ class GitHubFullUser extends GitHubUser
      *
      * @return int
      */
-    public function getFollowers()
-    {
+    public function getFollowers() {
         return $this->followers;
     }
 
@@ -227,8 +212,7 @@ class GitHubFullUser extends GitHubUser
      *
      * @return int
      */
-    public function getFollowing()
-    {
+    public function getFollowing() {
         return $this->following;
     }
 
@@ -236,8 +220,7 @@ class GitHubFullUser extends GitHubUser
      *
      * @return string
      */
-    public function getHtmlUrl()
-    {
+    public function getHtmlUrl() {
         return $this->html_url;
     }
 
@@ -245,8 +228,7 @@ class GitHubFullUser extends GitHubUser
      *
      * @return string
      */
-    public function getCreatedAt()
-    {
+    public function getCreatedAt() {
         return $this->created_at;
     }
 
@@ -254,8 +236,7 @@ class GitHubFullUser extends GitHubUser
      *
      * @return string
      */
-    public function getType()
-    {
+    public function getType() {
         return $this->type;
     }
 
@@ -263,8 +244,7 @@ class GitHubFullUser extends GitHubUser
      *
      * @return string
      */
-    public function getAvatarUrl()
-    {
+    public function getAvatarUrl() {
         return $this->avatar_url;
     }
 }

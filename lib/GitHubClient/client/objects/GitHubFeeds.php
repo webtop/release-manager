@@ -1,67 +1,63 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 require_once (__DIR__ . '/GitHubFeedsLinks.php');
 
-class GitHubFeeds extends GitHubObject
-{
+class GitHubFeeds extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'timeline_url' => 'string',
-                        'user_url' => 'string',
-                        'current_user_public' => 'string',
-                        'current_user_url' => 'string',
-                        'current_user_actor_url' => 'string',
-                        'current_user_organization_url' => 'string',
-                        'links' => 'GitHubFeedsLinks'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'timeline_url' => 'string',
+            'user_url' => 'string',
+            'current_user_public' => 'string',
+            'current_user_url' => 'string',
+            'current_user_actor_url' => 'string',
+            'current_user_organization_url' => 'string',
+            'links' => 'GitHubFeedsLinks'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $timeline_url;
-    
+
     /**
      *
      * @var string
      */
     protected $user_url;
-    
+
     /**
      *
      * @var string
      */
     protected $current_user_public;
-    
+
     /**
      *
      * @var string
      */
     protected $current_user_url;
-    
+
     /**
      *
      * @var string
      */
     protected $current_user_actor_url;
-    
+
     /**
      *
      * @var string
      */
     protected $current_user_organization_url;
-    
+
     /**
      *
      * @var GitHubFeedsLinks
@@ -72,8 +68,7 @@ class GitHubFeeds extends GitHubObject
      *
      * @return string
      */
-    public function getTimelineUrl()
-    {
+    public function getTimelineUrl() {
         return $this->timeline_url;
     }
 
@@ -81,8 +76,7 @@ class GitHubFeeds extends GitHubObject
      *
      * @return string
      */
-    public function getUserUrl()
-    {
+    public function getUserUrl() {
         return $this->user_url;
     }
 
@@ -90,8 +84,7 @@ class GitHubFeeds extends GitHubObject
      *
      * @return string
      */
-    public function getCurrentUserPublic()
-    {
+    public function getCurrentUserPublic() {
         return $this->current_user_public;
     }
 
@@ -99,8 +92,7 @@ class GitHubFeeds extends GitHubObject
      *
      * @return string
      */
-    public function getCurrentUserUrl()
-    {
+    public function getCurrentUserUrl() {
         return $this->current_user_url;
     }
 
@@ -108,8 +100,7 @@ class GitHubFeeds extends GitHubObject
      *
      * @return string
      */
-    public function getCurrentUserActorUrl()
-    {
+    public function getCurrentUserActorUrl() {
         return $this->current_user_actor_url;
     }
 
@@ -117,8 +108,7 @@ class GitHubFeeds extends GitHubObject
      *
      * @return string
      */
-    public function getCurrentUserOrganizationUrl()
-    {
+    public function getCurrentUserOrganizationUrl() {
         return $this->current_user_organization_url;
     }
 
@@ -126,8 +116,7 @@ class GitHubFeeds extends GitHubObject
      *
      * @return GitHubFeedsLinks
      */
-    public function getLinks()
-    {
+    public function getLinks() {
         return $this->links;
     }
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace Library\GitHubClient\Client;
 
 use Library\GitHubClient\Client\GitHubClientBase;
@@ -20,99 +19,98 @@ use Library\GitHubClient\Client\Services\GitHubRepos;
 use Library\GitHubClient\Client\Services\GitHubSearch;
 use Library\GitHubClient\Client\Services\GitHubUsers;
 
-class GitHubClient extends GitHubClientBase
-{
-    
+class GitHubClient extends GitHubClientBase {
+
     /**
      *
      * @var GitHubActivity
      */
     public $activity;
-    
+
     /**
      *
      * @var GitHubChangelog
      */
     public $changelog;
-    
+
     /**
      *
      * @var GitHubGists
      */
     public $gists;
-    
+
     /**
      *
      * @var GitHubGit
      */
     public $git;
-    
+
     /**
      *
      * @var GitHubGitignore
      */
     public $gitignore;
-    
+
     /**
      *
      * @var GitHubIssues
      */
     public $issues;
-    
+
     /**
      *
      * @var GitHubLibraries
      */
     public $libraries;
-    
+
     /**
      *
      * @var GitHubMarkdown
      */
     public $markdown;
-    
+
     /**
      *
      * @var GitHubMedia
      */
     public $media;
-    
+
     /**
      *
      * @var GitHubMeta
      */
     public $meta;
-    
+
     /**
      *
      * @var GitHubOauth
      */
     public $oauth;
-    
+
     /**
      *
      * @var GitHubOrgs
      */
     public $orgs;
-    
+
     /**
      *
      * @var GitHubPulls
      */
     public $pulls;
-    
+
     /**
      *
      * @var GitHubRepos
      */
     public $repos;
-    
+
     /**
      *
      * @var GitHubSearch
      */
     public $search;
-    
+
     /**
      *
      * @var GitHubUsers
@@ -122,8 +120,7 @@ class GitHubClient extends GitHubClientBase
     /**
      * Initialize sub services
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->activity = new GitHubActivity($this);
         $this->changelog = new GitHubChangelog($this);
         $this->gists = new GitHubGists($this);
@@ -142,13 +139,11 @@ class GitHubClient extends GitHubClientBase
         $this->users = new GitHubUsers($this);
     }
 
-    public function setUrl($url)
-    {
+    public function setUrl($url) {
         $this->url = $url;
     }
 
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 }

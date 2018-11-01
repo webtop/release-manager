@@ -1,38 +1,34 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\Objects\GitHubTeam;
 
-class GitHubFullTeam extends GitHubTeam
-{
+class GitHubFullTeam extends GitHubTeam {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'permission' => 'string',
-                        'members_count' => 'int',
-                        'repos_count' => 'int'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'permission' => 'string',
+            'members_count' => 'int',
+            'repos_count' => 'int'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $permission;
-    
+
     /**
      *
      * @var int
      */
     protected $members_count;
-    
+
     /**
      *
      * @var int
@@ -43,8 +39,7 @@ class GitHubFullTeam extends GitHubTeam
      *
      * @return string
      */
-    public function getPermission()
-    {
+    public function getPermission() {
         return $this->permission;
     }
 
@@ -52,8 +47,7 @@ class GitHubFullTeam extends GitHubTeam
      *
      * @return int
      */
-    public function getMembersCount()
-    {
+    public function getMembersCount() {
         return $this->members_count;
     }
 
@@ -61,8 +55,7 @@ class GitHubFullTeam extends GitHubTeam
      *
      * @return int
      */
-    public function getReposCount()
-    {
+    public function getReposCount() {
         return $this->repos_count;
     }
 }

@@ -1,10 +1,8 @@
 <?php
-
 namespace Library\GitHubClient\Client;
 
-class GitHubService
-{
-    
+class GitHubService {
+
     /**
      *
      * @var GitHubClient
@@ -15,8 +13,7 @@ class GitHubService
      *
      * @param GitHubClient $client            
      */
-    public function __construct(GitHubClient $client)
-    {
+    public function __construct(GitHubClient $client) {
         $this->client = $client;
     }
 }

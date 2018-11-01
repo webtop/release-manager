@@ -1,53 +1,49 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 require_once (__DIR__ . '/GitHubUser.php');
 
-class GitHubGistComment extends GitHubObject
-{
+class GitHubGistComment extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'id' => 'int',
-                        'url' => 'string',
-                        'body' => 'string',
-                        'user' => 'GitHubUser',
-                        'created_at' => 'string'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'id' => 'int',
+            'url' => 'string',
+            'body' => 'string',
+            'user' => 'GitHubUser',
+            'created_at' => 'string'
+        ));
     }
-    
+
     /**
      *
      * @var int
      */
     protected $id;
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var string
      */
     protected $body;
-    
+
     /**
      *
      * @var GitHubUser
      */
     protected $user;
-    
+
     /**
      *
      * @var string
@@ -58,8 +54,7 @@ class GitHubGistComment extends GitHubObject
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -67,8 +62,7 @@ class GitHubGistComment extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -76,8 +70,7 @@ class GitHubGistComment extends GitHubObject
      *
      * @return string
      */
-    public function getBody()
-    {
+    public function getBody() {
         return $this->body;
     }
 
@@ -85,8 +78,7 @@ class GitHubGistComment extends GitHubObject
      *
      * @return GitHubUser
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->user;
     }
 
@@ -94,8 +86,7 @@ class GitHubGistComment extends GitHubObject
      *
      * @return string
      */
-    public function getCreatedAt()
-    {
+    public function getCreatedAt() {
         return $this->created_at;
     }
 }

@@ -1,5 +1,4 @@
 <?php
-
 namespace Library\GitHubClient\Client\Services;
 
 use Library\GitHubClient\Client\GitHubClient;
@@ -7,8 +6,7 @@ use Library\GitHubClient\Client\GitHubService;
 use Library\GitHubClient\Client\Objects\GitHubPullComment;
 use Library\GitHubClient\Client\Objects\GitHubIssueComment;
 
-class GitHubIssuesComments extends GitHubService
-{
+class GitHubIssuesComments extends GitHubService {
 
     /**
      * List comments on an issue
@@ -22,8 +20,7 @@ class GitHubIssuesComments extends GitHubService
      *            YYYY-MM-DDTHH:MM:SSZ
      * @return array<GitHubPullComment>
      */
-    public function listCommentsOnAnIssue($owner, $repo, $number, $sort = null, $direction = null, $since = null)
-    {
+    public function listCommentsOnAnIssue($owner, $repo, $number, $sort = null, $direction = null, $since = null) {
         $data = array();
         if (!is_null($sort))
             $data['sort'] = $sort;
@@ -32,8 +29,7 @@ class GitHubIssuesComments extends GitHubService
         if (!is_null($since))
             $data['since'] = $since;
         
-        return $this->client->request("/repos/$owner/$repo/issues/$number/comments", 'GET', $data, 200, 
-                'GitHubPullComment', true);
+        return $this->client->request("/repos/$owner/$repo/issues/$number/comments", 'GET', $data, 200, 'GitHubPullComment', true);
     }
 
     /**
@@ -48,8 +44,7 @@ class GitHubIssuesComments extends GitHubService
      *            YYYY-MM-DDTHH:MM:SSZ
      * @return array<GitHubPullComment>
      */
-    public function listCommentsOnRepository($owner, $repo, $number, $sort = null, $direction = null, $since = null)
-    {
+    public function listCommentsOnRepository($owner, $repo, $number, $sort = null, $direction = null, $since = null) {
         $data = array();
         if (!is_null($sort))
             $data['sort'] = $sort;
@@ -58,8 +53,7 @@ class GitHubIssuesComments extends GitHubService
         if (!is_null($since))
             $data['since'] = $since;
         
-        return $this->client->request("/repos/$owner/$repo/issues/comments", 'GET', $data, 200, 'GitHubPullComment', 
-                true);
+        return $this->client->request("/repos/$owner/$repo/issues/comments", 'GET', $data, 200, 'GitHubPullComment', true);
     }
 
     /**
@@ -67,12 +61,10 @@ class GitHubIssuesComments extends GitHubService
      *
      * @return GitHubIssueComment
      */
-    public function getSingleComment($owner, $repo, $id)
-    {
+    public function getSingleComment($owner, $repo, $id) {
         $data = array();
         
-        return $this->client->request("/repos/$owner/$repo/issues/comments/$id", 'GET', $data, 200, 
-                'GitHubIssueComment');
+        return $this->client->request("/repos/$owner/$repo/issues/comments/$id", 'GET', $data, 200, 'GitHubIssueComment');
     }
 
     /**
@@ -80,13 +72,11 @@ class GitHubIssuesComments extends GitHubService
      *
      * @return GitHubIssueComment
      */
-    public function createComment($owner, $repo, $issue, $body)
-    {
+    public function createComment($owner, $repo, $issue, $body) {
         $data = array();
         $data['body'] = $body;
         
-        return $this->client->request("/repos/$owner/$repo/issues/$issue/comments", 'POST', json_encode($data), 201, 
-                'GitHubIssueComment');
+        return $this->client->request("/repos/$owner/$repo/issues/$issue/comments", 'POST', json_encode($data), 201, 'GitHubIssueComment');
     }
 
     /**
@@ -94,20 +84,17 @@ class GitHubIssuesComments extends GitHubService
      *
      * @return GitHubIssueComment
      */
-    public function editComment($owner, $repo, $id, $body)
-    {
+    public function editComment($owner, $repo, $id, $body) {
         $data = array();
         $data['body'] = $body;
         
-        return $this->client->request("/repos/$owner/$repo/issues/comments/$id", 'PATCH', json_encode($data), 200, 
-                'GitHubIssueComment');
+        return $this->client->request("/repos/$owner/$repo/issues/comments/$id", 'PATCH', json_encode($data), 200, 'GitHubIssueComment');
     }
 
     /**
      * Delete a comment
      */
-    public function deleteComment($owner, $repo, $id)
-    {
+    public function deleteComment($owner, $repo, $id) {
         $data = array();
         
         return $this->client->request("/repos/$owner/$repo/issues/comments/$id", 'DELETE', $data, 204, '');

@@ -1,13 +1,11 @@
 <?php
-
 namespace Library\GitHubClient\Client\Services;
 
 use Library\GitHubClient\Client\GitHubClient;
 use Library\GitHubClient\Client\GitHubService;
 use Library\GitHubClient\Client\Objects\GitHubStatus;
 
-class GitHubReposStatuses extends GitHubService
-{
+class GitHubReposStatuses extends GitHubService {
 
     /**
      * Create status
@@ -32,8 +30,7 @@ class GitHubReposStatuses extends GitHubService
      *            of other systems. Default: "default"
      * @return GitHubStatus
      */
-    public function createStatus($owner, $repo, $sha, $state, $target_url = null, $description = null, $context = null)
-    {
+    public function createStatus($owner, $repo, $sha, $state, $target_url = null, $description = null, $context = null) {
         $data = array();
         $data['state'] = $state;
         if (!is_null($target_url))
@@ -56,13 +53,11 @@ class GitHubReposStatuses extends GitHubService
      *            branch name, or a tag name.
      * @return array<GitHubStatus>
      */
-    public function listStatusesForSpecificRef($owner, $repo, $ref)
-    {
+    public function listStatusesForSpecificRef($owner, $repo, $ref) {
         $data = array();
         $data['ref'] = $ref;
         
-        return $this->client->request("/repos/$owner/$repo/commits/$ref/statuses", 'GET', $data, 200, 'GitHubStatus', 
-                true);
+        return $this->client->request("/repos/$owner/$repo/commits/$ref/statuses", 'GET', $data, 200, 'GitHubStatus', true);
     }
 
     /**
@@ -73,12 +68,10 @@ class GitHubReposStatuses extends GitHubService
      *            branch name, or a tag name.
      * @return GitHubStatus
      */
-    public function getCombinedStatus($owner, $repo, $ref)
-    {
+    public function getCombinedStatus($owner, $repo, $ref) {
         $data = array();
         
-        return $this->client->request("/repos/$owner/$repo/commits/$ref/status", 'GET', $data, 200, 'GitHubStatus', 
-                false);
+        return $this->client->request("/repos/$owner/$repo/commits/$ref/status", 'GET', $data, 200, 'GitHubStatus', false);
     }
 }
 

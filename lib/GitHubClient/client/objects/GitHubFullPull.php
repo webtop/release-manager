@@ -1,81 +1,77 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 require_once (__DIR__ . '/GitHubPull.php');
 require_once (__DIR__ . '/GitHubUser.php');
 
-class GitHubFullPull extends GitHubPull
-{
+class GitHubFullPull extends GitHubPull {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'merge_commit_sha' => 'string',
-                        'merged' => 'boolean',
-                        'mergeable' => 'boolean',
-                        'merged_by' => 'GitHubUser',
-                        'comments' => 'int',
-                        'commits' => 'int',
-                        'additions' => 'int',
-                        'deletions' => 'int',
-                        'changed_files' => 'int'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'merge_commit_sha' => 'string',
+            'merged' => 'boolean',
+            'mergeable' => 'boolean',
+            'merged_by' => 'GitHubUser',
+            'comments' => 'int',
+            'commits' => 'int',
+            'additions' => 'int',
+            'deletions' => 'int',
+            'changed_files' => 'int'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $merge_commit_sha;
-    
+
     /**
      *
      * @var boolean
      */
     protected $merged;
-    
+
     /**
      *
      * @var boolean
      */
     protected $mergeable;
-    
+
     /**
      *
      * @var GitHubUser
      */
     protected $merged_by;
-    
+
     /**
      *
      * @var int
      */
     protected $comments;
-    
+
     /**
      *
      * @var int
      */
     protected $commits;
-    
+
     /**
      *
      * @var int
      */
     protected $additions;
-    
+
     /**
      *
      * @var int
      */
     protected $deletions;
-    
+
     /**
      *
      * @var int
@@ -86,8 +82,7 @@ class GitHubFullPull extends GitHubPull
      *
      * @return string
      */
-    public function getMergeCommitSha()
-    {
+    public function getMergeCommitSha() {
         return $this->merge_commit_sha;
     }
 
@@ -95,8 +90,7 @@ class GitHubFullPull extends GitHubPull
      *
      * @return boolean
      */
-    public function getMerged()
-    {
+    public function getMerged() {
         return $this->merged;
     }
 
@@ -104,8 +98,7 @@ class GitHubFullPull extends GitHubPull
      *
      * @return boolean
      */
-    public function getMergeable()
-    {
+    public function getMergeable() {
         return $this->mergeable;
     }
 
@@ -113,8 +106,7 @@ class GitHubFullPull extends GitHubPull
      *
      * @return GitHubUser
      */
-    public function getMergedBy()
-    {
+    public function getMergedBy() {
         return $this->merged_by;
     }
 
@@ -122,8 +114,7 @@ class GitHubFullPull extends GitHubPull
      *
      * @return int
      */
-    public function getComments()
-    {
+    public function getComments() {
         return $this->comments;
     }
 
@@ -131,8 +122,7 @@ class GitHubFullPull extends GitHubPull
      *
      * @return int
      */
-    public function getCommits()
-    {
+    public function getCommits() {
         return $this->commits;
     }
 
@@ -140,8 +130,7 @@ class GitHubFullPull extends GitHubPull
      *
      * @return int
      */
-    public function getAdditions()
-    {
+    public function getAdditions() {
         return $this->additions;
     }
 
@@ -149,8 +138,7 @@ class GitHubFullPull extends GitHubPull
      *
      * @return int
      */
-    public function getDeletions()
-    {
+    public function getDeletions() {
         return $this->deletions;
     }
 
@@ -158,8 +146,7 @@ class GitHubFullPull extends GitHubPull
      *
      * @return int
      */
-    public function getChangedFiles()
-    {
+    public function getChangedFiles() {
         return $this->changed_files;
     }
 }

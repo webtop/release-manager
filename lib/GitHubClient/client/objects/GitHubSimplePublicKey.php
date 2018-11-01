@@ -1,31 +1,27 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-class GitHubSimplePublicKey extends GitHubObject
-{
+class GitHubSimplePublicKey extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'id' => 'int',
-                        'key' => 'string'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'id' => 'int',
+            'key' => 'string'
+        ));
     }
-    
+
     /**
      *
      * @var int
      */
     protected $id;
-    
+
     /**
      *
      * @var string
@@ -36,8 +32,7 @@ class GitHubSimplePublicKey extends GitHubObject
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -45,8 +40,7 @@ class GitHubSimplePublicKey extends GitHubObject
      *
      * @return string
      */
-    public function getKey()
-    {
+    public function getKey() {
         return $this->key;
     }
 }

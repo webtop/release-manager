@@ -1,21 +1,18 @@
 <?php
-
 namespace Library\GitHubClient\Client\Services;
 
 use Library\GitHubClient\Client\GitHubClient;
 use Library\GitHubClient\Client\GitHubService;
 use Library\GitHubClient\Client\Objects\GitHubUser;
 
-class GitHubOrgsMembers extends GitHubService
-{
+class GitHubOrgsMembers extends GitHubService {
 
     /**
      * Members list
      *
      * @return array<GitHubUser>
      */
-    public function membersList($org)
-    {
+    public function membersList($org) {
         $data = array();
         
         return $this->client->request("/orgs/$org/members", 'GET', $data, 200, 'GitHubUser', true);
@@ -24,8 +21,7 @@ class GitHubOrgsMembers extends GitHubService
     /**
      * Remove member
      */
-    public function removeMember($org, $user)
-    {
+    public function removeMember($org, $user) {
         $data = array();
         
         return $this->client->request("/orgs/$org/members/$user", 'DELETE', $data, 204, '');
@@ -37,8 +33,7 @@ class GitHubOrgsMembers extends GitHubService
      * @deprecated
      *
      */
-    public function responseIfRequesterIsNotAnOrganizationMember($org, $user)
-    {
+    public function responseIfRequesterIsNotAnOrganizationMember($org, $user) {
         return $this->removeMember($org, $user);
     }
 
@@ -47,8 +42,7 @@ class GitHubOrgsMembers extends GitHubService
      *
      * @return array<GitHubUser>
      */
-    public function publicMembersList($org)
-    {
+    public function publicMembersList($org) {
         $data = array();
         
         return $this->client->request("/orgs/$org/public_members", 'GET', $data, 200, 'GitHubUser', true);
@@ -57,8 +51,7 @@ class GitHubOrgsMembers extends GitHubService
     /**
      * Check public membership
      */
-    public function checkPublicMembership($org, $user)
-    {
+    public function checkPublicMembership($org, $user) {
         $data = array();
         
         return $this->client->request("/orgs/$org/public_members/$user", 'PUT', $data, 204, '');

@@ -1,73 +1,69 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-class GitHubFullCommitFiles extends GitHubObject
-{
+class GitHubFullCommitFiles extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'filename' => 'string',
-                        'additions' => 'int',
-                        'deletions' => 'int',
-                        'changes' => 'int',
-                        'status' => 'string',
-                        'raw_url' => 'string',
-                        'blob_url' => 'string',
-                        'patch' => 'string'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'filename' => 'string',
+            'additions' => 'int',
+            'deletions' => 'int',
+            'changes' => 'int',
+            'status' => 'string',
+            'raw_url' => 'string',
+            'blob_url' => 'string',
+            'patch' => 'string'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $filename;
-    
+
     /**
      *
      * @var int
      */
     protected $additions;
-    
+
     /**
      *
      * @var int
      */
     protected $deletions;
-    
+
     /**
      *
      * @var int
      */
     protected $changes;
-    
+
     /**
      *
      * @var string
      */
     protected $status;
-    
+
     /**
      *
      * @var string
      */
     protected $raw_url;
-    
+
     /**
      *
      * @var string
      */
     protected $blob_url;
-    
+
     /**
      *
      * @var string
@@ -78,8 +74,7 @@ class GitHubFullCommitFiles extends GitHubObject
      *
      * @return string
      */
-    public function getFilename()
-    {
+    public function getFilename() {
         return $this->filename;
     }
 
@@ -87,8 +82,7 @@ class GitHubFullCommitFiles extends GitHubObject
      *
      * @return int
      */
-    public function getAdditions()
-    {
+    public function getAdditions() {
         return $this->additions;
     }
 
@@ -96,8 +90,7 @@ class GitHubFullCommitFiles extends GitHubObject
      *
      * @return int
      */
-    public function getDeletions()
-    {
+    public function getDeletions() {
         return $this->deletions;
     }
 
@@ -105,8 +98,7 @@ class GitHubFullCommitFiles extends GitHubObject
      *
      * @return int
      */
-    public function getChanges()
-    {
+    public function getChanges() {
         return $this->changes;
     }
 
@@ -114,8 +106,7 @@ class GitHubFullCommitFiles extends GitHubObject
      *
      * @return string
      */
-    public function getStatus()
-    {
+    public function getStatus() {
         return $this->status;
     }
 
@@ -123,8 +114,7 @@ class GitHubFullCommitFiles extends GitHubObject
      *
      * @return string
      */
-    public function getRawUrl()
-    {
+    public function getRawUrl() {
         return $this->raw_url;
     }
 
@@ -132,8 +122,7 @@ class GitHubFullCommitFiles extends GitHubObject
      *
      * @return string
      */
-    public function getBlobUrl()
-    {
+    public function getBlobUrl() {
         return $this->blob_url;
     }
 
@@ -141,8 +130,7 @@ class GitHubFullCommitFiles extends GitHubObject
      *
      * @return string
      */
-    public function getPatch()
-    {
+    public function getPatch() {
         return $this->patch;
     }
 }

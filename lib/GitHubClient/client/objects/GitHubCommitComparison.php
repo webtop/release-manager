@@ -1,95 +1,91 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 require_once (__DIR__ . '/GitHubCommit.php');
 
-class GitHubCommitComparison extends GitHubObject
-{
+class GitHubCommitComparison extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'url' => 'string',
-                        'html_url' => 'string',
-                        'permalink_url' => 'string',
-                        'diff_url' => 'string',
-                        'patch_url' => 'string',
-                        'base_commit' => 'GitHubCommit',
-                        'status' => 'string',
-                        'ahead_by' => 'int',
-                        'behind_by' => 'int',
-                        'total_commits' => 'int',
-                        'files' => 'array<GitHubFile>'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'url' => 'string',
+            'html_url' => 'string',
+            'permalink_url' => 'string',
+            'diff_url' => 'string',
+            'patch_url' => 'string',
+            'base_commit' => 'GitHubCommit',
+            'status' => 'string',
+            'ahead_by' => 'int',
+            'behind_by' => 'int',
+            'total_commits' => 'int',
+            'files' => 'array<GitHubFile>'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var string
      */
     protected $html_url;
-    
+
     /**
      *
      * @var string
      */
     protected $permalink_url;
-    
+
     /**
      *
      * @var string
      */
     protected $diff_url;
-    
+
     /**
      *
      * @var string
      */
     protected $patch_url;
-    
+
     /**
      *
      * @var GitHubCommit
      */
     protected $base_commit;
-    
+
     /**
      *
      * @var string
      */
     protected $status;
-    
+
     /**
      *
      * @var int
      */
     protected $ahead_by;
-    
+
     /**
      *
      * @var int
      */
     protected $behind_by;
-    
+
     /**
      *
      * @var int
      */
     protected $total_commits;
-    
+
     /**
      *
      * @var GitHubFile[]
@@ -100,8 +96,7 @@ class GitHubCommitComparison extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -109,8 +104,7 @@ class GitHubCommitComparison extends GitHubObject
      *
      * @return string
      */
-    public function getHtmlUrl()
-    {
+    public function getHtmlUrl() {
         return $this->html_url;
     }
 
@@ -118,8 +112,7 @@ class GitHubCommitComparison extends GitHubObject
      *
      * @return string
      */
-    public function getPermalinkUrl()
-    {
+    public function getPermalinkUrl() {
         return $this->permalink_url;
     }
 
@@ -127,8 +120,7 @@ class GitHubCommitComparison extends GitHubObject
      *
      * @return string
      */
-    public function getDiffUrl()
-    {
+    public function getDiffUrl() {
         return $this->diff_url;
     }
 
@@ -136,8 +128,7 @@ class GitHubCommitComparison extends GitHubObject
      *
      * @return string
      */
-    public function getPatchUrl()
-    {
+    public function getPatchUrl() {
         return $this->patch_url;
     }
 
@@ -145,8 +136,7 @@ class GitHubCommitComparison extends GitHubObject
      *
      * @return GitHubCommit
      */
-    public function getBaseCommit()
-    {
+    public function getBaseCommit() {
         return $this->base_commit;
     }
 
@@ -154,8 +144,7 @@ class GitHubCommitComparison extends GitHubObject
      *
      * @return string
      */
-    public function getStatus()
-    {
+    public function getStatus() {
         return $this->status;
     }
 
@@ -163,8 +152,7 @@ class GitHubCommitComparison extends GitHubObject
      *
      * @return int
      */
-    public function getAheadBy()
-    {
+    public function getAheadBy() {
         return $this->ahead_by;
     }
 
@@ -172,8 +160,7 @@ class GitHubCommitComparison extends GitHubObject
      *
      * @return int
      */
-    public function getBehindBy()
-    {
+    public function getBehindBy() {
         return $this->behind_by;
     }
 
@@ -181,8 +168,7 @@ class GitHubCommitComparison extends GitHubObject
      *
      * @return int
      */
-    public function getTotalCommits()
-    {
+    public function getTotalCommits() {
         return $this->total_commits;
     }
 
@@ -190,8 +176,7 @@ class GitHubCommitComparison extends GitHubObject
      *
      * @return GitHubFile[]
      */
-    public function getFiles()
-    {
+    public function getFiles() {
         return $this->files;
     }
 }

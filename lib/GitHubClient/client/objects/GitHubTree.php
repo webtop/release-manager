@@ -1,59 +1,55 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-class GitHubTree extends GitHubObject
-{
+class GitHubTree extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'path' => 'string',
-                        'mode' => 'string',
-                        'type' => 'string',
-                        'size' => 'int',
-                        'sha' => 'string',
-                        'url' => 'string'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'path' => 'string',
+            'mode' => 'string',
+            'type' => 'string',
+            'size' => 'int',
+            'sha' => 'string',
+            'url' => 'string'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $sha;
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var string
      */
     protected $path;
-    
+
     /**
      *
      * @var string
      */
     protected $mode;
-    
+
     /**
      *
      * @var string
      */
     protected $type;
-    
+
     /**
      *
      * @var int
@@ -64,8 +60,7 @@ class GitHubTree extends GitHubObject
      *
      * @return string
      */
-    public function getSha()
-    {
+    public function getSha() {
         return $this->sha;
     }
 
@@ -73,8 +68,7 @@ class GitHubTree extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -82,8 +76,7 @@ class GitHubTree extends GitHubObject
      *
      * @return string
      */
-    public function getPath()
-    {
+    public function getPath() {
         return $this->path;
     }
 
@@ -91,8 +84,7 @@ class GitHubTree extends GitHubObject
      *
      * @return string
      */
-    public function getMode()
-    {
+    public function getMode() {
         return $this->mode;
     }
 
@@ -100,8 +92,7 @@ class GitHubTree extends GitHubObject
      *
      * @return string
      */
-    public function getType()
-    {
+    public function getType() {
         return $this->type;
     }
 
@@ -109,8 +100,7 @@ class GitHubTree extends GitHubObject
      *
      * @return int
      */
-    public function getSize()
-    {
+    public function getSize() {
         return $this->size;
     }
 }

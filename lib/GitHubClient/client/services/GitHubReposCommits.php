@@ -1,5 +1,4 @@
 <?php
-
 namespace Library\GitHubClient\Client\Services;
 
 use Library\GitHubClient\Client\GitHubClient;
@@ -8,8 +7,7 @@ use Library\GitHubClient\Client\Objects\GitHubCommit;
 use Library\GitHubClient\Client\Objects\GitHubFullCommit;
 use Library\GitHubClient\Client\Objects\GitHubCommitComparison;
 
-class GitHubReposCommits extends GitHubService
-{
+class GitHubReposCommits extends GitHubService {
 
     /**
      * List commits on a repository
@@ -31,8 +29,7 @@ class GitHubReposCommits extends GitHubService
      *            returned
      * @return array<GitHubCommit>
      */
-    public function listCommitsOnRepository($owner, $repo, $sha = null, $path = null, $author = null, $since = null, $until = null)
-    {
+    public function listCommitsOnRepository($owner, $repo, $sha = null, $path = null, $author = null, $since = null, $until = null) {
         $data = array();
         if (!is_null($sha))
             $data['sha'] = $sha;
@@ -53,8 +50,7 @@ class GitHubReposCommits extends GitHubService
      *
      * @return GitHubFullCommit
      */
-    public function getSingleCommit($owner, $repo, $sha)
-    {
+    public function getSingleCommit($owner, $repo, $sha) {
         $data = array();
         
         return $this->client->request("/repos/$owner/$repo/commits/$sha", 'GET', $data, 200, 'GitHubFullCommit', true);
@@ -65,12 +61,10 @@ class GitHubReposCommits extends GitHubService
      *
      * @return GitHubCommitComparison
      */
-    public function compareTwoCommits($owner, $repo, $base, $head)
-    {
+    public function compareTwoCommits($owner, $repo, $base, $head) {
         $data = array();
         
-        return $this->client->request("/repos/$owner/$repo/compare/$base...$head", 'GET', $data, 200, 
-                'GitHubCommitComparison');
+        return $this->client->request("/repos/$owner/$repo/compare/$base...$head", 'GET', $data, 200, 'GitHubCommitComparison');
     }
 }
 

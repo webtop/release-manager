@@ -1,38 +1,34 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-class GitHubGitCommitAuthor extends GitHubObject
-{
+class GitHubGitCommitAuthor extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'date' => 'string',
-                        'name' => 'string',
-                        'email' => 'string'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'date' => 'string',
+            'name' => 'string',
+            'email' => 'string'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $date;
-    
+
     /**
      *
      * @var string
      */
     protected $name;
-    
+
     /**
      *
      * @var string
@@ -43,8 +39,7 @@ class GitHubGitCommitAuthor extends GitHubObject
      *
      * @return string
      */
-    public function getDate()
-    {
+    public function getDate() {
         return $this->date;
     }
 
@@ -52,8 +47,7 @@ class GitHubGitCommitAuthor extends GitHubObject
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -61,8 +55,7 @@ class GitHubGitCommitAuthor extends GitHubObject
      *
      * @return string
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
 }

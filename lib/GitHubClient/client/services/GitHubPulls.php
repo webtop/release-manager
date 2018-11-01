@@ -1,5 +1,4 @@
 <?php
-
 namespace Library\GitHubClient\Client\Services;
 
 use Library\GitHubClient\Client\GitHubClient;
@@ -11,9 +10,8 @@ use Library\GitHubClient\Client\Objects\GitHubFullPull;
 use Library\GitHubClient\Client\Objects\GitHubCommit;
 use Library\GitHubClient\Client\Objects\GitHubFile;
 
-class GitHubPulls extends GitHubService
-{
-    
+class GitHubPulls extends GitHubService {
+
     /**
      *
      * @var GitHubPullsComments
@@ -23,8 +21,7 @@ class GitHubPulls extends GitHubService
     /**
      * Initialize sub services
      */
-    public function __construct(GitHubClient $client)
-    {
+    public function __construct(GitHubClient $client) {
         parent::__construct($client);
         
         $this->comments = new GitHubPullsComments($client);
@@ -55,8 +52,7 @@ class GitHubPulls extends GitHubService
      *            specified, otherwise `asc`.
      * @return array<GitHubPull>
      */
-    public function listPullRequests($owner, $repo, $state = null, $head = null, $base = null, $sort = null, $direction = null)
-    {
+    public function listPullRequests($owner, $repo, $state = null, $head = null, $base = null, $sort = null, $direction = null) {
         $data = array();
         if (!is_null($state))
             $data['state'] = $state;
@@ -73,8 +69,7 @@ class GitHubPulls extends GitHubService
     }
 
     /* This method is left for backward compatibility */
-    public function linkRelations($owner, $repo, $state = null, $head = null, $base = null)
-    {
+    public function linkRelations($owner, $repo, $state = null, $head = null, $base = null) {
         return $this->listPullRequests($owner, $repo, $state, $head, $base);
     }
 
@@ -83,8 +78,7 @@ class GitHubPulls extends GitHubService
      *
      * @return GitHubFullPull
      */
-    public function getSinglePullRequest($owner, $repo, $number)
-    {
+    public function getSinglePullRequest($owner, $repo, $number) {
         $data = array();
         
         return $this->client->request("/repos/$owner/$repo/pulls/$number", 'GET', $data, 200, 'GitHubFullPull');
@@ -102,8 +96,7 @@ class GitHubPulls extends GitHubService
      *            - The contents of the pull request.
      * @return GitHubFullPull
      */
-    public function updatePullRequest($owner, $repo, $number, $state = null, $title = null, $body = null)
-    {
+    public function updatePullRequest($owner, $repo, $number, $state = null, $title = null, $body = null) {
         $data = array();
         if (!is_null($state))
             $data['state'] = $state;
@@ -112,8 +105,7 @@ class GitHubPulls extends GitHubService
     }
 
     /* This method is left for backward compatibility */
-    public function mergability($owner, $repo, $number, $state = null)
-    {
+    public function mergability($owner, $repo, $number, $state = null) {
         return $this->updatePullRequest($owner, $repo, $number, $state);
     }
 
@@ -122,12 +114,10 @@ class GitHubPulls extends GitHubService
      *
      * @return array<GitHubCommit>
      */
-    public function listCommitsOnPullRequest($owner, $repo, $number)
-    {
+    public function listCommitsOnPullRequest($owner, $repo, $number) {
         $data = array();
         
-        return $this->client->request("/repos/$owner/$repo/pulls/$number/commits", 'GET', $data, 200, 'GitHubCommit', 
-                true);
+        return $this->client->request("/repos/$owner/$repo/pulls/$number/commits", 'GET', $data, 200, 'GitHubCommit', true);
     }
 
     /**
@@ -135,8 +125,7 @@ class GitHubPulls extends GitHubService
      *
      * @return array<GitHubFile>
      */
-    public function listPullRequestsFiles($owner, $repo, $number)
-    {
+    public function listPullRequestsFiles($owner, $repo, $number) {
         $data = array();
         
         return $this->client->request("/repos/$owner/$repo/pulls/$number/files", 'GET', $data, 200, 'GitHubFile', true);
@@ -147,8 +136,7 @@ class GitHubPulls extends GitHubService
      *
      * @return boolean
      */
-    public function isPullRequestMerged($owner, $repo, $number)
-    {
+    public function isPullRequestMerged($owner, $repo, $number) {
         $merged = false;
         
         try {
@@ -183,12 +171,11 @@ class GitHubPulls extends GitHubService
      * @return GitHubFullPull
      * @throws GitHubClientException
      */
-    public function createPullRequest($owner, $repo, $title, $head, $base, $body = false)
-    {
+    public function createPullRequest($owner, $repo, $title, $head, $base, $body = false) {
         $data = array(
-                'title' => $title,
-                'head' => $head,
-                'base' => $base
+            'title' => $title,
+            'head' => $head,
+            'base' => $base
         );
         if ($body) {
             $data['body'] = $body;

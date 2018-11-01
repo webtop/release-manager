@@ -26,8 +26,9 @@
 	"autoload" : {
 		"psr-4" : {
 			"Classes\\" : "src/classes",
-			"Config\\" : "src/private",
-			"Library\\" : "lib"
+			"Library\\" : "lib",
+			"Config\\" : "private",
+			"GitLab\\" : "vendor/m4tthumphrey/php-gitlab-api/lib/Gitlab"
 		}
 	},
 	"autoload-dev" : {

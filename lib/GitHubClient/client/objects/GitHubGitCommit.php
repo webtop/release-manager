@@ -1,5 +1,4 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
@@ -7,56 +6,53 @@ require_once (__DIR__ . '/GitHubGitCommitAuthor.php');
 require_once (__DIR__ . '/GitHubGitCommitCommitter.php');
 require_once (__DIR__ . '/GitHubGitCommitTree.php');
 
-class GitHubGitCommit extends GitHubObject
-{
+class GitHubGitCommit extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'sha' => 'string',
-                        'url' => 'string',
-                        'message' => 'string',
-                        'author' => 'GitHubGitCommitAuthor',
-                        'committer' => 'GitHubGitCommitCommitter',
-                        'tree' => 'GitHubGitCommitTree'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'sha' => 'string',
+            'url' => 'string',
+            'message' => 'string',
+            'author' => 'GitHubGitCommitAuthor',
+            'committer' => 'GitHubGitCommitCommitter',
+            'tree' => 'GitHubGitCommitTree'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $sha;
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var string
      */
     protected $message;
-    
+
     /**
      *
      * @var GitHubGitCommitAuthor
      */
     protected $author;
-    
+
     /**
      *
      * @var GitHubGitCommitCommitter
      */
     protected $committer;
-    
+
     /**
      *
      * @var GitHubGitCommitTree
@@ -67,8 +63,7 @@ class GitHubGitCommit extends GitHubObject
      *
      * @return string
      */
-    public function getSha()
-    {
+    public function getSha() {
         return $this->sha;
     }
 
@@ -76,8 +71,7 @@ class GitHubGitCommit extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -85,8 +79,7 @@ class GitHubGitCommit extends GitHubObject
      *
      * @return string
      */
-    public function getMessage()
-    {
+    public function getMessage() {
         return $this->message;
     }
 
@@ -94,8 +87,7 @@ class GitHubGitCommit extends GitHubObject
      *
      * @return GitHubGitCommitAuthor
      */
-    public function getAuthor()
-    {
+    public function getAuthor() {
         return $this->author;
     }
 
@@ -103,8 +95,7 @@ class GitHubGitCommit extends GitHubObject
      *
      * @return GitHubGitCommitCommitter
      */
-    public function getCommitter()
-    {
+    public function getCommitter() {
         return $this->committer;
     }
 
@@ -112,8 +103,7 @@ class GitHubGitCommit extends GitHubObject
      *
      * @return GitHubGitCommitTree
      */
-    public function getTree()
-    {
+    public function getTree() {
         return $this->tree;
     }
 }

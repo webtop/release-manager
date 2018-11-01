@@ -1,31 +1,27 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-class GitHubRepoSubscription extends GitHubObject
-{
+class GitHubRepoSubscription extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'url' => 'string',
-                        'repository_url' => 'string'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'url' => 'string',
+            'repository_url' => 'string'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var string
@@ -36,8 +32,7 @@ class GitHubRepoSubscription extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -45,8 +40,7 @@ class GitHubRepoSubscription extends GitHubObject
      *
      * @return string
      */
-    public function getRepositoryUrl()
-    {
+    public function getRepositoryUrl() {
         return $this->repository_url;
     }
 }

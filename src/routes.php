@@ -5,7 +5,9 @@ use Slim\Http\Response;
 use Classes\Connector;
 use Classes\Config;
 use Classes\Common;
-use function GuzzleHttp\json_encode;
+use Config\GitLabConfig;
+use Config\GitHubConfig;
+use Library\GitFascade;
 
 /**
  * ========================
@@ -44,16 +46,48 @@ $app->get('/config', function(Request $request, Response $response, array $args)
 });
 
 $app->get('/oauth', function(Request $request, Response $response, array $args) use($app) {
-    error_log($request);
-    error_log($args);
     
     return true;
 });
 
 $app->post('/test-connection', function(Request $request, Response $response, array $args) use($app) {
-    return json_encode([
-        'success' => true
-    ]);
+    $withAuth = false;
+    
+    if ($request->getParam('git-source-select') == 'gitlab') {
+        $gitConfig = new GitLabConfig();
+    } else {
+        $gitConfig = new GitHubConfig();
+    }
+    
+    $gitConfig->setApiUrl($request->getParam('git-api-url'));
+    if (!empty($request->getParam('git-source-auth'))) {
+        $gitConfig->setAuthMethod($request->getParam('git-source-auth'));
+        $withAuth = true;
+    }
+    
+    if ($withAuth) {
+        switch ($request->getParam('git-source-auth')) {
+            case 'user-pass':
+                $gitConfig->setAuthCredentials([
+                    'username' => $request->getParam('git-auth-username'),
+                    'password' => $request->getParam('git-auth-password')
+                ]);
+                break;
+            case 'access-token':
+                $gitConfig->setToken($request->getParam('git-auth-token'));
+                break;
+            case 'oauth':
+                $gitConfig->setAuthCredentials([
+                    'app-id' => $request->getParam('git-auth-app-id'),
+                    'app-secret' => $request->getParam('git-auth-secret')
+                ]);
+                break;
+        }
+    }
+    
+    $connectResult = GitFascade::getInstance($gitConfig)->connect($withAuth);
+    
+    return $response->withJson($connectResult);
 });
 
 

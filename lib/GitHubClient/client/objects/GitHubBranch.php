@@ -1,31 +1,27 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-class GitHubBranch extends GitHubObject
-{
+class GitHubBranch extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'name' => 'string',
-                        'commit' => 'GitHubCommit'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'name' => 'string',
+            'commit' => 'GitHubCommit'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $name;
-    
+
     /**
      *
      * @var GitHubGitCommit
@@ -36,8 +32,7 @@ class GitHubBranch extends GitHubObject
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -45,8 +40,7 @@ class GitHubBranch extends GitHubObject
      *
      * @return GitHubGitCommit
      */
-    public function getCommit()
-    {
+    public function getCommit() {
         return $this->commit;
     }
 }

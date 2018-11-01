@@ -1,59 +1,55 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-class GitHubSubscription extends GitHubObject
-{
+class GitHubSubscription extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'subscribed' => 'boolean',
-                        'ignored' => 'boolean',
-                        'reason' => 'string',
-                        'created_at' => 'string',
-                        'url' => 'string',
-                        'thread_url' => 'string'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'subscribed' => 'boolean',
+            'ignored' => 'boolean',
+            'reason' => 'string',
+            'created_at' => 'string',
+            'url' => 'string',
+            'thread_url' => 'string'
+        ));
     }
-    
+
     /**
      *
      * @var boolean
      */
     protected $subscribed;
-    
+
     /**
      *
      * @var boolean
      */
     protected $ignored;
-    
+
     /**
      *
      * @var string
      */
     protected $reason;
-    
+
     /**
      *
      * @var string
      */
     protected $created_at;
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var string
@@ -64,8 +60,7 @@ class GitHubSubscription extends GitHubObject
      *
      * @return boolean
      */
-    public function getSubscribed()
-    {
+    public function getSubscribed() {
         return $this->subscribed;
     }
 
@@ -73,8 +68,7 @@ class GitHubSubscription extends GitHubObject
      *
      * @return boolean
      */
-    public function getIgnored()
-    {
+    public function getIgnored() {
         return $this->ignored;
     }
 
@@ -82,8 +76,7 @@ class GitHubSubscription extends GitHubObject
      *
      * @return string
      */
-    public function getReason()
-    {
+    public function getReason() {
         return $this->reason;
     }
 
@@ -91,8 +84,7 @@ class GitHubSubscription extends GitHubObject
      *
      * @return string
      */
-    public function getCreatedAt()
-    {
+    public function getCreatedAt() {
         return $this->created_at;
     }
 
@@ -100,8 +92,7 @@ class GitHubSubscription extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -109,8 +100,7 @@ class GitHubSubscription extends GitHubObject
      *
      * @return string
      */
-    public function getThreadUrl()
-    {
+    public function getThreadUrl() {
         return $this->thread_url;
     }
 }

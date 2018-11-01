@@ -1,88 +1,84 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 require_once (__DIR__ . '/GitHubUser.php');
 
-class GitHubMilestone extends GitHubObject
-{
+class GitHubMilestone extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'url' => 'string',
-                        'number' => 'int',
-                        'state' => 'string',
-                        'title' => 'string',
-                        'description' => 'string',
-                        'creator' => 'GitHubUser',
-                        'open_issues' => 'int',
-                        'closed_issues' => 'int',
-                        'created_at' => 'string',
-                        'due_on' => 'string'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'url' => 'string',
+            'number' => 'int',
+            'state' => 'string',
+            'title' => 'string',
+            'description' => 'string',
+            'creator' => 'GitHubUser',
+            'open_issues' => 'int',
+            'closed_issues' => 'int',
+            'created_at' => 'string',
+            'due_on' => 'string'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var int
      */
     protected $number;
-    
+
     /**
      *
      * @var string
      */
     protected $state;
-    
+
     /**
      *
      * @var string
      */
     protected $title;
-    
+
     /**
      *
      * @var string
      */
     protected $description;
-    
+
     /**
      *
      * @var GitHubUser
      */
     protected $creator;
-    
+
     /**
      *
      * @var int
      */
     protected $open_issues;
-    
+
     /**
      *
      * @var int
      */
     protected $closed_issues;
-    
+
     /**
      *
      * @var string
      */
     protected $created_at;
-    
+
     /**
      *
      * @var string
@@ -93,8 +89,7 @@ class GitHubMilestone extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -102,8 +97,7 @@ class GitHubMilestone extends GitHubObject
      *
      * @return int
      */
-    public function getNumber()
-    {
+    public function getNumber() {
         return $this->number;
     }
 
@@ -111,8 +105,7 @@ class GitHubMilestone extends GitHubObject
      *
      * @return string
      */
-    public function getState()
-    {
+    public function getState() {
         return $this->state;
     }
 
@@ -120,8 +113,7 @@ class GitHubMilestone extends GitHubObject
      *
      * @return string
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -129,8 +121,7 @@ class GitHubMilestone extends GitHubObject
      *
      * @return string
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
@@ -138,8 +129,7 @@ class GitHubMilestone extends GitHubObject
      *
      * @return GitHubUser
      */
-    public function getCreator()
-    {
+    public function getCreator() {
         return $this->creator;
     }
 
@@ -147,8 +137,7 @@ class GitHubMilestone extends GitHubObject
      *
      * @return int
      */
-    public function getOpenIssues()
-    {
+    public function getOpenIssues() {
         return $this->open_issues;
     }
 
@@ -156,8 +145,7 @@ class GitHubMilestone extends GitHubObject
      *
      * @return int
      */
-    public function getClosedIssues()
-    {
+    public function getClosedIssues() {
         return $this->closed_issues;
     }
 
@@ -165,8 +153,7 @@ class GitHubMilestone extends GitHubObject
      *
      * @return string
      */
-    public function getCreatedAt()
-    {
+    public function getCreatedAt() {
         return $this->created_at;
     }
 
@@ -174,8 +161,7 @@ class GitHubMilestone extends GitHubObject
      *
      * @return string
      */
-    public function getDueOn()
-    {
+    public function getDueOn() {
         return $this->due_on;
     }
 }

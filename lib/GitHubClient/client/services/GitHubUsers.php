@@ -1,5 +1,4 @@
 <?php
-
 namespace Library\GitHubClient\Client\Services;
 
 use Library\GitHubClient\Client\GitHubClient;
@@ -11,21 +10,20 @@ use Library\GitHubClient\Client\Objects\GitHubFullUser;
 use Library\GitHubClient\Client\Objects\GitHubPrivateUser;
 use Library\GitHubClient\Client\Objects\GitHubUser;
 
-class GitHubUsers extends GitHubService
-{
-    
+class GitHubUsers extends GitHubService {
+
     /**
      *
      * @var GitHubUsersEmails
      */
     public $emails;
-    
+
     /**
      *
      * @var GitHubUsersFollowers
      */
     public $followers;
-    
+
     /**
      *
      * @var GitHubUsersKeys
@@ -35,8 +33,7 @@ class GitHubUsers extends GitHubService
     /**
      * Initialize sub services
      */
-    public function __construct(GitHubClient $client)
-    {
+    public function __construct(GitHubClient $client) {
         parent::__construct($client);
         
         $this->emails = new GitHubUsersEmails($client);
@@ -49,8 +46,7 @@ class GitHubUsers extends GitHubService
      *
      * @return GitHubFullUser
      */
-    public function getSingleUser($user)
-    {
+    public function getSingleUser($user) {
         $data = array();
         
         return $this->client->request("/users/$user", 'GET', $data, 200, 'GitHubFullUser');
@@ -61,8 +57,7 @@ class GitHubUsers extends GitHubService
      *
      * @return GitHubPrivateUser
      */
-    public function getTheAuthenticatedUser()
-    {
+    public function getTheAuthenticatedUser() {
         $data = array();
         
         return $this->client->request("/user", 'GET', $data, 200, 'GitHubPrivateUser');
@@ -75,8 +70,7 @@ class GitHubUsers extends GitHubService
      *            (Optional) - Publicly visible email address.
      * @return GitHubPrivateUser
      */
-    public function updateTheAuthenticatedUser($email = null)
-    {
+    public function updateTheAuthenticatedUser($email = null) {
         $data = array();
         if (!is_null($email))
             $data['email'] = $email;
@@ -89,8 +83,7 @@ class GitHubUsers extends GitHubService
      *
      * @return array<GitHubUser>
      */
-    public function getAllUsers()
-    {
+    public function getAllUsers() {
         $data = array();
         
         return $this->client->request("/users", 'GET', $data, 200, 'GitHubUser', true);

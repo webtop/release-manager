@@ -1,14 +1,12 @@
 <?php
-
 namespace Library\GitHubClient\Client\Services;
 
 use Library\GitHubClient\Client\GitHubClient;
 use Library\GitHubClient\Client\GitHubService;
 use Library\GitHubClient\Client\Objects\GitHubReposRelease;
 
-class GitHubReposReleases extends GitHubService
-{
-    
+class GitHubReposReleases extends GitHubService {
+
     /**
      *
      * @var GitHubReposReleasesAssets
@@ -18,8 +16,7 @@ class GitHubReposReleases extends GitHubService
     /**
      * Initialize sub services
      */
-    public function __construct(GitHubClient $client)
-    {
+    public function __construct(GitHubClient $client) {
         parent::__construct($client);
         
         $this->assets = new GitHubReposReleasesAssets($client);
@@ -30,8 +27,7 @@ class GitHubReposReleases extends GitHubService
      *
      * @return array<GitHubReposRelease>
      */
-    public function listReposReleases($owner, $repo)
-    {
+    public function listReposReleases($owner, $repo) {
         $data = array();
         
         return $this->client->request("/repos/$owner/$repo/releases", 'GET', $data, 200, 'GitHubReposRelease', true);
@@ -42,8 +38,7 @@ class GitHubReposReleases extends GitHubService
      *
      * @return GitHubReposRelease
      */
-    public function get($owner, $repo, $id)
-    {
+    public function get($owner, $repo, $id) {
         $data = array();
         
         return $this->client->request("/repos/$owner/$repo/releases/$id", 'GET', $data, 200, 'GitHubReposRelease');
@@ -72,9 +67,7 @@ class GitHubReposReleases extends GitHubService
      *            
      * @return GitHubReposRelease
      */
-    public function create($owner, $repo, $tag_name, $target_commitish = null, $name = null, $body = null, $draft = null, 
-            $prerelease = null)
-    {
+    public function create($owner, $repo, $tag_name, $target_commitish = null, $name = null, $body = null, $draft = null, $prerelease = null) {
         $data = array();
         $data['tag_name'] = $tag_name;
         if (!is_null($target_commitish))
@@ -118,9 +111,7 @@ class GitHubReposReleases extends GitHubService
      *            
      * @return GitHubReposRelease
      */
-    public function update($owner, $repo, $id, $tag_name = null, $target_commitish = null, $name = null, $body = null, $draft = null, 
-            $prerelease = null)
-    {
+    public function update($owner, $repo, $id, $tag_name = null, $target_commitish = null, $name = null, $body = null, $draft = null, $prerelease = null) {
         $data = array();
         if (!is_null($tag_name))
             $data['tag_name'] = $tag_name;

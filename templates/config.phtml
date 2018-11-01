@@ -13,7 +13,7 @@
 		<form class="form" id="connection-config">
 			<div class="form-group">
 				<label class="control-label" for="git-source-select">Git Source</label>
-				<select class="select form-control" id="git-source-select">
+				<select class="select form-control" id="git-source-select" name="git-source-select">
 					<option>Select a Git Source...</option>
 					<option value="github">GitHub</option>
 					<option value="gitlab">GitLab</option>
@@ -21,15 +21,15 @@
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="git-api-url">Git API URL</label>
-				<input class="form-control" type="text" id="git-api-url" placeholder="required" value="http://gitlab.local/admin/api/v4/" />
+				<input class="form-control" type="text" id="git-api-url" name="git-api-url" placeholder="required" value="http://gitlab.local/admin/api/v4/" />
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="git-file-url">Git Files URL</label>
-				<input class="form-control" type="text" id="git-file-url" placeholder="optional" />
+				<input class="form-control" type="text" id="git-file-url" name="git-file-url" placeholder="optional" />
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="git-source-auth">Authorization Type</label>
-				<select class="select form-control" id="git-source-auth">
+				<select class="select form-control" id="git-source-auth" name="git-source-auth">
 					<option>Select an Authorization method...</option>
 					<option value="user-pass">Username/Password</option>
 					<option value="access-token">Personal Access Token</option>
@@ -41,11 +41,11 @@
 			<div class="auth-type-container border rounded" data-for="user-pass">
     			<div class="form-group">
     				<label class="control-label" for="git-auth-username">Username</label>
-    				<input class="form-control" type="text" id="git-auth-username" placeholder="required" />
+    				<input class="form-control" type="text" id="git-auth-username" name="git-auth-username" value="paul.allsopp" placeholder="required" />
     			</div>
     			<div class="form-group">
     				<label class="control-label" for="git-auth-password">Password</label>
-    				<input class="form-control" type="password" id="git-auth-password" placeholder="required" />
+    				<input class="form-control" type="password" id="git-auth-password" name="git-auth-password" value="QnQbB8000$1" placeholder="required" />
     			</div>
     		</div>
     		
@@ -53,7 +53,7 @@
     		<div class="auth-type-container border rounded" data-for="access-token">
     			<div class="form-group">
     				<label class="control-label" for="git-auth-token">Token</label>
-    				<input class="form-control" type="text" id="git-auth-token" placeholder="required" value="bzBUYv5Ay2YCrDZ3GuBn" />
+    				<input class="form-control" type="text" id="git-auth-token" name="git-auth-token" placeholder="required" value="bzBUYv5Ay2YCrDZ3GuBn" />
     			</div>
     		</div>
     		
@@ -61,15 +61,15 @@
     		<div class="auth-type-container border rounded" data-for="oauth">
     			<div class="form-group">
     				<label class="control-label" for="git-auth-app-id">Application Id</label>
-    				<input class="form-control" type="text" id="git-auth-app-id" placeholder="required" />
+    				<input class="form-control" type="text" id="git-auth-app-id" name="git-auth-app-id" placeholder="required" />
     			</div>
     			<div class="form-group">
     				<label class="control-label" for="git-auth-secret">Secret</label>
-    				<input class="form-control" type="password" id="git-auth-secret" placeholder="required" />
+    				<input class="form-control" type="password" id="git-auth-secret" name="git-auth-secret" placeholder="required" />
     			</div>
     		</div>
     		
-    		<div class="">
+    		<div class="button-bar">
     			<button type="button" id="connection-test" class="btn btn-primary">Test Connection</button>
     		</div>
 		</form>

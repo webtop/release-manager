@@ -1,5 +1,4 @@
 <?php
-
 namespace Library\GitHubClient\Client\Services;
 
 use Library\GitHubClient\Client\GitHubClient;
@@ -23,75 +22,74 @@ use Library\GitHubClient\Client\Services\GitHubReposMerging;
 use Library\GitHubClient\Client\Services\GitHubReposStatistics;
 use Library\GitHubClient\Client\Services\GitHubReposStatuses;
 
-class GitHubRepos extends GitHubService
-{
-    
+class GitHubRepos extends GitHubService {
+
     /**
      *
      * @var GitHubReposCollaborators
      */
     public $collaborators;
-    
+
     /**
      *
      * @var GitHubReposComments
      */
     public $comments;
-    
+
     /**
      *
      * @var GitHubReposCommits
      */
     public $commits;
-    
+
     /**
      *
      * @var GitHubReposContents
      */
     public $contents;
-    
+
     /**
      *
      * @var GitHubReposDownloads
      */
     public $downloads;
-    
+
     /**
      *
      * @var GitHubReposForks
      */
     public $forks;
-    
+
     /**
      *
      * @var GitHubReposHooks
      */
     public $hooks;
-    
+
     /**
      *
      * @var GitHubReposKeys
      */
     public $keys;
-    
+
     /**
      *
      * @var GitHubReposMerging
      */
     public $merging;
-    
+
     /**
      *
      * @var GitHubReposReleases
      */
     public $releases;
-    
+
     /**
      *
      * @var GitHubReposStatistics
      */
     public $statistics;
-    
+
     /**
      *
      * @var GitHubReposStatuses
@@ -101,8 +99,7 @@ class GitHubRepos extends GitHubService
     /**
      * Initialize sub services
      */
-    public function __construct(GitHubClient $client)
-    {
+    public function __construct(GitHubClient $client) {
         parent::__construct($client);
         
         $this->collaborators = new GitHubReposCollaborators($client);
@@ -134,8 +131,7 @@ class GitHubRepos extends GitHubService
      *            
      * @return array<GitHubSimpleRepo>
      */
-    public function listYourRepositories($type = null, $sort = null, $direction = null)
-    {
+    public function listYourRepositories($type = null, $sort = null, $direction = null) {
         $data = array();
         if (!is_null($type))
             $data['type'] = $type;
@@ -164,8 +160,7 @@ class GitHubRepos extends GitHubService
      *            
      * @return array<GitHubSimpleRepo>
      */
-    public function listUserRepositories($user, $type = null, $sort = null, $direction = null)
-    {
+    public function listUserRepositories($user, $type = null, $sort = null, $direction = null) {
         $data = array();
         if (!is_null($type))
             $data['type'] = $type;
@@ -188,8 +183,7 @@ class GitHubRepos extends GitHubService
      *            
      * @return array<GitHubSimpleRepo>
      */
-    public function listOrganizationRepositories($organization, $type = null)
-    {
+    public function listOrganizationRepositories($organization, $type = null) {
         $data = array();
         if (!is_null($type))
             $data['type'] = $type;
@@ -206,8 +200,7 @@ class GitHubRepos extends GitHubService
      *            
      * @return array<GitHubSimpleRepo>
      */
-    public function listRepositories($since = null)
-    {
+    public function listRepositories($since = null) {
         $data = array();
         if (!is_null($since))
             $data['since'] = $since;
@@ -258,12 +251,9 @@ class GitHubRepos extends GitHubService
      *            or �mozilla�.
      * @return GitHubFullRepo
      */
-    public function create($owner = null, $repo, $private = null, $has_issues = null, $has_wiki = null, $has_downloads = null, 
-            $default_branch = null, $description = null, $homepage = null, $team_id = null, $auto_init = null, $gitignore_template = null, 
-            $license_template = null)
-    {
+    public function create($owner = null, $repo, $private = null, $has_issues = null, $has_wiki = null, $has_downloads = null, $default_branch = null, $description = null, $homepage = null, $team_id = null, $auto_init = null, $gitignore_template = null, $license_template = null) {
         $data = array(
-                'name' => $repo
+            'name' => $repo
         );
         
         if (!is_null($private))
@@ -298,8 +288,7 @@ class GitHubRepos extends GitHubService
      *
      * @return GitHubFullRepo
      */
-    public function get($owner, $repo)
-    {
+    public function get($owner, $repo) {
         $data = array();
         
         return $this->client->request("/repos/$owner/$repo", 'GET', $data, 200, 'GitHubFullRepo');
@@ -310,8 +299,7 @@ class GitHubRepos extends GitHubService
      *
      * @return array<GitHubContributor>
      */
-    public function listContributors($owner, $repo)
-    {
+    public function listContributors($owner, $repo) {
         $data = array();
         
         return $this->client->request("/repos/$owner/$repo/contributors", 'GET', $data, 200, 'GitHubContributor', true);
@@ -322,8 +310,7 @@ class GitHubRepos extends GitHubService
      *
      * @return array<GitHubTeam>
      */
-    public function listLanguages($owner, $repo)
-    {
+    public function listLanguages($owner, $repo) {
         $data = array();
         
         return $this->client->request("/repos/$owner/$repo/teams", 'GET', $data, 200, 'GitHubTeam', true);
@@ -334,8 +321,7 @@ class GitHubRepos extends GitHubService
      *
      * @return array<GitHubTag>
      */
-    public function listTags($owner, $repo)
-    {
+    public function listTags($owner, $repo) {
         $data = array();
         
         return $this->client->request("/repos/$owner/$repo/tags", 'GET', $data, 200, 'GitHubTag', true);
@@ -346,8 +332,7 @@ class GitHubRepos extends GitHubService
      *
      * @return array<GitHubBranches>
      */
-    public function listBranches($owner, $repo)
-    {
+    public function listBranches($owner, $repo) {
         $data = array();
         
         return $this->client->request("/repos/$owner/$repo/branches", 'GET', $data, 200, 'GitHubBranch', true);
@@ -358,8 +343,7 @@ class GitHubRepos extends GitHubService
      *
      * @return array<GitHubBranch>
      */
-    public function getBranch($owner, $repo, $branch)
-    {
+    public function getBranch($owner, $repo, $branch) {
         $data = array();
         
         return $this->client->request("/repos/$owner/$repo/branches/$branch", 'GET', $data, 200, 'GitHubBranch', true);
@@ -368,8 +352,7 @@ class GitHubRepos extends GitHubService
     /**
      * Delete a Repository
      */
-    public function deleteRepository($owner, $repo)
-    {
+    public function deleteRepository($owner, $repo) {
         $data = array();
         
         return $this->client->request("/repos/$owner/$repo", 'DELETE', $data, 204, '');

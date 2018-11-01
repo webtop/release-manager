@@ -1,38 +1,34 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-class GitHubLabel extends GitHubObject
-{
+class GitHubLabel extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'url' => 'string',
-                        'name' => 'string',
-                        'color' => 'string'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'url' => 'string',
+            'name' => 'string',
+            'color' => 'string'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var string
      */
     protected $name;
-    
+
     /**
      *
      * @var string
@@ -43,8 +39,7 @@ class GitHubLabel extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -52,8 +47,7 @@ class GitHubLabel extends GitHubObject
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -61,8 +55,7 @@ class GitHubLabel extends GitHubObject
      *
      * @return string
      */
-    public function getColor()
-    {
+    public function getColor() {
         return $this->color;
     }
 }

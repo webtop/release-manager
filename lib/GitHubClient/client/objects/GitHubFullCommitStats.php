@@ -1,38 +1,34 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-class GitHubFullCommitStats extends GitHubObject
-{
+class GitHubFullCommitStats extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'additions' => 'int',
-                        'deletions' => 'int',
-                        'total' => 'int'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'additions' => 'int',
+            'deletions' => 'int',
+            'total' => 'int'
+        ));
     }
-    
+
     /**
      *
      * @var int
      */
     protected $additions;
-    
+
     /**
      *
      * @var int
      */
     protected $deletions;
-    
+
     /**
      *
      * @var int
@@ -43,8 +39,7 @@ class GitHubFullCommitStats extends GitHubObject
      *
      * @return int
      */
-    public function getAdditions()
-    {
+    public function getAdditions() {
         return $this->additions;
     }
 
@@ -52,8 +47,7 @@ class GitHubFullCommitStats extends GitHubObject
      *
      * @return int
      */
-    public function getDeletions()
-    {
+    public function getDeletions() {
         return $this->deletions;
     }
 
@@ -61,8 +55,7 @@ class GitHubFullCommitStats extends GitHubObject
      *
      * @return int
      */
-    public function getTotal()
-    {
+    public function getTotal() {
         return $this->total;
     }
 }

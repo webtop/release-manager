@@ -1,5 +1,4 @@
 <?php
-
 namespace Library\GitHubClient\Client\Services;
 
 use Library\GitHubClient\Client\GitHubClient;
@@ -7,8 +6,7 @@ use Library\GitHubClient\Client\GitHubService;
 use Library\GitHubClient\Client\Objects\GitHubThread;
 use Library\GitHubClient\Client\Objects\GitHubSubscription;
 
-class GitHubActivityNotifications extends GitHubService
-{
+class GitHubActivityNotifications extends GitHubService {
 
     /**
      * List your notifications
@@ -27,8 +25,7 @@ class GitHubActivityNotifications extends GitHubService
      *            `YYYY-MM-DDTHH:MM:SSZ`. Example: "2012-10-09T23:39:01Z".
      * @return array<GitHubThread>
      */
-    public function listYourNotifications($all = null, $participating = null, $since = null)
-    {
+    public function listYourNotifications($all = null, $participating = null, $since = null) {
         $data = array();
         if (!is_null($all))
             $data['all'] = $all;
@@ -57,8 +54,7 @@ class GitHubActivityNotifications extends GitHubService
      *            `YYYY-MM-DDTHH:MM:SSZ`. Example: "2012-10-09T23:39:01Z".
      * @return array<GitHubThread>
      */
-    public function listYourNotificationsInRepository($owner, $repo, $all = null, $participating = null, $since = null)
-    {
+    public function listYourNotificationsInRepository($owner, $repo, $all = null, $participating = null, $since = null) {
         $data = array();
         if (!is_null($all))
             $data['all'] = $all;
@@ -81,8 +77,7 @@ class GitHubActivityNotifications extends GitHubService
      *            8601 format: `YYYY-MM-DDTHH:MM:SSZ`. Example:
      *            "2012-10-09T23:39:01Z".
      */
-    public function markAsRead($last_read_at = null)
-    {
+    public function markAsRead($last_read_at = null) {
         $data = array();
         if (!is_null($last_read_at))
             $data['last_read_at'] = $last_read_at;
@@ -101,8 +96,7 @@ class GitHubActivityNotifications extends GitHubService
      *            8601 format: `YYYY-MM-DDTHH:MM:SSZ`. Example:
      *            "2012-10-09T23:39:01Z".
      */
-    public function markNotificationsAsReadInRepository($owner, $repo, $last_read_at = null)
-    {
+    public function markNotificationsAsReadInRepository($owner, $repo, $last_read_at = null) {
         $data = array();
         if (!is_null($last_read_at))
             $data['last_read_at'] = $last_read_at;
@@ -115,8 +109,7 @@ class GitHubActivityNotifications extends GitHubService
      *
      * @return array<GitHubThread>
      */
-    public function viewSingleThread($id)
-    {
+    public function viewSingleThread($id) {
         $data = array();
         
         return $this->client->request("/notifications/threads/$id", 'GET', $data, 200, 'GitHubThread', true);
@@ -125,8 +118,7 @@ class GitHubActivityNotifications extends GitHubService
     /**
      * Mark a thread as read
      */
-    public function markThreadAsRead($id)
-    {
+    public function markThreadAsRead($id) {
         $data = array();
         
         return $this->client->request("/notifications/threads/$id", 'PATCH', $data, 205, '');
@@ -137,8 +129,7 @@ class GitHubActivityNotifications extends GitHubService
      *
      * @return GitHubSubscription
      */
-    public function getThreadSubscription()
-    {
+    public function getThreadSubscription() {
         $data = array();
         
         return $this->client->request("/notifications/threads/1/subscription", 'GET', $data, 200, 'GitHubSubscription');
@@ -149,8 +140,7 @@ class GitHubActivityNotifications extends GitHubService
      *
      * @return GitHubSubscription
      */
-    public function setThreadSubscription()
-    {
+    public function setThreadSubscription() {
         $data = array();
         
         return $this->client->request("/notifications/threads/1/subscription", 'PUT', $data, 200, 'GitHubSubscription');
@@ -159,8 +149,7 @@ class GitHubActivityNotifications extends GitHubService
     /**
      * Delete a Thread Subscription
      */
-    public function deleteThreadSubscription()
-    {
+    public function deleteThreadSubscription() {
         $data = array();
         
         return $this->client->request("/notifications/threads/1/subscription", 'DELETE', $data, 204, '');

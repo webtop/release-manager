@@ -1,21 +1,18 @@
 <?php
-
 namespace Library\GitHubClient\Client\Services;
 
 use Library\GitHubClient\Client\GitHubClient;
 use Library\GitHubClient\Client\GitHubService;
 use Library\GitHubClient\Client\Objects\GitHubLabel;
 
-class GitHubIssuesLabels extends GitHubService
-{
+class GitHubIssuesLabels extends GitHubService {
 
     /**
      * List all labels for this repository
      *
      * @return array<GitHubLabel>
      */
-    public function listAllLabelsForThisRepository($owner, $repo)
-    {
+    public function listAllLabelsForThisRepository($owner, $repo) {
         $data = array();
         
         return $this->client->request("/repos/$owner/$repo/labels", 'GET', $data, 200, 'GitHubLabel', true);
@@ -26,8 +23,7 @@ class GitHubIssuesLabels extends GitHubService
      *
      * @return GitHubLabel
      */
-    public function getSingleLabel($owner, $repo, $name)
-    {
+    public function getSingleLabel($owner, $repo, $name) {
         $data = array();
         
         return $this->client->request("/repos/$owner/$repo/labels/$name", 'GET', $data, 200, 'GitHubLabel');
@@ -36,11 +32,10 @@ class GitHubIssuesLabels extends GitHubService
     /**
      * Create a label
      */
-    public function createLabel($owner, $repo, $name, $color)
-    {
+    public function createLabel($owner, $repo, $name, $color) {
         $data = array(
-                'name' => $name,
-                'color' => $color
+            'name' => $name,
+            'color' => $color
         );
         
         return $this->client->request("/repos/$owner/$repo/labels", 'POST', json_encode($data), 201, 'GitHubLabel');
@@ -51,21 +46,18 @@ class GitHubIssuesLabels extends GitHubService
      *
      * @return array<GitHubLabel>
      */
-    public function listLabelsOnAnIssue($owner, $repo, $number)
-    {
+    public function listLabelsOnAnIssue($owner, $repo, $number) {
         $data = array();
         
-        return $this->client->request("/repos/$owner/$repo/issues/$number/labels", 'GET', $data, 200, 'GitHubLabel', 
-                true);
+        return $this->client->request("/repos/$owner/$repo/issues/$number/labels", 'GET', $data, 200, 'GitHubLabel', true);
     }
 
     /**
      * Add labels to an issue
      */
-    public function addLabelsToAnIssue($owner, $repo, $number, $name)
-    {
+    public function addLabelsToAnIssue($owner, $repo, $number, $name) {
         $data = array(
-                $name
+            $name
         );
         
         return $this->client->request("/repos/$owner/$repo/issues/$number/labels", 'POST', json_encode($data), 200, '');
@@ -76,19 +68,16 @@ class GitHubIssuesLabels extends GitHubService
      *
      * @return array<GitHubLabel>
      */
-    public function replaceAllLabelsForAnIssue($owner, $repo, $number)
-    {
+    public function replaceAllLabelsForAnIssue($owner, $repo, $number) {
         $data = array();
         
-        return $this->client->request("/repos/$owner/$repo/issues/$number/labels", 'PUT', $data, 200, 'GitHubLabel', 
-                true);
+        return $this->client->request("/repos/$owner/$repo/issues/$number/labels", 'PUT', $data, 200, 'GitHubLabel', true);
     }
 
     /**
      * Remove label from an issue
      */
-    public function removeLabelFromAnIssue($owner, $repo, $number, $name)
-    {
+    public function removeLabelFromAnIssue($owner, $repo, $number, $name) {
         $data = array();
         
         $name = rawurlencode($name);
@@ -99,8 +88,7 @@ class GitHubIssuesLabels extends GitHubService
     /**
      * Remove all labels from an issue
      */
-    public function removeAllLabelsFromAnIssue($owner, $repo, $number)
-    {
+    public function removeAllLabelsFromAnIssue($owner, $repo, $number) {
         $data = array();
         
         return $this->client->request("/repos/$owner/$repo/issues/$number/labels", 'DELETE', $data, 204, '');

@@ -1,5 +1,4 @@
 <?php
-
 namespace Library\GitHubClient\Client\Services;
 
 use Library\GitHubClient\Client\GitHubClient;
@@ -7,9 +6,8 @@ use Library\GitHubClient\Client\GitHubService;
 use Library\GitHubClient\Client\Services\GitHubGistsComments;
 use Library\GitHubClient\Client\Objects\GitHubFullGist;
 
-class GitHubGists extends GitHubService
-{
-    
+class GitHubGists extends GitHubService {
+
     /**
      *
      * @var GitHubGistsComments
@@ -19,8 +17,7 @@ class GitHubGists extends GitHubService
     /**
      * Initialize sub services
      */
-    public function __construct(GitHubClient $client)
-    {
+    public function __construct(GitHubClient $client) {
         parent::__construct($client);
         
         $this->comments = new GitHubGistsComments($client);
@@ -31,8 +28,7 @@ class GitHubGists extends GitHubService
      *
      * @return GitHubFullGist
      */
-    public function authentication($id)
-    {
+    public function authentication($id) {
         $data = array();
         
         return $this->client->request("/gists/$id", 'GET', $data, 200, 'GitHubFullGist');
@@ -48,8 +44,7 @@ class GitHubGists extends GitHubService
      *            _optional_ **hash** with parameters:
      * @return GitHubFullGist
      */
-    public function createGist($id, $files = null)
-    {
+    public function createGist($id, $files = null) {
         $data = array();
         if (!is_null($files))
             $data['files'] = $files;
@@ -60,8 +55,7 @@ class GitHubGists extends GitHubService
     /**
      * Star a gist
      */
-    public function starGist($id)
-    {
+    public function starGist($id) {
         $data = array();
         
         return $this->client->request("/gists/$id/star", 'PUT', $data, 204, '');
@@ -70,8 +64,7 @@ class GitHubGists extends GitHubService
     /**
      * Unstar a gist
      */
-    public function unstarGist($id)
-    {
+    public function unstarGist($id) {
         $data = array();
         
         return $this->client->request("/gists/$id/star", 'DELETE', $data, 204, '');
@@ -80,8 +73,7 @@ class GitHubGists extends GitHubService
     /**
      * Check if a gist is starred
      */
-    public function checkIfGistIsStarred($id)
-    {
+    public function checkIfGistIsStarred($id) {
         $data = array();
         
         return $this->client->request("/gists/$id", 'DELETE', $data, 204, '');

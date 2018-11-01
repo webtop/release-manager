@@ -1,52 +1,48 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-class GitHubPullBranch extends GitHubObject
-{
+class GitHubPullBranch extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'label' => 'string',
-                        'ref' => 'string',
-                        'sha' => 'string',
-                        'user' => 'GitHubUser',
-                        'repo' => 'GitHubRepo'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'label' => 'string',
+            'ref' => 'string',
+            'sha' => 'string',
+            'user' => 'GitHubUser',
+            'repo' => 'GitHubRepo'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $label;
-    
+
     /**
      *
      * @var string
      */
     protected $ref;
-    
+
     /**
      *
      * @var string
      */
     protected $sha;
-    
+
     /**
      *
      * @var GitHubUser
      */
     protected $user;
-    
+
     /**
      *
      * @var GitHubRepo
@@ -57,8 +53,7 @@ class GitHubPullBranch extends GitHubObject
      *
      * @return string
      */
-    public function getLabel()
-    {
+    public function getLabel() {
         return $this->label;
     }
 
@@ -66,8 +61,7 @@ class GitHubPullBranch extends GitHubObject
      *
      * @return string
      */
-    public function getRef()
-    {
+    public function getRef() {
         return $this->ref;
     }
 
@@ -75,8 +69,7 @@ class GitHubPullBranch extends GitHubObject
      *
      * @return string
      */
-    public function getSha()
-    {
+    public function getSha() {
         return $this->sha;
     }
 
@@ -84,8 +77,7 @@ class GitHubPullBranch extends GitHubObject
      *
      * @return GitHubUser
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->user;
     }
 
@@ -93,8 +85,7 @@ class GitHubPullBranch extends GitHubObject
      *
      * @return GitHubRepo
      */
-    public function getRepo()
-    {
+    public function getRepo() {
         return $this->repo;
     }
 }

@@ -1,74 +1,70 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 require_once (__DIR__ . '/GitHubUser.php');
 
-class GitHubStatus extends GitHubObject
-{
+class GitHubStatus extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'created_at' => 'string',
-                        'updated_at' => 'string',
-                        'state' => 'string',
-                        'target_url' => 'string',
-                        'description' => 'string',
-                        'id' => 'int',
-                        'url' => 'string',
-                        'creator' => 'GitHubUser'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'created_at' => 'string',
+            'updated_at' => 'string',
+            'state' => 'string',
+            'target_url' => 'string',
+            'description' => 'string',
+            'id' => 'int',
+            'url' => 'string',
+            'creator' => 'GitHubUser'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $created_at;
-    
+
     /**
      *
      * @var string
      */
     protected $updated_at;
-    
+
     /**
      *
      * @var string
      */
     protected $state;
-    
+
     /**
      *
      * @var string
      */
     protected $target_url;
-    
+
     /**
      *
      * @var string
      */
     protected $description;
-    
+
     /**
      *
      * @var int
      */
     protected $id;
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var GitHubUser
@@ -79,8 +75,7 @@ class GitHubStatus extends GitHubObject
      *
      * @return string
      */
-    public function getCreatedAt()
-    {
+    public function getCreatedAt() {
         return $this->created_at;
     }
 
@@ -88,8 +83,7 @@ class GitHubStatus extends GitHubObject
      *
      * @return string
      */
-    public function getUpdatedAt()
-    {
+    public function getUpdatedAt() {
         return $this->updated_at;
     }
 
@@ -97,8 +91,7 @@ class GitHubStatus extends GitHubObject
      *
      * @return string
      */
-    public function getState()
-    {
+    public function getState() {
         return $this->state;
     }
 
@@ -106,8 +99,7 @@ class GitHubStatus extends GitHubObject
      *
      * @return string
      */
-    public function getTargetUrl()
-    {
+    public function getTargetUrl() {
         return $this->target_url;
     }
 
@@ -115,8 +107,7 @@ class GitHubStatus extends GitHubObject
      *
      * @return string
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
@@ -124,8 +115,7 @@ class GitHubStatus extends GitHubObject
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -133,8 +123,7 @@ class GitHubStatus extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -142,8 +131,7 @@ class GitHubStatus extends GitHubObject
      *
      * @return GitHubUser
      */
-    public function getCreator()
-    {
+    public function getCreator() {
         return $this->creator;
     }
 }

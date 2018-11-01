@@ -1,5 +1,4 @@
 <?php
-
 namespace Library\GitHubClient\Client\Services;
 
 use Library\GitHubClient\Client\GitHubClient;
@@ -11,39 +10,38 @@ use Library\GitHubClient\Client\Services\GitHubActivitySettings;
 use Library\GitHubClient\Client\Services\GitHubActivityStarring;
 use Library\GitHubClient\Client\Services\GitHubActivityWatching;
 
-class GitHubActivity extends GitHubService
-{
-    
+class GitHubActivity extends GitHubService {
+
     /**
      *
      * @var GitHubActivityEvents
      */
     public $events;
-    
+
     /**
      *
      * @var GitHubActivityFeeds
      */
     public $feeds;
-    
+
     /**
      *
      * @var GitHubActivityNotifications
      */
     public $notifications;
-    
+
     /**
      *
      * @var GitHubActivitySettings
      */
     public $settings;
-    
+
     /**
      *
      * @var GitHubActivityStarring
      */
     public $starring;
-    
+
     /**
      *
      * @var GitHubActivityWatching
@@ -53,8 +51,7 @@ class GitHubActivity extends GitHubService
     /**
      * Initialize sub services
      */
-    public function __construct(GitHubClient $client)
-    {
+    public function __construct(GitHubClient $client) {
         parent::__construct($client);
         
         $this->events = new GitHubActivityEvents($client);

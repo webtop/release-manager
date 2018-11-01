@@ -1,5 +1,6 @@
 <?php
-namespace Library\GitHubClient;
+
+namespace Library;
 
 /**
  * Interface to ensure Git sources are adhered to
@@ -30,10 +31,5 @@ interface GitConfig
      */
     public function getOwner (): string;
 
-    /**
-     * Make a connection to the source
-     * 
-     * @return class|boolean
-     */
-    public function connect();
+
 }

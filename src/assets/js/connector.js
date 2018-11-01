@@ -3,7 +3,7 @@ var App = (function(App) {
 
 	App.connector = function() {
 		
-		var testConnection = function(form, submitId) {
+		this.testConnection = function(form, submitId) {
 			$.ajax({
 				jqBtn: $('#' + submitId),
 				data: form.serialize(),
@@ -26,9 +26,7 @@ var App = (function(App) {
 			});
 		};
 		
-		return {
-			testConnection: testConnection
-		}
+		return this;
 	};
 	
 	return App;

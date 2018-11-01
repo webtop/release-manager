@@ -1,38 +1,34 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-class GitHubTeam extends GitHubObject
-{
+class GitHubTeam extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'id' => 'int',
-                        'url' => 'string',
-                        'name' => 'string'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'id' => 'int',
+            'url' => 'string',
+            'name' => 'string'
+        ));
     }
-    
+
     /**
      *
      * @var int
      */
     protected $id;
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var string
@@ -43,8 +39,7 @@ class GitHubTeam extends GitHubObject
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -52,8 +47,7 @@ class GitHubTeam extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -61,8 +55,7 @@ class GitHubTeam extends GitHubObject
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 }

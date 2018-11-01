@@ -1,73 +1,69 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-class GitHubDownload extends GitHubObject
-{
+class GitHubDownload extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'url' => 'string',
-                        'html_url' => 'string',
-                        'id' => 'int',
-                        'name' => 'string',
-                        'description' => 'string',
-                        'size' => 'int',
-                        'download_count' => 'int',
-                        'content_type' => 'string'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'url' => 'string',
+            'html_url' => 'string',
+            'id' => 'int',
+            'name' => 'string',
+            'description' => 'string',
+            'size' => 'int',
+            'download_count' => 'int',
+            'content_type' => 'string'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var string
      */
     protected $html_url;
-    
+
     /**
      *
      * @var int
      */
     protected $id;
-    
+
     /**
      *
      * @var string
      */
     protected $name;
-    
+
     /**
      *
      * @var string
      */
     protected $description;
-    
+
     /**
      *
      * @var int
      */
     protected $size;
-    
+
     /**
      *
      * @var int
      */
     protected $download_count;
-    
+
     /**
      *
      * @var string
@@ -78,8 +74,7 @@ class GitHubDownload extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -87,8 +82,7 @@ class GitHubDownload extends GitHubObject
      *
      * @return string
      */
-    public function getHtmlUrl()
-    {
+    public function getHtmlUrl() {
         return $this->html_url;
     }
 
@@ -96,8 +90,7 @@ class GitHubDownload extends GitHubObject
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -105,8 +98,7 @@ class GitHubDownload extends GitHubObject
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -114,8 +106,7 @@ class GitHubDownload extends GitHubObject
      *
      * @return string
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 
@@ -123,8 +114,7 @@ class GitHubDownload extends GitHubObject
      *
      * @return int
      */
-    public function getSize()
-    {
+    public function getSize() {
         return $this->size;
     }
 
@@ -132,8 +122,7 @@ class GitHubDownload extends GitHubObject
      *
      * @return int
      */
-    public function getDownloadCount()
-    {
+    public function getDownloadCount() {
         return $this->download_count;
     }
 
@@ -141,8 +130,7 @@ class GitHubDownload extends GitHubObject
      *
      * @return string
      */
-    public function getContentType()
-    {
+    public function getContentType() {
         return $this->content_type;
     }
 }

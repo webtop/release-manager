@@ -1,45 +1,41 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-class GitHubOrg extends GitHubObject
-{
+class GitHubOrg extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'login' => 'string',
-                        'id' => 'int',
-                        'url' => 'string',
-                        'avatar_url' => 'string'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'login' => 'string',
+            'id' => 'int',
+            'url' => 'string',
+            'avatar_url' => 'string'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $login;
-    
+
     /**
      *
      * @var int
      */
     protected $id;
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var string
@@ -50,8 +46,7 @@ class GitHubOrg extends GitHubObject
      *
      * @return string
      */
-    public function getLogin()
-    {
+    public function getLogin() {
         return $this->login;
     }
 
@@ -59,8 +54,7 @@ class GitHubOrg extends GitHubObject
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -68,8 +62,7 @@ class GitHubOrg extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -77,8 +70,7 @@ class GitHubOrg extends GitHubObject
      *
      * @return string
      */
-    public function getAvatarUrl()
-    {
+    public function getAvatarUrl() {
         return $this->avatar_url;
     }
 }
