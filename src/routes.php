@@ -1,13 +1,13 @@
 <?php
 
+use Classes\Common;
+use Classes\Config;
+use Classes\Connector;
+use Config\GitHubConfig;
+use Config\GitLabConfig;
+use Library\GitFascade;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use Classes\Connector;
-use Classes\Config;
-use Classes\Common;
-use Config\GitLabConfig;
-use Config\GitHubConfig;
-use Library\GitFascade;
 
 /**
  * ========================

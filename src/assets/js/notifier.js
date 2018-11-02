@@ -16,16 +16,29 @@ var App = (function(App) {
 		
 		$('#notifier').on('click', App.notifier.hide);
 		
-		this.showNotice = function(title, content) {
+		this.showNotice = function(title, content, status) {
 			$('#notifier').find('.alert-title').text(title);
 			$('#notifier').find('.alert-body').text(content);
 			
+			if (status == 'success') {
+				$('#notifier').removeClass('bg-warning');
+				$('#notifier').removeClass('bg-danger');
+				$('#notifier').addClass('bg-success');
+			} else if (status == 'error') {
+				$('#notifier').removeClass('bg-warning');
+				$('#notifier').addClass('bg-danger');
+				$('#notifier').removeClass('bg-success');
+			} else {
+				$('#notifier').addClass('bg-warning');
+				$('#notifier').removeClass('bg-danger');
+				$('#notifier').removeClass('bg-success');
+			}
 			App.notifier.show();
 		};
 		
-		// If there are any unseen notices show ad then remove them
+		// If there are any posted notices, show them
 		$('.unseen-notification').each(function() {
-			App.showNotice($(this).attr('data-title'), $(this).text());
+			App.showNotice($(this).attr('data-title'), $(this).text(), $(this).attr('data-status'));
 			$(this).remove();
 		});
 		

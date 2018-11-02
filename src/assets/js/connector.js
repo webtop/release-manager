@@ -11,9 +11,9 @@ var App = (function(App) {
 				url: '/test-connection',
 				success: function(response) {
 					if (response.success) {
-						
+						App.notifier().showNotice('Connection Test', 'Connected test succeeded', 'success');
 					} else {
-						
+						App.notifier().showNotice('Connection Test Failed', success.msg, 'error');
 					}
 				},
 				error: function(xhr, status, error) {

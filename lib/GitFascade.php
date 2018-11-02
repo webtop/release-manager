@@ -2,6 +2,8 @@
 
 namespace Library;
 
+use Gitlab\Client;
+
 /**
  * Class: GitFascade 
  * A front-end for connection to and managing different Git sources
@@ -65,7 +67,7 @@ class GitFascade {
         ];
         
         try {
-            $this->client = \Gitlab\Client::create($this->config->getApiUrl());
+            $this->client = Client::create($this->config->getApiUrl());
             $this->client->api('version');
             $connection['success'] = true;
         } catch (\Exception $e) {
