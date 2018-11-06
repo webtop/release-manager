@@ -72,6 +72,7 @@ $app->post('/test-connection', function(Request $request, Response $response, ar
                     'username' => $request->getParam('git-auth-username'),
                     'password' => $request->getParam('git-auth-password')
                 ]);
+                $gitConfig->setAuthMethod($authMethod)
                 break;
             case 'access-token':
                 $gitConfig->setToken($request->getParam('git-auth-token'));

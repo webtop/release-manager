@@ -63,15 +63,17 @@ class GitFascade {
     private function _connect() {
         $connection = [
             'success' => false,
-            'msg' => ''
+            'msgs' => [],
+            'severity' => 'warning'
         ];
         
         try {
             $this->client = Client::create($this->config->getApiUrl());
-            $this->client->api('version');
             $connection['success'] = true;
+            $connection['severity'] = '';
         } catch (\Exception $e) {
-            $connection['msg'] = $e->getMessage();
+            $connection['severity'] = 'severe';
+            $connection['msgs'][] = $e->getMessage();
         }
         
         return $connection;
@@ -90,7 +92,8 @@ class GitFascade {
                 $this->client->authenticate($this->config->getToken(), $this->config->getAuthMethod());
             } catch (\Exception $e) {
                 $connection['success'] = false;
-                $connection['msg'] = $e->getMessage();
+                $connection['severity'] = 'severe';
+                $connection['msgs'][] = $e->getMessage();
             }
         }
         

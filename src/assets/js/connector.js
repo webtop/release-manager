@@ -3,25 +3,14 @@ var App = (function(App) {
 
 	App.connector = function() {
 		
-		this.testConnection = function(form, submitId) {
+		this.testConnection = function(params, callback) {
 			$.ajax({
-				jqBtn: $('#' + submitId),
-				data: form.serialize(),
+				data: params,
 				method: 'post',
 				url: '/test-connection',
-				success: function(response) {
-					if (response.success) {
-						App.notifier().showNotice('Connection Test', 'Connected test succeeded', 'success');
-					} else {
-						App.notifier().showNotice('Connection Test Failed', success.msg, 'error');
-					}
-				},
-				error: function(xhr, status, error) {
-					
-				},
-				complete: function() {
-					this.jqBtn.removeAttr('disabled');
-					this.jqBtn.text('Test Connection');
+				complete: function(xhr) {
+					var response = JSON.parse(xhr.responseText);
+					callback(response);
 				}
 			});
 		};

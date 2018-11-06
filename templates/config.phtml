@@ -21,7 +21,7 @@
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="git-api-url">Git API URL</label>
-				<input class="form-control" type="text" id="git-api-url" name="git-api-url" placeholder="required" value="http://gitlab.local/admin/api/v4/" />
+				<input class="form-control" type="text" id="git-api-url" name="git-api-url" placeholder="required" value="http://gitlab.local/api/v4/" />
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="git-file-url">Git Files URL</label>
@@ -30,7 +30,7 @@
 			<div class="form-group">
 				<label class="control-label" for="git-source-auth">Authorization Type</label>
 				<select class="select form-control" id="git-source-auth" name="git-source-auth">
-					<option>Select an Authorization method...</option>
+					<option value="none">Select an Authorization method...</option>
 					<option value="user-pass">Username/Password</option>
 					<option value="access-token">Personal Access Token</option>
 					<option value="oauth">OAuth 2.0</option>
@@ -71,6 +71,7 @@
     		
     		<div class="button-bar">
     			<button type="button" id="connection-test" class="btn btn-primary">Test Connection</button>
+    			<button type="button" id="config-save" class="btn btn-success hidden">Save Configuration</button>
     		</div>
 		</form>
 	</div>
