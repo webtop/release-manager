@@ -72,7 +72,7 @@ class GitFascade {
             $connection['success'] = true;
             $connection['severity'] = '';
         } catch (\Exception $e) {
-            $connection['severity'] = 'severe';
+            $connection['severity'] = 'error';
             $connection['msgs'][] = $e->getMessage();
         }
         
@@ -80,7 +80,7 @@ class GitFascade {
     }
     
     /**
-     * Authenticate a user access token against a Git connection
+     * Authenticate a user against a Git connection
      * 
      * @return array
      */
@@ -89,11 +89,17 @@ class GitFascade {
         
         if ($connection['success']) {
             try {
-                $this->client->authenticate($this->config->getToken(), $this->config->getAuthMethod());
+                $connectionBuilder = $this->client->authenticate($this->config->getToken(), $this->config->getAuthMethod());
+                $connectionBuilder->version()->show();
             } catch (\Exception $e) {
-                $connection['success'] = false;
-                $connection['severity'] = 'severe';
-                $connection['msgs'][] = $e->getMessage();
+                if ($e->getCode() == 401) {
+                    $connection['success'] = false;
+                    $connection['severity'] = 'warning';
+                } else {
+                    $connection['success'] = false;
+                    $connection['severity'] = 'error';
+                    $connection['msgs'][] = $e->getMessage();
+                }
             }
         }
         
@@ -106,13 +112,7 @@ class GitFascade {
      * @param bool $requiresAuth
      * @return array
      */
-    public function connect($requiresAuth = false) {
-        if ($requiresAuth) {
-            $connection = $this->_authenticate();
-        } else {
-            $connection = $this->_connect(true);
-        }
-        
-        return $connection;
+    public function connect() {
+        return $this->_authenticate();
     }
 }

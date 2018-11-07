@@ -31,14 +31,14 @@
 				<label class="control-label" for="git-source-auth">Authorization Type</label>
 				<select class="select form-control" id="git-source-auth" name="git-source-auth">
 					<option value="none">Select an Authorization method...</option>
-					<option value="user-pass">Username/Password</option>
-					<option value="access-token">Personal Access Token</option>
-					<option value="oauth">OAuth 2.0</option>
+					<option value="user_pass">Username/Password</option>
+					<option value="http_token">Personal Access Token</option>
+					<option value="oauth_token">OAuth 2.0</option>
 				</select>
 			</div>
 			
 			<!-- // Username/Password // -->
-			<div class="auth-type-container border rounded" data-for="user-pass">
+			<div class="auth-type-container border rounded" data-for="user_pass">
     			<div class="form-group">
     				<label class="control-label" for="git-auth-username">Username</label>
     				<input class="form-control" type="text" id="git-auth-username" name="git-auth-username" value="paul.allsopp" placeholder="required" />
@@ -50,7 +50,7 @@
     		</div>
     		
     		<!-- // Personal Access Token // -->
-    		<div class="auth-type-container border rounded" data-for="access-token">
+    		<div class="auth-type-container border rounded" data-for="http_token">
     			<div class="form-group">
     				<label class="control-label" for="git-auth-token">Token</label>
     				<input class="form-control" type="text" id="git-auth-token" name="git-auth-token" placeholder="required" value="bzBUYv5Ay2YCrDZ3GuBn" />
@@ -58,7 +58,7 @@
     		</div>
     		
     		<!-- // Oauth 2 // -->
-    		<div class="auth-type-container border rounded" data-for="oauth">
+    		<div class="auth-type-container border rounded" data-for="oauth_token">
     			<div class="form-group">
     				<label class="control-label" for="git-auth-app-id">Application Id</label>
     				<input class="form-control" type="text" id="git-auth-app-id" name="git-auth-app-id" placeholder="required" />

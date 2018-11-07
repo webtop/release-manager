@@ -45,5 +45,9 @@ class GitLabConfig extends GitConfig {
      * @var string
      */
     protected $token = '';
+    
+    protected function save() {
+        
+    }
 
 }

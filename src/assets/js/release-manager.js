@@ -19,6 +19,19 @@ var App = (function(App) {
 		});
 		
 		$('button#connection-test').on('click', function() {
+			var params = App.buildConnectionParams();
+			App.testConnection(params, App.allowConfigSave);
+		});
+		
+		$('button#config-save').on('click', function() {
+			$(this).attr('disabled', 'disabled');
+			$(this).text('...saving...');
+			
+			var params = App.buildConnectionParams();
+			App.saveConnectionParams(params, App.redirect, {url: 'someurl', p1: 'this', p2: 'that'});
+		});
+		
+		this.buildConnectionParams = function() {
 			var credentials = {};
 			$(this).attr('disabled', 'disabled');
 			$(this).text('...testing...');
@@ -37,30 +50,50 @@ var App = (function(App) {
 				params['git-source-auth'] = $('#git-source-auth').val();
 			}
 			
-			App.testConnection(params, App.allowConfigSave);
-		});
-		
-		$('button#config-save').on('click', function() {
-			$(this).attr('disabled', 'disabled');
-			$(this).text('...saving...');
-			
-			
-		});
+			return params;
+		};
 		
 		this.allowConfigSave = function(response) {
-			if (response.success) {
+			console.log(response);
+			var allowConfigSave = false;
+			if (response.success && response.warnings == '') {
 				App.showNotice('Connection Test', 'Connected test succeeded', 'success');
+				allowConfigSave = true;
+			} else {
+				if (response.warnings) {
+					App.showNotice('Connection Test', 'Connected test succeeded: ' + response.warnings, response.severity);
+					allowConfigSave = true;
+				} else if (response.msgs) {
+					App.showNotice('Connection Error', response.msgs.join('<br />'), response.severity);
+				} else {
+					App.showNotice('Connection Error', 'Unknown response', 'error');
+				}
+			}
+			
+			if (allowConfigSave) {
 				$('button#config-save').removeClass('hidden');
 				$('button#config-save').focus();
-			} else {
-				App.showNotice('Connection Error', response.msgs.join('<br />'), response.severity);
 			}
 			
 			$('button#connection-test').removeAttr('disabled');
 			$('button#connection-test').text('Test Connection');
 		};
 		
-		return this;
+		this.redirect = function(params) {
+			var url = params.url;
+			delete params.url;
+			
+			for (var n in params) {
+				url += n + '=' + params[n] + '&';
+			} 
+			url = url.substr(0, -1);
+			location.href = url;
+		};
+		
+		return {
+			allowConfigSave: this.allowConfigSave,
+			redirect: this.redirect
+		};
 	};
 	
 	return App;

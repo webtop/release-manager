@@ -8,6 +8,7 @@ use Config\GitLabConfig;
 use Library\GitFascade;
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Config\GitConfig;
 
 /**
  * ========================
@@ -51,44 +52,29 @@ $app->get('/oauth', function(Request $request, Response $response, array $args) 
 });
 
 $app->post('/test-connection', function(Request $request, Response $response, array $args) use($app) {
-    $withAuth = false;
+    $connectResult = [
+        'success' => false,
+        'severity' => 'error',
+        'msgs' => [],
+        'warnings' => ''
+    ];
     
-    if ($request->getParam('git-source-select') == 'gitlab') {
-        $gitConfig = new GitLabConfig();
-    } else {
-        $gitConfig = new GitHubConfig();
+    GitConfig::validateConfig($connectResult, $request);
+    
+    if (!empty($connectResult['msgs'])) {
+        return $response->withJson($connectResult);
     }
     
-    $gitConfig->setApiUrl($request->getParam('git-api-url'));
-    if (!empty($request->getParam('git-source-auth'))) {
-        $gitConfig->setAuthMethod($request->getParam('git-source-auth'));
-        $withAuth = true;
-    }
+    $gitConfig = GitConfig::build($request);
     
-    if ($withAuth) {
-        switch ($request->getParam('git-source-auth')) {
-            case 'user-pass':
-                $gitConfig->setAuthCredentials([
-                    'username' => $request->getParam('git-auth-username'),
-                    'password' => $request->getParam('git-auth-password')
-                ]);
-                $gitConfig->setAuthMethod($authMethod)
-                break;
-            case 'access-token':
-                $gitConfig->setToken($request->getParam('git-auth-token'));
-                break;
-            case 'oauth':
-                $gitConfig->setAuthCredentials([
-                    'app-id' => $request->getParam('git-auth-app-id'),
-                    'app-secret' => $request->getParam('git-auth-secret')
-                ]);
-                break;
-        }
-    }
-    
-    $connectResult = GitFascade::getInstance($gitConfig)->connect($withAuth);
+    $connectResult = GitFascade::getInstance($gitConfig)->connect();
+    $connectResult['warnings'] = $gitConfig::$warning;
     
     return $response->withJson($connectResult);
+});
+
+$app->post('/save-connection-params', function(Request $request, Response $response, array $args) use($app) {
+    
 });
 
 
