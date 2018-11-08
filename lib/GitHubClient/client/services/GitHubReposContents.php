@@ -1,5 +1,4 @@
 <?php
-
 namespace Library\GitHubClient\Client\Services;
 
 use Library\GitHubClient\Client\GitHubClient;
@@ -8,8 +7,7 @@ use Library\GitHubClient\Client\Objects\GitHubRepoContent;
 use Library\GitHubClient\Client\Objects\GitHubReadmeContent;
 use Library\GitHubClient\Client\Objects\GitHubContents;
 
-class GitHubReposContents extends GitHubService
-{
+class GitHubReposContents extends GitHubService {
 
     /**
      * Get the README
@@ -19,8 +17,7 @@ class GitHubReposContents extends GitHubService
      *            Defaults to `master`.
      * @return GitHubReadmeContent
      */
-    public function getTheReadme($owner, $repo, $ref = null)
-    {
+    public function getTheReadme($owner, $repo, $ref = null) {
         $data = array();
         if (!is_null($ref))
             $data['ref'] = $ref;
@@ -36,8 +33,7 @@ class GitHubReposContents extends GitHubService
      *            Defaults to `master`.
      * @return GitHubContent
      */
-    public function getContents($owner, $repo, $path, $ref = null)
-    {
+    public function getContents($owner, $repo, $path, $ref = null) {
         $data = array();
         if (!is_null($ref))
             $data['ref'] = $ref;
@@ -59,8 +55,7 @@ class GitHubReposContents extends GitHubService
      *            (usually master)
      * @return GitHubRepoCommit
      */
-    public function createFile($owner, $repo, $path, $msg, $content, $branch = 'master')
-    {
+    public function createFile($owner, $repo, $path, $msg, $content, $branch = 'master') {
         $data = array();
         $data['message'] = $msg;
         $data['content'] = $content;
@@ -85,8 +80,7 @@ class GitHubReposContents extends GitHubService
      *            (usually master)
      * @return GitHubRepoCommit
      */
-    public function updateFile($owner, $repo, $path, $msg, $content, $sha, $branch = 'master')
-    {
+    public function updateFile($owner, $repo, $path, $msg, $content, $sha, $branch = 'master') {
         $data = array();
         $data['message'] = $msg;
         $data['content'] = $content;
@@ -110,8 +104,7 @@ class GitHubReposContents extends GitHubService
      *            (usually master)
      * @return GitHubRepoCommit
      */
-    public function deleteFile($owner, $repo, $path, $msg, $content, $sha, $branch = 'master')
-    {
+    public function deleteFile($owner, $repo, $path, $msg, $content, $sha, $branch = 'master') {
         $data = array();
         $data['message'] = $msg;
         $data['branch'] = $branch;

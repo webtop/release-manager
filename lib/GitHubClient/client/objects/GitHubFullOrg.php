@@ -1,101 +1,97 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-class GitHubFullOrg extends GitHubObject
-{
+class GitHubFullOrg extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'name' => 'string',
-                        'company' => 'string',
-                        'blog' => 'string',
-                        'location' => 'string',
-                        'email' => 'string',
-                        'public_repos' => 'int',
-                        'public_gists' => 'int',
-                        'followers' => 'int',
-                        'following' => 'int',
-                        'html_url' => 'string',
-                        'created_at' => 'string',
-                        'type' => 'string'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'name' => 'string',
+            'company' => 'string',
+            'blog' => 'string',
+            'location' => 'string',
+            'email' => 'string',
+            'public_repos' => 'int',
+            'public_gists' => 'int',
+            'followers' => 'int',
+            'following' => 'int',
+            'html_url' => 'string',
+            'created_at' => 'string',
+            'type' => 'string'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $name;
-    
+
     /**
      *
      * @var string
      */
     protected $company;
-    
+
     /**
      *
      * @var string
      */
     protected $blog;
-    
+
     /**
      *
      * @var string
      */
     protected $location;
-    
+
     /**
      *
      * @var string
      */
     protected $email;
-    
+
     /**
      *
      * @var int
      */
     protected $public_repos;
-    
+
     /**
      *
      * @var int
      */
     protected $public_gists;
-    
+
     /**
      *
      * @var int
      */
     protected $followers;
-    
+
     /**
      *
      * @var int
      */
     protected $following;
-    
+
     /**
      *
      * @var string
      */
     protected $html_url;
-    
+
     /**
      *
      * @var string
      */
     protected $created_at;
-    
+
     /**
      *
      * @var string
@@ -106,8 +102,7 @@ class GitHubFullOrg extends GitHubObject
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -115,8 +110,7 @@ class GitHubFullOrg extends GitHubObject
      *
      * @return string
      */
-    public function getCompany()
-    {
+    public function getCompany() {
         return $this->company;
     }
 
@@ -124,8 +118,7 @@ class GitHubFullOrg extends GitHubObject
      *
      * @return string
      */
-    public function getBlog()
-    {
+    public function getBlog() {
         return $this->blog;
     }
 
@@ -133,8 +126,7 @@ class GitHubFullOrg extends GitHubObject
      *
      * @return string
      */
-    public function getLocation()
-    {
+    public function getLocation() {
         return $this->location;
     }
 
@@ -142,8 +134,7 @@ class GitHubFullOrg extends GitHubObject
      *
      * @return string
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
 
@@ -151,8 +142,7 @@ class GitHubFullOrg extends GitHubObject
      *
      * @return int
      */
-    public function getPublicRepos()
-    {
+    public function getPublicRepos() {
         return $this->public_repos;
     }
 
@@ -160,8 +150,7 @@ class GitHubFullOrg extends GitHubObject
      *
      * @return int
      */
-    public function getPublicGists()
-    {
+    public function getPublicGists() {
         return $this->public_gists;
     }
 
@@ -169,8 +158,7 @@ class GitHubFullOrg extends GitHubObject
      *
      * @return int
      */
-    public function getFollowers()
-    {
+    public function getFollowers() {
         return $this->followers;
     }
 
@@ -178,8 +166,7 @@ class GitHubFullOrg extends GitHubObject
      *
      * @return int
      */
-    public function getFollowing()
-    {
+    public function getFollowing() {
         return $this->following;
     }
 
@@ -187,8 +174,7 @@ class GitHubFullOrg extends GitHubObject
      *
      * @return string
      */
-    public function getHtmlUrl()
-    {
+    public function getHtmlUrl() {
         return $this->html_url;
     }
 
@@ -196,8 +182,7 @@ class GitHubFullOrg extends GitHubObject
      *
      * @return string
      */
-    public function getCreatedAt()
-    {
+    public function getCreatedAt() {
         return $this->created_at;
     }
 
@@ -205,8 +190,7 @@ class GitHubFullOrg extends GitHubObject
      *
      * @return string
      */
-    public function getType()
-    {
+    public function getType() {
         return $this->type;
     }
 }

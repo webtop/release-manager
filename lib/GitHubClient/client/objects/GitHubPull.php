@@ -1,5 +1,4 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
@@ -7,182 +6,179 @@ require_once (__DIR__ . '/GitHubUser.php');
 require_once (__DIR__ . '/GitHubPullLinks.php');
 require_once (__DIR__ . '/GitHubPullBranch.php');
 
-class GitHubPull extends GitHubObject
-{
+class GitHubPull extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'id' => 'int',
-                        'url' => 'string',
-                        'html_url' => 'string',
-                        'diff_url' => 'string',
-                        'patch_url' => 'string',
-                        'issue_url' => 'string',
-                        'commits_url' => 'string',
-                        'review_comments_url' => 'string',
-                        'review_comment_url' => 'string',
-                        'comments_url' => 'string',
-                        'statuses_url' => 'string',
-                        'number' => 'int',
-                        'state' => 'string',
-                        'title' => 'string',
-                        'body' => 'string',
-                        'created_at' => 'string',
-                        'updated_at' => 'string',
-                        'closed_at' => 'string',
-                        'merged_at' => 'string',
-                        'user' => 'GitHubUser',
-                        '_links' => 'GitHubPullLinks',
-                        'head' => 'GitHubPullBranch',
-                        'base' => 'GitHubPullBranch',
-                        'mergeable' => 'bool'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'id' => 'int',
+            'url' => 'string',
+            'html_url' => 'string',
+            'diff_url' => 'string',
+            'patch_url' => 'string',
+            'issue_url' => 'string',
+            'commits_url' => 'string',
+            'review_comments_url' => 'string',
+            'review_comment_url' => 'string',
+            'comments_url' => 'string',
+            'statuses_url' => 'string',
+            'number' => 'int',
+            'state' => 'string',
+            'title' => 'string',
+            'body' => 'string',
+            'created_at' => 'string',
+            'updated_at' => 'string',
+            'closed_at' => 'string',
+            'merged_at' => 'string',
+            'user' => 'GitHubUser',
+            '_links' => 'GitHubPullLinks',
+            'head' => 'GitHubPullBranch',
+            'base' => 'GitHubPullBranch',
+            'mergeable' => 'bool'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $id;
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var string
      */
     protected $html_url;
-    
+
     /**
      *
      * @var string
      */
     protected $diff_url;
-    
+
     /**
      *
      * @var string
      */
     protected $patch_url;
-    
+
     /**
      *
      * @var string
      */
     protected $issue_url;
-    
+
     /**
      *
      * @var string
      */
     protected $commits_url;
-    
+
     /**
      *
      * @var string
      */
     protected $review_comments_url;
-    
+
     /**
      *
      * @var string
      */
     protected $review_comment_url;
-    
+
     /**
      *
      * @var string
      */
     protected $comments_url;
-    
+
     /**
      *
      * @var string
      */
     protected $statuses_url;
-    
+
     /**
      *
      * @var int
      */
     protected $number;
-    
+
     /**
      *
      * @var string
      */
     protected $state;
-    
+
     /**
      *
      * @var string
      */
     protected $title;
-    
+
     /**
      *
      * @var string
      */
     protected $body;
-    
+
     /**
      *
      * @var string
      */
     protected $created_at;
-    
+
     /**
      *
      * @var string
      */
     protected $updated_at;
-    
+
     /**
      *
      * @var string
      */
     protected $closed_at;
-    
+
     /**
      *
      * @var string
      */
     protected $merged_at;
-    
+
     /**
      *
      * @var GitHubUser
      */
     protected $user;
-    
+
     /**
      *
      * @var GitHubPullLinks
      */
     protected $_links;
-    
+
     /**
      *
      * @var GitHubPullBranch
      */
     protected $head;
-    
+
     /**
      *
      * @var GitHubPullBranch
      */
     protected $base;
-    
+
     /**
      *
      * @var bool
@@ -193,8 +189,7 @@ class GitHubPull extends GitHubObject
      *
      * @return string
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -202,8 +197,7 @@ class GitHubPull extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -211,8 +205,7 @@ class GitHubPull extends GitHubObject
      *
      * @return string
      */
-    public function getHtmlUrl()
-    {
+    public function getHtmlUrl() {
         return $this->html_url;
     }
 
@@ -220,8 +213,7 @@ class GitHubPull extends GitHubObject
      *
      * @return string
      */
-    public function getDiffUrl()
-    {
+    public function getDiffUrl() {
         return $this->diff_url;
     }
 
@@ -229,8 +221,7 @@ class GitHubPull extends GitHubObject
      *
      * @return string
      */
-    public function getPatchUrl()
-    {
+    public function getPatchUrl() {
         return $this->patch_url;
     }
 
@@ -238,8 +229,7 @@ class GitHubPull extends GitHubObject
      *
      * @return string
      */
-    public function getIssueUrl()
-    {
+    public function getIssueUrl() {
         return $this->issue_url;
     }
 
@@ -247,8 +237,7 @@ class GitHubPull extends GitHubObject
      *
      * @return string
      */
-    public function getCommitsUrl()
-    {
+    public function getCommitsUrl() {
         return $this->commits_url;
     }
 
@@ -256,8 +245,7 @@ class GitHubPull extends GitHubObject
      *
      * @return string
      */
-    public function getReviewCommentsUrl()
-    {
+    public function getReviewCommentsUrl() {
         return $this->review_comments_url;
     }
 
@@ -265,8 +253,7 @@ class GitHubPull extends GitHubObject
      *
      * @return string
      */
-    public function getReviewCommentUrl()
-    {
+    public function getReviewCommentUrl() {
         return $this->review_comment_url;
     }
 
@@ -274,8 +261,7 @@ class GitHubPull extends GitHubObject
      *
      * @return string
      */
-    public function getCommentsUrl()
-    {
+    public function getCommentsUrl() {
         return $this->comments_url;
     }
 
@@ -283,8 +269,7 @@ class GitHubPull extends GitHubObject
      *
      * @return string
      */
-    public function getStatusesUrl()
-    {
+    public function getStatusesUrl() {
         return $this->statuses_url;
     }
 
@@ -292,8 +277,7 @@ class GitHubPull extends GitHubObject
      *
      * @return int
      */
-    public function getNumber()
-    {
+    public function getNumber() {
         return $this->number;
     }
 
@@ -301,8 +285,7 @@ class GitHubPull extends GitHubObject
      *
      * @return string
      */
-    public function getState()
-    {
+    public function getState() {
         return $this->state;
     }
 
@@ -310,8 +293,7 @@ class GitHubPull extends GitHubObject
      *
      * @return string
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -319,8 +301,7 @@ class GitHubPull extends GitHubObject
      *
      * @return string
      */
-    public function getBody()
-    {
+    public function getBody() {
         return $this->body;
     }
 
@@ -328,8 +309,7 @@ class GitHubPull extends GitHubObject
      *
      * @return string
      */
-    public function getCreatedAt()
-    {
+    public function getCreatedAt() {
         return $this->created_at;
     }
 
@@ -337,8 +317,7 @@ class GitHubPull extends GitHubObject
      *
      * @return string
      */
-    public function getUpdatedAt()
-    {
+    public function getUpdatedAt() {
         return $this->updated_at;
     }
 
@@ -346,8 +325,7 @@ class GitHubPull extends GitHubObject
      *
      * @return string
      */
-    public function getClosedAt()
-    {
+    public function getClosedAt() {
         return $this->closed_at;
     }
 
@@ -355,8 +333,7 @@ class GitHubPull extends GitHubObject
      *
      * @return string
      */
-    public function getMergedAt()
-    {
+    public function getMergedAt() {
         return $this->merged_at;
     }
 
@@ -364,8 +341,7 @@ class GitHubPull extends GitHubObject
      *
      * @return GitHubUser
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->user;
     }
 
@@ -373,8 +349,7 @@ class GitHubPull extends GitHubObject
      *
      * @return GitHubPullLinks
      */
-    public function getLinks()
-    {
+    public function getLinks() {
         return $this->_links;
     }
 
@@ -382,8 +357,7 @@ class GitHubPull extends GitHubObject
      *
      * @return GitHubPullBranch
      */
-    public function getHead()
-    {
+    public function getHead() {
         return $this->head;
     }
 
@@ -391,8 +365,7 @@ class GitHubPull extends GitHubObject
      *
      * @return GitHubPullBranch
      */
-    public function getBase()
-    {
+    public function getBase() {
         return $this->base;
     }
 
@@ -400,8 +373,7 @@ class GitHubPull extends GitHubObject
      *
      * @return bool
      */
-    public function isMergeable()
-    {
+    public function isMergeable() {
         return $this->mergeable;
     }
 }

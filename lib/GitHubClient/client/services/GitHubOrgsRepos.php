@@ -1,20 +1,17 @@
 <?php
-
 namespace Library\GitHubClient\Client\Services;
 
 use Library\GitHubClient\Client\GitHubClient;
 use Library\GitHubClient\Client\GitHubService;
 
-class GithubOrgsRepos extends GitHubService
-{
+class GithubOrgsRepos extends GitHubService {
 
     /**
      * Create team
      *
      * @return array<GitHubFullTeam>
      */
-    public function createTeam($id)
-    {
+    public function createTeam($id) {
         $data = array();
         
         return $this->client->request("/teams/$id", 'PATCH', $data, 200, 'GitHubFullTeam', true);
@@ -39,11 +36,9 @@ class GithubOrgsRepos extends GitHubService
      *            (Optional) - Update the default branch for this repository.
      * @return GitHubFullRepo
      */
-    public function createRepo($org, $repo, $private = null, $has_issues = null, $has_wiki = null, $has_downloads = null, 
-            $default_branch = null, $auto_init = null, $gitignore_template = null)
-    {
+    public function createRepo($org, $repo, $private = null, $has_issues = null, $has_wiki = null, $has_downloads = null, $default_branch = null, $auto_init = null, $gitignore_template = null) {
         $data = array(
-                "name" => $repo
+            "name" => $repo
         );
         if (!is_null($private))
             $data['private'] = $private;

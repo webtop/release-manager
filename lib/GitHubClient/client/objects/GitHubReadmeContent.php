@@ -1,87 +1,83 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-class GitHubReadmeContent extends GitHubObject
-{
+class GitHubReadmeContent extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'type' => 'string',
-                        'encoding' => 'string',
-                        'size' => 'int',
-                        'name' => 'string',
-                        'path' => 'string',
-                        'content' => 'string',
-                        'sha' => 'string',
-                        'url' => 'string',
-                        'git_url' => 'string',
-                        'html_url' => 'string'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'type' => 'string',
+            'encoding' => 'string',
+            'size' => 'int',
+            'name' => 'string',
+            'path' => 'string',
+            'content' => 'string',
+            'sha' => 'string',
+            'url' => 'string',
+            'git_url' => 'string',
+            'html_url' => 'string'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $type;
-    
+
     /**
      *
      * @var string
      */
     protected $encoding;
-    
+
     /**
      *
      * @var int
      */
     protected $size;
-    
+
     /**
      *
      * @var string
      */
     protected $name;
-    
+
     /**
      *
      * @var string
      */
     protected $path;
-    
+
     /**
      *
      * @var string
      */
     protected $content;
-    
+
     /**
      *
      * @var string
      */
     protected $sha;
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var string
      */
     protected $git_url;
-    
+
     /**
      *
      * @var string
@@ -92,8 +88,7 @@ class GitHubReadmeContent extends GitHubObject
      *
      * @return string
      */
-    public function getType()
-    {
+    public function getType() {
         return $this->type;
     }
 
@@ -101,8 +96,7 @@ class GitHubReadmeContent extends GitHubObject
      *
      * @return string
      */
-    public function getEncoding()
-    {
+    public function getEncoding() {
         return $this->encoding;
     }
 
@@ -110,8 +104,7 @@ class GitHubReadmeContent extends GitHubObject
      *
      * @return int
      */
-    public function getSize()
-    {
+    public function getSize() {
         return $this->size;
     }
 
@@ -119,8 +112,7 @@ class GitHubReadmeContent extends GitHubObject
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -128,8 +120,7 @@ class GitHubReadmeContent extends GitHubObject
      *
      * @return string
      */
-    public function getPath()
-    {
+    public function getPath() {
         return $this->path;
     }
 
@@ -137,8 +128,7 @@ class GitHubReadmeContent extends GitHubObject
      *
      * @return string
      */
-    public function getContent()
-    {
+    public function getContent() {
         return $this->content;
     }
 
@@ -146,8 +136,7 @@ class GitHubReadmeContent extends GitHubObject
      *
      * @return string
      */
-    public function getSha()
-    {
+    public function getSha() {
         return $this->sha;
     }
 
@@ -155,8 +144,7 @@ class GitHubReadmeContent extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -164,8 +152,7 @@ class GitHubReadmeContent extends GitHubObject
      *
      * @return string
      */
-    public function getGitUrl()
-    {
+    public function getGitUrl() {
         return $this->git_url;
     }
 
@@ -173,8 +160,7 @@ class GitHubReadmeContent extends GitHubObject
      *
      * @return string
      */
-    public function getHtmlUrl()
-    {
+    public function getHtmlUrl() {
         return $this->html_url;
     }
 }

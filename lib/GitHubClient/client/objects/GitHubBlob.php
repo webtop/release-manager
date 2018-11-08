@@ -1,45 +1,41 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-class GitHubBlob extends GitHubObject
-{
+class GitHubBlob extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'content' => 'string',
-                        'encoding' => 'string',
-                        'sha' => 'string',
-                        'size' => 'int'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'content' => 'string',
+            'encoding' => 'string',
+            'sha' => 'string',
+            'size' => 'int'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $content;
-    
+
     /**
      *
      * @var string
      */
     protected $encoding;
-    
+
     /**
      *
      * @var string
      */
     protected $sha;
-    
+
     /**
      *
      * @var int
@@ -50,8 +46,7 @@ class GitHubBlob extends GitHubObject
      *
      * @return string
      */
-    public function getContent()
-    {
+    public function getContent() {
         return $this->content;
     }
 
@@ -59,8 +54,7 @@ class GitHubBlob extends GitHubObject
      *
      * @return string
      */
-    public function getEncoding()
-    {
+    public function getEncoding() {
         return $this->encoding;
     }
 
@@ -68,8 +62,7 @@ class GitHubBlob extends GitHubObject
      *
      * @return string
      */
-    public function getSha()
-    {
+    public function getSha() {
         return $this->sha;
     }
 
@@ -77,8 +70,7 @@ class GitHubBlob extends GitHubObject
      *
      * @return int
      */
-    public function getSize()
-    {
+    public function getSize() {
         return $this->size;
     }
 }

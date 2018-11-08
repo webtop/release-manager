@@ -1,39 +1,35 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 require_once (__DIR__ . '/../objects/GitHubTree.php');
 
-class GitHubTreeExtra extends GitHubObject
-{
+class GitHubTreeExtra extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'sha' => 'string',
-                        'url' => 'string',
-                        'tree' => 'array<GitHubTree>'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'sha' => 'string',
+            'url' => 'string',
+            'tree' => 'array<GitHubTree>'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $sha;
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var GitHubTree
@@ -44,8 +40,7 @@ class GitHubTreeExtra extends GitHubObject
      *
      * @return string
      */
-    public function getSha()
-    {
+    public function getSha() {
         return $this->sha;
     }
 
@@ -53,8 +48,7 @@ class GitHubTreeExtra extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -62,8 +56,7 @@ class GitHubTreeExtra extends GitHubObject
      *
      * @return GitHubTree
      */
-    public function getTree()
-    {
+    public function getTree() {
         return $this->tree;
     }
 }

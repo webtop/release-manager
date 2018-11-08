@@ -2,7 +2,7 @@
 
 namespace Classes;
 
-use classes\Controller;
+use Classes\Controller;
 
 /**
  *

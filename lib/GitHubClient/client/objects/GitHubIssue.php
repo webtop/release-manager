@@ -1,5 +1,4 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
@@ -7,112 +6,109 @@ require_once (__DIR__ . '/GitHubUser.php');
 require_once (__DIR__ . '/GitHubMilestone.php');
 require_once (__DIR__ . '/GitHubIssuePullRequest.php');
 
-class GitHubIssue extends GitHubObject
-{
+class GitHubIssue extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'url' => 'string',
-                        'html_url' => 'string',
-                        'number' => 'int',
-                        'state' => 'string',
-                        'title' => 'string',
-                        'body' => 'string',
-                        'user' => 'GitHubUser',
-                        'assignee' => 'GitHubUser',
-                        'milestone' => 'GitHubMilestone',
-                        'comments' => 'int',
-                        'closed_at' => 'string',
-                        'created_at' => 'string',
-                        'updated_at' => 'string',
-                        'pull_request' => 'GitHubIssuePullRequest'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'url' => 'string',
+            'html_url' => 'string',
+            'number' => 'int',
+            'state' => 'string',
+            'title' => 'string',
+            'body' => 'string',
+            'user' => 'GitHubUser',
+            'assignee' => 'GitHubUser',
+            'milestone' => 'GitHubMilestone',
+            'comments' => 'int',
+            'closed_at' => 'string',
+            'created_at' => 'string',
+            'updated_at' => 'string',
+            'pull_request' => 'GitHubIssuePullRequest'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var string
      */
     protected $html_url;
-    
+
     /**
      *
      * @var int
      */
     protected $number;
-    
+
     /**
      *
      * @var string
      */
     protected $state;
-    
+
     /**
      *
      * @var string
      */
     protected $title;
-    
+
     /**
      *
      * @var string
      */
     protected $body;
-    
+
     /**
      *
      * @var GitHubUser
      */
     protected $user;
-    
+
     /**
      *
      * @var GitHubUser
      */
     protected $assignee;
-    
+
     /**
      *
      * @var GitHubMilestone
      */
     protected $milestone;
-    
+
     /**
      *
      * @var int
      */
     protected $comments;
-    
+
     /**
      *
      * @var string
      */
     protected $closed_at;
-    
+
     /**
      *
      * @var string
      */
     protected $created_at;
-    
+
     /**
      *
      * @var string
      */
     protected $updated_at;
-    
+
     /**
      *
      * @var GitHubIssuePullRequest
@@ -123,8 +119,7 @@ class GitHubIssue extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -132,8 +127,7 @@ class GitHubIssue extends GitHubObject
      *
      * @return string
      */
-    public function getHtmlUrl()
-    {
+    public function getHtmlUrl() {
         return $this->html_url;
     }
 
@@ -141,8 +135,7 @@ class GitHubIssue extends GitHubObject
      *
      * @return int
      */
-    public function getNumber()
-    {
+    public function getNumber() {
         return $this->number;
     }
 
@@ -150,8 +143,7 @@ class GitHubIssue extends GitHubObject
      *
      * @return string
      */
-    public function getState()
-    {
+    public function getState() {
         return $this->state;
     }
 
@@ -159,8 +151,7 @@ class GitHubIssue extends GitHubObject
      *
      * @return string
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -168,8 +159,7 @@ class GitHubIssue extends GitHubObject
      *
      * @return string
      */
-    public function getBody()
-    {
+    public function getBody() {
         return $this->body;
     }
 
@@ -177,8 +167,7 @@ class GitHubIssue extends GitHubObject
      *
      * @return GitHubUser
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->user;
     }
 
@@ -186,8 +175,7 @@ class GitHubIssue extends GitHubObject
      *
      * @return GitHubUser
      */
-    public function getAssignee()
-    {
+    public function getAssignee() {
         return $this->assignee;
     }
 
@@ -195,8 +183,7 @@ class GitHubIssue extends GitHubObject
      *
      * @return GitHubMilestone
      */
-    public function getMilestone()
-    {
+    public function getMilestone() {
         return $this->milestone;
     }
 
@@ -204,8 +191,7 @@ class GitHubIssue extends GitHubObject
      *
      * @return int
      */
-    public function getComments()
-    {
+    public function getComments() {
         return $this->comments;
     }
 
@@ -213,8 +199,7 @@ class GitHubIssue extends GitHubObject
      *
      * @return string
      */
-    public function getClosedAt()
-    {
+    public function getClosedAt() {
         return $this->closed_at;
     }
 
@@ -222,8 +207,7 @@ class GitHubIssue extends GitHubObject
      *
      * @return string
      */
-    public function getCreatedAt()
-    {
+    public function getCreatedAt() {
         return $this->created_at;
     }
 
@@ -231,8 +215,7 @@ class GitHubIssue extends GitHubObject
      *
      * @return string
      */
-    public function getUpdatedAt()
-    {
+    public function getUpdatedAt() {
         return $this->updated_at;
     }
 
@@ -240,8 +223,7 @@ class GitHubIssue extends GitHubObject
      *
      * @return GitHubIssuePullRequest
      */
-    public function getPullRequest()
-    {
+    public function getPullRequest() {
         return $this->pull_request;
     }
 }

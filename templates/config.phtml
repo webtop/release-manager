@@ -1,0 +1,78 @@
+<?php if (!empty($configError)) { ?>
+<span class="hidden unseen-notification" data-title="Configuration Notice" data-status="error">
+	<?php print $configError; ?>
+</span>
+<?php } ?>
+
+<div class="card text-secondary">
+	<div class="card-header">
+		Configure Git Source
+	</div>
+	<div class="card-body">
+		<p class="card-text">Select the git source type, then confiure it.</p>
+		<form class="form" id="connection-config">
+			<div class="form-group">
+				<label class="control-label" for="git-source-select">Git Source</label>
+				<select class="select form-control" id="git-source-select" name="git-source-select">
+					<option>Select a Git Source...</option>
+					<option value="github">GitHub</option>
+					<option value="gitlab">GitLab</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="git-api-url">Git API URL</label>
+				<input class="form-control" type="text" id="git-api-url" name="git-api-url" placeholder="required" value="http://gitlab.local/api/v4/" />
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="git-file-url">Git Files URL</label>
+				<input class="form-control" type="text" id="git-file-url" name="git-file-url" placeholder="optional" />
+			</div>
+			<div class="form-group">
+				<label class="control-label" for="git-source-auth">Authorization Type</label>
+				<select class="select form-control" id="git-source-auth" name="git-source-auth">
+					<option value="none">Select an Authorization method...</option>
+					<option value="user_pass">Username/Password</option>
+					<option value="http_token">Personal Access Token</option>
+					<option value="oauth_token">OAuth 2.0</option>
+				</select>
+			</div>
+			
+			<!-- // Username/Password // -->
+			<div class="auth-type-container border rounded" data-for="user_pass">
+    			<div class="form-group">
+    				<label class="control-label" for="git-auth-username">Username</label>
+    				<input class="form-control" type="text" id="git-auth-username" name="git-auth-username" value="paul.allsopp" placeholder="required" />
+    			</div>
+    			<div class="form-group">
+    				<label class="control-label" for="git-auth-password">Password</label>
+    				<input class="form-control" type="password" id="git-auth-password" name="git-auth-password" value="QnQbB8000$1" placeholder="required" />
+    			</div>
+    		</div>
+    		
+    		<!-- // Personal Access Token // -->
+    		<div class="auth-type-container border rounded" data-for="http_token">
+    			<div class="form-group">
+    				<label class="control-label" for="git-auth-token">Token</label>
+    				<input class="form-control" type="text" id="git-auth-token" name="git-auth-token" placeholder="required" value="bzBUYv5Ay2YCrDZ3GuBn" />
+    			</div>
+    		</div>
+    		
+    		<!-- // Oauth 2 // -->
+    		<div class="auth-type-container border rounded" data-for="oauth_token">
+    			<div class="form-group">
+    				<label class="control-label" for="git-auth-app-id">Application Id</label>
+    				<input class="form-control" type="text" id="git-auth-app-id" name="git-auth-app-id" placeholder="required" />
+    			</div>
+    			<div class="form-group">
+    				<label class="control-label" for="git-auth-secret">Secret</label>
+    				<input class="form-control" type="password" id="git-auth-secret" name="git-auth-secret" placeholder="required" />
+    			</div>
+    		</div>
+    		
+    		<div class="button-bar">
+    			<button type="button" id="connection-test" class="btn btn-primary">Test Connection</button>
+    			<button type="button" id="config-save" class="btn btn-success hidden">Save Configuration</button>
+    		</div>
+		</form>
+	</div>
+</div>

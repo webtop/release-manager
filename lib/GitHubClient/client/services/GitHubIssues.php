@@ -1,5 +1,4 @@
 <?php
-
 namespace Library\GitHubClient\Client\Services;
 
 use Library\GitHubClient\Client\GitHubClient;
@@ -11,33 +10,32 @@ use Library\GitHubClient\Client\Services\GitHubIssuesLabels;
 use Library\GitHubClient\Client\Services\GitHubIssuesMilestones;
 use Library\GitHubClient\Client\Objects\GitHubIssue;
 
-class GitHubIssues extends GitHubService
-{
-    
+class GitHubIssues extends GitHubService {
+
     /**
      *
      * @var GitHubIssuesAssignees
      */
     public $assignees;
-    
+
     /**
      *
      * @var GitHubIssuesComments
      */
     public $comments;
-    
+
     /**
      *
      * @var GitHubIssuesEvents
      */
     public $events;
-    
+
     /**
      *
      * @var GitHubIssuesLabels
      */
     public $labels;
-    
+
     /**
      *
      * @var GitHubIssuesMilestones
@@ -47,8 +45,7 @@ class GitHubIssues extends GitHubService
     /**
      * Initialize sub services
      */
-    public function __construct(GitHubClient $client)
-    {
+    public function __construct(GitHubClient $client) {
         parent::__construct($client);
         
         $this->assignees = new GitHubIssuesAssignees($client);
@@ -93,8 +90,7 @@ class GitHubIssues extends GitHubService
      *            
      * @return array<GitHubIssue>
      */
-    public function listAllIssues($owner = false, $filter = null, $state = null, $labels = null, $sort = null, $direction = null, $since = null)
-    {
+    public function listAllIssues($owner = false, $filter = null, $state = null, $labels = null, $sort = null, $direction = null, $since = null) {
         $data = array();
         if (!is_null($filter))
             $data['filter'] = $filter;
@@ -149,9 +145,7 @@ class GitHubIssues extends GitHubService
      *            
      * @return array<GitHubIssue>
      */
-    public function listIssues($owner, $repo, $milestone = null, $state = null, $assignee = null, $creator = null, $mentioned = null, 
-            $labels = null, $sort = null, $direction = null, $since = null)
-    {
+    public function listIssues($owner, $repo, $milestone = null, $state = null, $assignee = null, $creator = null, $mentioned = null, $labels = null, $sort = null, $direction = null, $since = null) {
         $data = array();
         if (!is_null($milestone))
             $data['milestone'] = $milestone;
@@ -180,8 +174,7 @@ class GitHubIssues extends GitHubService
      *
      * @return GitHubIssue
      */
-    public function getIssue($owner, $repo, $number)
-    {
+    public function getIssue($owner, $repo, $number) {
         $data = array();
         
         return $this->client->request("/repos/$owner/$repo/issues/$number", 'GET', $data, 200, 'GitHubIssue');
@@ -209,8 +202,7 @@ class GitHubIssues extends GitHubService
      *            Send an empty array (`[]`) to clear all Labels from the Issue.
      * @return GitHubIssue
      */
-    public function createAnIssue($owner, $repo, $title, $body = null, $assignees = null, $milestone = null, $labels = null)
-    {
+    public function createAnIssue($owner, $repo, $title, $body = null, $assignees = null, $milestone = null, $labels = null) {
         $data = array();
         $data['title'] = $title;
         if (!is_null($body))
@@ -222,10 +214,9 @@ class GitHubIssues extends GitHubService
         
         if (!is_null($assignees)) {
             if (is_string($assignees)) {
-                trigger_error('Assignees: supplying a string is deprecated, please supply an array of strings.', 
-                        E_USER_DEPRECATED);
+                trigger_error('Assignees: supplying a string is deprecated, please supply an array of strings.', E_USER_DEPRECATED);
                 $assignees = array(
-                        $assignees
+                    $assignees
                 );
             }
             $data['assignees'] = $assignees;
@@ -259,9 +250,7 @@ class GitHubIssues extends GitHubService
      *            Issue.
      * @return GitHubIssue
      */
-    public function editAnIssue($owner, $repo, $title = null, $number, $body = null, $assignees = null, $state = null, $milestone = null, 
-            $labels = null)
-    {
+    public function editAnIssue($owner, $repo, $title = null, $number, $body = null, $assignees = null, $state = null, $milestone = null, $labels = null) {
         $data = array();
         if (!is_null($title))
             $data['title'] = $title;
@@ -276,10 +265,9 @@ class GitHubIssues extends GitHubService
         
         if (!is_null($assignees)) {
             if (is_string($assignees)) {
-                trigger_error('Assignees: supplying a string is deprecated, please supply an array of strings.', 
-                        E_USER_DEPRECATED);
+                trigger_error('Assignees: supplying a string is deprecated, please supply an array of strings.', E_USER_DEPRECATED);
                 $assignees = array(
-                        $assignees
+                    $assignees
                 );
             }
             $data['assignees'] = $assignees;

@@ -1,39 +1,35 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 require_once (__DIR__ . '/GitHubRefObject.php');
 
-class GitHubRef extends GitHubObject
-{
+class GitHubRef extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'ref' => 'string',
-                        'url' => 'string',
-                        'object' => 'GitHubRefObject'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'ref' => 'string',
+            'url' => 'string',
+            'object' => 'GitHubRefObject'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $ref;
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var GitHubRefObject
@@ -44,8 +40,7 @@ class GitHubRef extends GitHubObject
      *
      * @return string
      */
-    public function getRef()
-    {
+    public function getRef() {
         return $this->ref;
     }
 
@@ -53,8 +48,7 @@ class GitHubRef extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -62,8 +56,7 @@ class GitHubRef extends GitHubObject
      *
      * @return GitHubRefObject
      */
-    public function getObject()
-    {
+    public function getObject() {
         return $this->object;
     }
 }

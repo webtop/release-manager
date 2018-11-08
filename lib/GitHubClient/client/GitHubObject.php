@@ -1,16 +1,13 @@
 <?php
-
 namespace Library\GitHubClient\Client;
 
-class GitHubObject
-{
+class GitHubObject {
 
     /**
      *
      * @param array $json            
      */
-    public static function fromArray(array $json, $type)
-    {
+    public static function fromArray(array $json, $type) {
         $array = array();
         foreach ($json as $jsonObject) {
             $objectName = "Library\GitHubClient\Client\Objects\\$type";
@@ -29,8 +26,7 @@ class GitHubObject
      *
      * @param stdClass $json            
      */
-    public function __construct(\stdClass $json)
-    {
+    public function __construct(\stdClass $json) {
         $attributes = $this->getAttributes();
         
         foreach ($attributes as $attributeName => $attributeType) {
@@ -65,8 +61,7 @@ class GitHubObject
                     } else {
                         $attributeTypeName = "Library\GitHubClient\Client\Objects\\$attributeType";
                         if (!class_exists($attributeTypeName))
-                            throw new GitHubClientException("Github type [$attributeType] not found", 
-                                    GitHubClientException::CLASS_NOT_FOUND);
+                            throw new GitHubClientException("Github type [$attributeType] not found", GitHubClientException::CLASS_NOT_FOUND);
                         
                         $this->$attributeName = new $attributeTypeName($json->$attributeName);
                     }
@@ -79,8 +74,7 @@ class GitHubObject
      *
      * @return array
      */
-    protected function getAttributes()
-    {
+    protected function getAttributes() {
         return array();
     }
 }

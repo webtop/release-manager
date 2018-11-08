@@ -1,5 +1,4 @@
 <?php
-
 namespace Library\GitHubClient\Client\Services;
 
 use Library\GitHubClient\Client\GitHubClient;
@@ -11,39 +10,38 @@ use Library\GitHubClient\Client\Services\GitHubGitRefs;
 use Library\GitHubClient\Client\Services\GitHubGitTags;
 use Library\GitHubClient\Client\Services\GitHubGitTrees;
 
-class GitHubGit extends GitHubService
-{
-    
+class GitHubGit extends GitHubService {
+
     /**
      *
      * @var GitHubGitBlobs
      */
     public $blobs;
-    
+
     /**
      *
      * @var GitHubGitCommits
      */
     public $commits;
-    
+
     /**
      *
      * @var GitHubGitImport
      */
     public $import;
-    
+
     /**
      *
      * @var GitHubGitRefs
      */
     public $refs;
-    
+
     /**
      *
      * @var GitHubGitTags
      */
     public $tags;
-    
+
     /**
      *
      * @var GitHubGitTrees
@@ -53,8 +51,7 @@ class GitHubGit extends GitHubService
     /**
      * Initialize sub services
      */
-    public function __construct(GitHubClient $client)
-    {
+    public function __construct(GitHubClient $client) {
         parent::__construct($client);
         
         $this->blobs = new GitHubGitBlobs($client);

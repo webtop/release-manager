@@ -1,45 +1,41 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-class GitHubThreadSubject extends GitHubObject
-{
+class GitHubThreadSubject extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'title' => 'string',
-                        'url' => 'string',
-                        'latest_comment_url' => 'string',
-                        'type' => 'string'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'title' => 'string',
+            'url' => 'string',
+            'latest_comment_url' => 'string',
+            'type' => 'string'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $title;
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var string
      */
     protected $latest_comment_url;
-    
+
     /**
      *
      * @var string
@@ -50,8 +46,7 @@ class GitHubThreadSubject extends GitHubObject
      *
      * @return string
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -59,8 +54,7 @@ class GitHubThreadSubject extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -68,8 +62,7 @@ class GitHubThreadSubject extends GitHubObject
      *
      * @return string
      */
-    public function getLatestCommentUrl()
-    {
+    public function getLatestCommentUrl() {
         return $this->latest_comment_url;
     }
 
@@ -77,8 +70,7 @@ class GitHubThreadSubject extends GitHubObject
      *
      * @return string
      */
-    public function getType()
-    {
+    public function getType() {
         return $this->type;
     }
 }

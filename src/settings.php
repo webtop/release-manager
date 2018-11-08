@@ -6,9 +6,9 @@ $settings = [
         'debug' => true,
         'displayErrorDetails' => true, // set to false in production
         'addContentLengthHeader' => false, // Allow the web server to send the content-length header
-
+        
         // Renderer settings
-        'renderer' => [
+        'view' => [
             'template_path' => __DIR__ . '/../templates/',
         ],
 
@@ -20,12 +20,8 @@ $settings = [
         ],
         
         // Git host settings
-        'git-source' => 'GitHub'
+        'git-source' => ''
     ],
 ];
-
-if (empty($settings['settings']['git-source'])) {
-    exit('No defined git source!');
-}
 
 return $settings;

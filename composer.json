@@ -17,9 +17,7 @@
 		"php" : ">=5.5.0",
 		"slim/slim" : "^3.1",
 		"slim/php-view" : "^2.0",
-		"monolog/monolog" : "^1.17",
-		"m4tthumphrey/php-gitlab-api": "^9.10",
-		"php-http/guzzle6-adapter": "^1.1"
+		"monolog/monolog" : "^1.17"
 	},
 	"minimum-stability" : "stable",
 	"require-dev" : {
@@ -28,8 +26,8 @@
 	"autoload" : {
 		"psr-4" : {
 			"Classes\\" : "src/classes",
-			"Config\\" : "src/private",
-			"Library\\" : "lib"
+			"Library\\" : "lib",
+			"Config\\" : "private"
 		}
 	},
 	"autoload-dev" : {

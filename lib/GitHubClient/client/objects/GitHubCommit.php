@@ -1,5 +1,4 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
@@ -7,63 +6,60 @@ require_once (__DIR__ . '/GitHubUser.php');
 require_once (__DIR__ . '/GitHubCommitCommit.php');
 require_once (__DIR__ . '/GitHubCommitParents.php');
 
-class GitHubCommit extends GitHubObject
-{
+class GitHubCommit extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'url' => 'string',
-                        'html_url' => 'string',
-                        'sha' => 'string',
-                        'author' => 'GitHubUser',
-                        'committer' => 'GitHubUser',
-                        'commit' => 'GitHubCommitCommit',
-                        'parents' => 'array<GitHubCommitParents>'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'url' => 'string',
+            'html_url' => 'string',
+            'sha' => 'string',
+            'author' => 'GitHubUser',
+            'committer' => 'GitHubUser',
+            'commit' => 'GitHubCommitCommit',
+            'parents' => 'array<GitHubCommitParents>'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var string
      */
     protected $html_url;
-    
+
     /**
      *
      * @var string
      */
     protected $sha;
-    
+
     /**
      *
      * @var GitHubUser
      */
     protected $author;
-    
+
     /**
      *
      * @var GitHubUser
      */
     protected $committer;
-    
+
     /**
      *
      * @var GitHubCommitCommit
      */
     protected $commit;
-    
+
     /**
      *
      * @var array<GitHubCommitParents>
@@ -74,8 +70,7 @@ class GitHubCommit extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -83,8 +78,7 @@ class GitHubCommit extends GitHubObject
      *
      * @return string
      */
-    public function getHtmlUrl()
-    {
+    public function getHtmlUrl() {
         return $this->html_url;
     }
 
@@ -92,8 +86,7 @@ class GitHubCommit extends GitHubObject
      *
      * @return string
      */
-    public function getSha()
-    {
+    public function getSha() {
         return $this->sha;
     }
 
@@ -101,8 +94,7 @@ class GitHubCommit extends GitHubObject
      *
      * @return GitHubUser
      */
-    public function getAuthor()
-    {
+    public function getAuthor() {
         return $this->author;
     }
 
@@ -110,8 +102,7 @@ class GitHubCommit extends GitHubObject
      *
      * @return GitHubUser
      */
-    public function getCommitter()
-    {
+    public function getCommitter() {
         return $this->committer;
     }
 
@@ -119,8 +110,7 @@ class GitHubCommit extends GitHubObject
      *
      * @return GitHubCommitCommit
      */
-    public function getCommit()
-    {
+    public function getCommit() {
         return $this->commit;
     }
 
@@ -128,8 +118,7 @@ class GitHubCommit extends GitHubObject
      *
      * @return array<GitHubCommitParents>
      */
-    public function getParents()
-    {
+    public function getParents() {
         return $this->parents;
     }
 }

@@ -1,11 +1,9 @@
 <?php
-
 namespace Library\GitHubClient\Client\Services;
 
 use Library\GitHubClient\Client\GitHubClient;
 use Library\GitHubClient\Client\GitHubService;
 
-class GitHubLibraries extends GitHubService
-{
+class GitHubLibraries extends GitHubService {
 }
 

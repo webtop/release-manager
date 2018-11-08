@@ -1,138 +1,134 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 use Library\GitHubClient\Client\Objects\GitHubGitCommitAuthor;
 use Library\GitHubClient\Client\Objects\GitHubReposReleaseAsset;
 
-class GitHubReposRelease extends GitHubObject
-{
+class GitHubReposRelease extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'url' => 'string',
-                        'html_url' => 'string',
-                        'assets_url' => 'string',
-                        'upload_url' => 'string',
-                        'tarball_url' => 'string',
-                        'zipball_url' => 'string',
-                        'id' => 'int',
-                        'tag_name' => 'string',
-                        'target_commitish' => 'string',
-                        'name' => 'string',
-                        'body' => 'string',
-                        'draft' => 'boolean',
-                        'prerelease' => 'boolean',
-                        'created_at' => 'string',
-                        'published_at' => 'string',
-                        'author' => 'GitHubGitCommitAuthor',
-                        'assets' => 'array<GitHubReposReleaseAsset>'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'url' => 'string',
+            'html_url' => 'string',
+            'assets_url' => 'string',
+            'upload_url' => 'string',
+            'tarball_url' => 'string',
+            'zipball_url' => 'string',
+            'id' => 'int',
+            'tag_name' => 'string',
+            'target_commitish' => 'string',
+            'name' => 'string',
+            'body' => 'string',
+            'draft' => 'boolean',
+            'prerelease' => 'boolean',
+            'created_at' => 'string',
+            'published_at' => 'string',
+            'author' => 'GitHubGitCommitAuthor',
+            'assets' => 'array<GitHubReposReleaseAsset>'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var string
      */
     protected $html_url;
-    
+
     /**
      *
      * @var string
      */
     protected $assets_url;
-    
+
     /**
      *
      * @var string
      */
     protected $upload_url;
-    
+
     /**
      *
      * @var string
      */
     protected $tarball_url;
-    
+
     /**
      *
      * @var string
      */
     protected $zipball_url;
-    
+
     /**
      *
      * @var string
      */
     protected $id;
-    
+
     /**
      *
      * @var string
      */
     protected $tag_name;
-    
+
     /**
      *
      * @var string
      */
     protected $target_commitish;
-    
+
     /**
      *
      * @var string
      */
     protected $name;
-    
+
     /**
      *
      * @var string
      */
     protected $body;
-    
+
     /**
      *
      * @var boolean
      */
     protected $draft;
-    
+
     /**
      *
      * @var boolean
      */
     protected $prerelease;
-    
+
     /**
      *
      * @var string
      */
     protected $created_at;
-    
+
     /**
      *
      * @var string
      */
     protected $published_at;
-    
+
     /**
      *
      * @var GitHubGitCommitAuthor
      */
     protected $author;
-    
+
     /**
      *
      * @var array<GitHubReposReleaseAsset>
@@ -143,8 +139,7 @@ class GitHubReposRelease extends GitHubObject
      *
      * @return the $url
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -152,8 +147,7 @@ class GitHubReposRelease extends GitHubObject
      *
      * @return the $html_url
      */
-    public function getHtml_url()
-    {
+    public function getHtml_url() {
         return $this->html_url;
     }
 
@@ -161,8 +155,7 @@ class GitHubReposRelease extends GitHubObject
      *
      * @return the $assets_url
      */
-    public function getAssets_url()
-    {
+    public function getAssets_url() {
         return $this->assets_url;
     }
 
@@ -170,8 +163,7 @@ class GitHubReposRelease extends GitHubObject
      *
      * @return the $upload_url
      */
-    public function getUpload_url()
-    {
+    public function getUpload_url() {
         return $this->upload_url;
     }
 
@@ -179,8 +171,7 @@ class GitHubReposRelease extends GitHubObject
      *
      * @return the $tarball_url
      */
-    public function getTarball_url()
-    {
+    public function getTarball_url() {
         return $this->tarball_url;
     }
 
@@ -188,8 +179,7 @@ class GitHubReposRelease extends GitHubObject
      *
      * @return the $zipball_url
      */
-    public function getZipball_url()
-    {
+    public function getZipball_url() {
         return $this->zipball_url;
     }
 
@@ -197,8 +187,7 @@ class GitHubReposRelease extends GitHubObject
      *
      * @return the $id
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -206,8 +195,7 @@ class GitHubReposRelease extends GitHubObject
      *
      * @return the $tag_name
      */
-    public function getTag_name()
-    {
+    public function getTag_name() {
         return $this->tag_name;
     }
 
@@ -215,8 +203,7 @@ class GitHubReposRelease extends GitHubObject
      *
      * @return the $target_commitish
      */
-    public function getTarget_commitish()
-    {
+    public function getTarget_commitish() {
         return $this->target_commitish;
     }
 
@@ -224,8 +211,7 @@ class GitHubReposRelease extends GitHubObject
      *
      * @return the $name
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -233,8 +219,7 @@ class GitHubReposRelease extends GitHubObject
      *
      * @return the $body
      */
-    public function getBody()
-    {
+    public function getBody() {
         return $this->body;
     }
 
@@ -242,8 +227,7 @@ class GitHubReposRelease extends GitHubObject
      *
      * @return the $draft
      */
-    public function getDraft()
-    {
+    public function getDraft() {
         return $this->draft;
     }
 
@@ -251,8 +235,7 @@ class GitHubReposRelease extends GitHubObject
      *
      * @return the $prerelease
      */
-    public function getPrerelease()
-    {
+    public function getPrerelease() {
         return $this->prerelease;
     }
 
@@ -260,8 +243,7 @@ class GitHubReposRelease extends GitHubObject
      *
      * @return the $created_at
      */
-    public function getCreated_at()
-    {
+    public function getCreated_at() {
         return $this->created_at;
     }
 
@@ -269,8 +251,7 @@ class GitHubReposRelease extends GitHubObject
      *
      * @return the $published_at
      */
-    public function getPublished_at()
-    {
+    public function getPublished_at() {
         return $this->published_at;
     }
 
@@ -278,8 +259,7 @@ class GitHubReposRelease extends GitHubObject
      *
      * @return GitHubGitCommitAuthor
      */
-    public function getAuthor()
-    {
+    public function getAuthor() {
         return $this->author;
     }
 
@@ -287,8 +267,7 @@ class GitHubReposRelease extends GitHubObject
      *
      * @return array
      */
-    public function getAssets()
-    {
+    public function getAssets() {
         return $this->assets;
     }
 }

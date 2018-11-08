@@ -1,25 +1,21 @@
 <?php
-
 namespace Library\GitHubClient\Client\Services;
 
 use Library\GitHubClient\Client\GitHubClient;
 use Library\GitHubClient\Client\GitHubService;
 use Library\GitHubClient\Client\Objects\GitHubReposReleaseAsset;
 
-class GitHubReposReleasesAssets extends GitHubService
-{
+class GitHubReposReleasesAssets extends GitHubService {
 
     /**
      * List
      *
      * @return array<GitHubReposReleaseAsset>
      */
-    public function listReposReleases($owner, $repo, $releaseId)
-    {
+    public function listReposReleases($owner, $repo, $releaseId) {
         $data = array();
         
-        return $this->client->request("/repos/$owner/$repo/releases/$releaseId/assets", 'GET', $data, 200, 
-                'GitHubReposRelease', true);
+        return $this->client->request("/repos/$owner/$repo/releases/$releaseId/assets", 'GET', $data, 200, 'GitHubReposRelease', true);
     }
 
     /**
@@ -27,12 +23,10 @@ class GitHubReposReleasesAssets extends GitHubService
      *
      * @return GitHubReposReleaseAsset
      */
-    public function get($owner, $repo, $releaseId, $id)
-    {
+    public function get($owner, $repo, $releaseId, $id) {
         $data = array();
         
-        return $this->client->request("/repos/$owner/$repo/releases/$releaseId/assets/$id", 'GET', $data, 200, 
-                'GitHubReposReleaseAsset');
+        return $this->client->request("/repos/$owner/$repo/releases/$releaseId/assets/$id", 'GET', $data, 200, 'GitHubReposReleaseAsset');
     }
 
     /**
@@ -50,13 +44,11 @@ class GitHubReposReleasesAssets extends GitHubService
      *            
      * @return GitHubReposReleaseAsset
      */
-    public function upload($owner, $repo, $releaseId, $name, $contentType, $filePath)
-    {
+    public function upload($owner, $repo, $releaseId, $name, $contentType, $filePath) {
         $data = array();
         $data['name'] = $name;
         
-        return $this->client->upload("/repos/$owner/$repo/releases/$releaseId/assets", $data, 201, 
-                'GitHubReposReleaseAsset', $contentType, $filePath);
+        return $this->client->upload("/repos/$owner/$repo/releases/$releaseId/assets", $data, 201, 'GitHubReposReleaseAsset', $contentType, $filePath);
     }
 }
 

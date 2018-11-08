@@ -1,38 +1,34 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-class GitHubIssuePullRequest extends GitHubObject
-{
+class GitHubIssuePullRequest extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'html_url' => 'string',
-                        'diff_url' => 'string',
-                        'patch_url' => 'string'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'html_url' => 'string',
+            'diff_url' => 'string',
+            'patch_url' => 'string'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $html_url;
-    
+
     /**
      *
      * @var string
      */
     protected $diff_url;
-    
+
     /**
      *
      * @var string
@@ -43,8 +39,7 @@ class GitHubIssuePullRequest extends GitHubObject
      *
      * @return string
      */
-    public function getHtmlUrl()
-    {
+    public function getHtmlUrl() {
         return $this->html_url;
     }
 
@@ -52,8 +47,7 @@ class GitHubIssuePullRequest extends GitHubObject
      *
      * @return string
      */
-    public function getDiffUrl()
-    {
+    public function getDiffUrl() {
         return $this->diff_url;
     }
 
@@ -61,8 +55,7 @@ class GitHubIssuePullRequest extends GitHubObject
      *
      * @return string
      */
-    public function getPatchUrl()
-    {
+    public function getPatchUrl() {
         return $this->patch_url;
     }
 }

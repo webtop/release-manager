@@ -1,53 +1,49 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 require_once (__DIR__ . '/GitHubUser.php');
 
-class GitHubIssueEvent extends GitHubObject
-{
+class GitHubIssueEvent extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'url' => 'string',
-                        'actor' => 'GitHubUser',
-                        'event' => 'string',
-                        'commit_id' => 'string',
-                        'created_at' => 'string'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'url' => 'string',
+            'actor' => 'GitHubUser',
+            'event' => 'string',
+            'commit_id' => 'string',
+            'created_at' => 'string'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var GitHubUser
      */
     protected $actor;
-    
+
     /**
      *
      * @var string
      */
     protected $event;
-    
+
     /**
      *
      * @var string
      */
     protected $commit_id;
-    
+
     /**
      *
      * @var string
@@ -58,8 +54,7 @@ class GitHubIssueEvent extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -67,8 +62,7 @@ class GitHubIssueEvent extends GitHubObject
      *
      * @return GitHubUser
      */
-    public function getActor()
-    {
+    public function getActor() {
         return $this->actor;
     }
 
@@ -76,8 +70,7 @@ class GitHubIssueEvent extends GitHubObject
      *
      * @return string
      */
-    public function getEvent()
-    {
+    public function getEvent() {
         return $this->event;
     }
 
@@ -85,8 +78,7 @@ class GitHubIssueEvent extends GitHubObject
      *
      * @return string
      */
-    public function getCommitId()
-    {
+    public function getCommitId() {
         return $this->commit_id;
     }
 
@@ -94,8 +86,7 @@ class GitHubIssueEvent extends GitHubObject
      *
      * @return string
      */
-    public function getCreatedAt()
-    {
+    public function getCreatedAt() {
         return $this->created_at;
     }
 }

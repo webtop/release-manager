@@ -1,39 +1,35 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 
-class GitHubTag extends GitHubObject
-{
+class GitHubTag extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'name' => 'string',
-                        'zipball_url' => 'string',
-                        'tarball_url' => 'string',
-                        'commit' => 'string'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'name' => 'string',
+            'zipball_url' => 'string',
+            'tarball_url' => 'string',
+            'commit' => 'string'
+        ));
     }
-    
+
     /**
      *
      * @var string
      */
     protected $name;
-    
+
     /**
      *
      * @var string
      */
     protected $zipball_url;
-    
+
     /**
      *
      * @var string
@@ -44,8 +40,7 @@ class GitHubTag extends GitHubObject
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -53,8 +48,7 @@ class GitHubTag extends GitHubObject
      *
      * @return string
      */
-    public function getZipballUrl()
-    {
+    public function getZipballUrl() {
         return $this->zipball_url;
     }
 
@@ -62,8 +56,7 @@ class GitHubTag extends GitHubObject
      *
      * @return string
      */
-    public function getTarballUrl()
-    {
+    public function getTarballUrl() {
         return $this->tarball_url;
     }
 
@@ -71,8 +64,7 @@ class GitHubTag extends GitHubObject
      *
      * @return string
      */
-    public function getCommit()
-    {
+    public function getCommit() {
         return $this->commit;
     }
 }

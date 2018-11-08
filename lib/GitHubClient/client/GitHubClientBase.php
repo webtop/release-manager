@@ -1,40 +1,60 @@
 <?php
-
 namespace Library\GitHubClient\Client;
 
 use Library\GitHubClient\Client\GitHubClientException;
 use Library;
 
-abstract class GitHubClientBase
-{
+abstract class GitHubClientBase {
+
     const GITHUB_AUTH_TYPE_BASIC = 'basic';
+
     const GITHUB_AUTH_TYPE_OAUTH_BASIC = 'x-oauth-basic';
+
     const GITHUB_AUTH_TYPE_OAUTH = 'Oauth';
-    
+
     protected $url = 'https://api.github.com';
+
     protected $uploadUrl = 'https://uploads.github.com';
+
     protected $debug = false;
+
     protected $username = null;
+
     protected $password = null;
+
     protected $timeout = 240;
+
     protected $rateLimit = 0;
+
     protected $rateLimitRemaining = 0;
+
     protected $rateLimitReset = 0;
+
     protected $authType = self::GITHUB_AUTH_TYPE_BASIC;
+
     protected $oauthKey = null;
+
     protected $page = null;
+
     protected $pageSize = 100;
+
     protected $lastPage = null;
+
     protected $lastUrl = null;
+
     protected $lastMethod = null;
+
     protected $lastData = null;
+
     protected $lastReturnType = null;
+
     protected $lastReturnIsArray = null;
+
     protected $lastExpectedHttpCode = null;
+
     protected $pageData = array();
 
-    public function setAuthType($type)
-    {
+    public function setAuthType($type) {
         switch ($type) {
             case self::GITHUB_AUTH_TYPE_OAUTH_BASIC:
                 $this->authType = self::GITHUB_AUTH_TYPE_OAUTH_BASIC;
@@ -48,8 +68,7 @@ abstract class GitHubClientBase
         }
     }
 
-    public function setCredentials($username, $password)
-    {
+    public function setCredentials($username, $password) {
         if ($this->authType != self::GITHUB_AUTH_TYPE_BASIC) {
             throw new GitHubClientException("Cannot set credentials when authentication type is not 'basic'");
         }
@@ -58,73 +77,61 @@ abstract class GitHubClientBase
         $this->password = $password;
     }
 
-    public function setOauthKey($key)
-    {
+    public function setOauthKey($key) {
         if ($this->authType != self::GITHUB_AUTH_TYPE_OAUTH_BASIC) {
             throw new GitHubClientException("Cannot set OAuth key when authentication type is not 'x-oauth-basic'");
         }
         $this->oauthKey = $key;
     }
 
-    public function setOauthToken($token)
-    {
+    public function setOauthToken($token) {
         if ($this->authType != self::GITHUB_AUTH_TYPE_OAUTH) {
             throw new GitHubClientException("Cannot set OAuth token when authentication type is not 'oauth'");
         }
         $this->oauthToken = $token;
     }
 
-    public function setDebug($debug)
-    {
+    public function setDebug($debug) {
         $this->debug = $debug;
     }
 
-    public function setTimeout($timeout)
-    {
+    public function setTimeout($timeout) {
         $this->timeout = $timeout;
     }
 
-    public function getRateLimit()
-    {
+    public function getRateLimit() {
         return $this->rateLimit;
     }
 
-    public function getRateLimitRemaining()
-    {
+    public function getRateLimitRemaining() {
         return $this->rateLimitRemaining;
     }
 
-    public function getRateLimitReset()
-    {
+    public function getRateLimitReset() {
         return $this->rateLimitReset;
     }
 
-    protected function resetPage()
-    {
+    protected function resetPage() {
         $this->lastPage = $this->page;
         $this->page = null;
     }
 
-    public function setPage($page = 1)
-    {
+    public function setPage($page = 1) {
         $this->page = $page;
     }
 
-    public function getPage()
-    {
+    public function getPage() {
         if ($this->page)
             return $this->page;
         
         return $this->lastPage;
     }
 
-    public function setPageSize($pageSize)
-    {
+    public function setPageSize($pageSize) {
         $this->pageSize = $pageSize;
     }
 
-    public function getLastPage()
-    {
+    public function getLastPage() {
         if (!isset($this->pageData['last']))
             throw new GitHubClientException("Last page not defined", GitHubClientException::PAGE_INVALID);
         
@@ -134,8 +141,7 @@ abstract class GitHubClientBase
         return $this->requestLast($this->pageData['last']);
     }
 
-    public function getFirstPage()
-    {
+    public function getFirstPage() {
         if (isset($this->pageData['first'])) {
             if (isset($this->pageData['first']['page']))
                 $this->page = $this->pageData['first']['page'];
@@ -147,13 +153,11 @@ abstract class GitHubClientBase
         return $this->requestLast($this->lastData);
     }
 
-    public function hasNextPage()
-    {
+    public function hasNextPage() {
         return isset($this->pageData['next']) || !is_null($this->page);
     }
 
-    public function getNextPage()
-    {
+    public function getNextPage() {
         if (isset($this->pageData['next'])) {
             if (isset($this->pageData['next']['page']))
                 $this->page = $this->pageData['next']['page'];
@@ -168,8 +172,7 @@ abstract class GitHubClientBase
         return $this->requestLast($this->lastData);
     }
 
-    public function getPreviousPage()
-    {
+    public function getPreviousPage() {
         if (isset($this->pageData['prev'])) {
             if (isset($this->pageData['prev']['page']))
                 $this->page = $this->pageData['prev']['page'];
@@ -193,8 +196,7 @@ abstract class GitHubClientBase
      * @param array $data            
      * @return array
      */
-    protected function doRequest($url, $method, $data, $contentType = null, $filePath = null)
-    {
+    protected function doRequest($url, $method, $data, $contentType = null, $filePath = null) {
         if ($method == 'FILE')
             $url = $this->uploadUrl . $url;
         else
@@ -216,10 +218,9 @@ abstract class GitHubClientBase
             curl_setopt($c, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
             curl_setopt($c, CURLOPT_USERPWD, "$this->oauthKey:" . self::GITHUB_AUTH_TYPE_OAUTH_BASIC);
         } elseif ($this->authType == self::GITHUB_AUTH_TYPE_OAUTH) {
-            curl_setopt($c, CURLOPT_HTTPHEADER, 
-                    array(
-                            'Authorization: token ' . $this->oauthToken
-                    ));
+            curl_setopt($c, CURLOPT_HTTPHEADER, array(
+                'Authorization: token ' . $this->oauthToken
+            ));
         }
         
         curl_setopt($c, CURLOPT_RETURNTRANSFER, true);
@@ -267,8 +268,8 @@ abstract class GitHubClientBase
                 curl_setopt($c, CURLOPT_PUT, true);
                 
                 $headers = array(
-                        'X-HTTP-Method-Override: PUT',
-                        'Content-type: application/x-www-form-urlencoded'
+                    'X-HTTP-Method-Override: PUT',
+                    'Content-type: application/x-www-form-urlencoded'
                 );
                 
                 if ($this->authType == self::GITHUB_AUTH_TYPE_OAUTH) {
@@ -314,20 +315,11 @@ abstract class GitHubClientBase
         return $response;
     }
 
-    protected function requestLast(array $data)
-    {
-        return $this->request(
-            $this->lastUrl, 
-            $this->lastMethod, 
-            $data, 
-            $this->lastExpectedHttpCode, 
-            $this->lastReturnType, 
-            $this->lastReturnIsArray
-        );
+    protected function requestLast(array $data) {
+        return $this->request($this->lastUrl, $this->lastMethod, $data, $this->lastExpectedHttpCode, $this->lastReturnType, $this->lastReturnIsArray);
     }
 
-    public function request($url, $method, $data, $expectedHttpCode, $returnType, $isArray = false)
-    {
+    public function request($url, $method, $data, $expectedHttpCode, $returnType, $isArray = false) {
         $this->lastUrl = $url;
         $this->lastMethod = $method;
         $this->lastData = $data;
@@ -343,8 +335,7 @@ abstract class GitHubClientBase
             
             if (!is_numeric($this->pageSize) || $this->pageSize <= 0 || $this->pageSize > 100) {
                 $this->resetPage();
-                throw new GitHubClientException("Page size must be positive value, maximum value is 100", 
-                        GitHubClientException::PAGE_SIZE_INVALID);
+                throw new GitHubClientException("Page size must be positive value, maximum value is 100", GitHubClientException::PAGE_SIZE_INVALID);
             }
             
             $data['page'] = $this->page;
@@ -358,8 +349,7 @@ abstract class GitHubClientBase
         return $this->parseResponse($url, $response, $returnType, $expectedHttpCode, $isArray);
     }
 
-    public function parseResponse($url, $response, $returnType, $expectedHttpCode, $isArray = false)
-    {
+    public function parseResponse($url, $response, $returnType, $expectedHttpCode, $isArray = false) {
         // parse response
         $header = false;
         $content = array();
@@ -370,55 +360,48 @@ abstract class GitHubClientBase
                 $lineParts = explode(' ', $line);
                 $status = intval($lineParts[1]);
                 $header = true;
-            } else 
-                if ($line == '') {
-                    $header = false;
-                } else 
-                    if ($header) {
-                        $line = explode(': ', $line);
-                        switch ($line[0]) {
-                            case 'Status':
-                                $status = intval(substr($line[1], 0, 3));
-                                break;
-                            
-                            case 'X-RateLimit-Limit':
-                                $this->rateLimit = intval($line[1]);
-                                break;
-                            
-                            case 'X-RateLimit-Remaining':
-                                $this->rateLimitRemaining = intval($line[1]);
-                                break;
-                            
-                            case 'X-RateLimit-Reset':
-                                $this->rateLimitReset = intval($line[1]);
-                                break;
-                            
-                            case 'Link':
-                                $matches = null;
-                                if (preg_match_all('/<https:\/\/api\.github\.com\/[^?]+\?([^>]+)>; rel="([^"]+)"/', 
-                                        $line[1], $matches)) {
-                                    foreach ($matches[2] as $index => $page) {
-                                        $this->pageData[$page] = array();
-                                        $requestParts = explode('&', $matches[1][$index]);
-                                        foreach ($requestParts as $requestPart) {
-                                            list ($field, $value) = explode('=', $requestPart, 2);
-                                            $this->pageData[$page][$field] = $value;
-                                        }
-                                    }
+            } else if ($line == '') {
+                $header = false;
+            } else if ($header) {
+                $line = explode(': ', $line);
+                switch ($line[0]) {
+                    case 'Status':
+                        $status = intval(substr($line[1], 0, 3));
+                        break;
+                    
+                    case 'X-RateLimit-Limit':
+                        $this->rateLimit = intval($line[1]);
+                        break;
+                    
+                    case 'X-RateLimit-Remaining':
+                        $this->rateLimitRemaining = intval($line[1]);
+                        break;
+                    
+                    case 'X-RateLimit-Reset':
+                        $this->rateLimitReset = intval($line[1]);
+                        break;
+                    
+                    case 'Link':
+                        $matches = null;
+                        if (preg_match_all('/<https:\/\/api\.github\.com\/[^?]+\?([^>]+)>; rel="([^"]+)"/', $line[1], $matches)) {
+                            foreach ($matches[2] as $index => $page) {
+                                $this->pageData[$page] = array();
+                                $requestParts = explode('&', $matches[1][$index]);
+                                foreach ($requestParts as $requestPart) {
+                                    list ($field, $value) = explode('=', $requestPart, 2);
+                                    $this->pageData[$page][$field] = $value;
                                 }
-                                break;
+                            }
                         }
-                    } else {
-                        $content[] = $line;
-                    }
+                        break;
+                }
+            } else {
+                $content[] = $line;
+            }
         }
         
-        if ((is_array($expectedHttpCode) && !in_array($status, $expectedHttpCode)) ||
-                 (!is_array($expectedHttpCode) && $status !== $expectedHttpCode))
-            throw new GitHubClientException(
-                    "Expected status [" .
-                     (is_array($expectedHttpCode) ? implode(', ', $expectedHttpCode) : $expectedHttpCode) .
-                     "], actual status [$status], URL [$url]", GitHubClientException::INVALID_HTTP_CODE);
+        if ((is_array($expectedHttpCode) && !in_array($status, $expectedHttpCode)) || (!is_array($expectedHttpCode) && $status !== $expectedHttpCode))
+            throw new GitHubClientException("Expected status [" . (is_array($expectedHttpCode) ? implode(', ', $expectedHttpCode) : $expectedHttpCode) . "], actual status [$status], URL [$url]", GitHubClientException::INVALID_HTTP_CODE);
         
         if ($returnType == 'string')
             return implode("\n", $content);
@@ -436,8 +419,7 @@ abstract class GitHubClientBase
         return null;
     }
 
-    public function upload($url, $data, $expectedHttpCode, $returnType, $contentType, $filePath)
-    {
+    public function upload($url, $data, $expectedHttpCode, $returnType, $contentType, $filePath) {
         $method = 'FILE';
         
         $this->lastUrl = $url;
@@ -455,8 +437,7 @@ abstract class GitHubClientBase
             
             if (!is_numeric($this->pageSize) || $this->pageSize <= 0 || $this->pageSize > 100) {
                 $this->resetPage();
-                throw new GitHubClientException("Page size must be positive value, maximum value is 100", 
-                        GitHubClientException::PAGE_SIZE_INVALID);
+                throw new GitHubClientException("Page size must be positive value, maximum value is 100", GitHubClientException::PAGE_SIZE_INVALID);
             }
             
             $data['page'] = $this->page;
@@ -470,8 +451,7 @@ abstract class GitHubClientBase
         return $this->parseResponse($url, $response, $returnType, $expectedHttpCode);
     }
 
-    public function getFile($user, $repo, $branch, $file)
-    {
+    public function getFile($user, $repo, $branch, $file) {
         $url = 'https://raw.github.com/' . $user . '/' . $repo . '/' . $branch . '/' . ltrim($file, '/');
         
         return $this->doRequest($url, 'GET', array(), false);

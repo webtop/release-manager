@@ -1,67 +1,63 @@
 <?php
-
 namespace Library\GitHubClient\Client\Objects;
 
 use Library\GitHubClient\Client\GitHubObject;
 require_once (__DIR__ . '/GitHubUser.php');
 
-class GitHubIssueComment extends GitHubObject
-{
+class GitHubIssueComment extends GitHubObject {
 
     /*
      * (non-PHPdoc)
      * @see GitHubObject::getAttributes()
      */
-    protected function getAttributes()
-    {
-        return array_merge(parent::getAttributes(), 
-                array(
-                        'id' => 'int',
-                        'url' => 'string',
-                        'html_url' => 'string',
-                        'body' => 'string',
-                        'user' => 'GitHubUser',
-                        'created_at' => 'string',
-                        'updated_at' => 'string'
-                ));
+    protected function getAttributes() {
+        return array_merge(parent::getAttributes(), array(
+            'id' => 'int',
+            'url' => 'string',
+            'html_url' => 'string',
+            'body' => 'string',
+            'user' => 'GitHubUser',
+            'created_at' => 'string',
+            'updated_at' => 'string'
+        ));
     }
-    
+
     /**
      *
      * @var int
      */
     protected $id;
-    
+
     /**
      *
      * @var string
      */
     protected $url;
-    
+
     /**
      *
      * @var string
      */
     protected $html_url;
-    
+
     /**
      *
      * @var string
      */
     protected $body;
-    
+
     /**
      *
      * @var GitHubUser
      */
     protected $user;
-    
+
     /**
      *
      * @var string
      */
     protected $created_at;
-    
+
     /**
      *
      * @var string
@@ -72,8 +68,7 @@ class GitHubIssueComment extends GitHubObject
      *
      * @return int
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -81,8 +76,7 @@ class GitHubIssueComment extends GitHubObject
      *
      * @return string
      */
-    public function getUrl()
-    {
+    public function getUrl() {
         return $this->url;
     }
 
@@ -90,8 +84,7 @@ class GitHubIssueComment extends GitHubObject
      *
      * @return string
      */
-    public function getHtmlUrl()
-    {
+    public function getHtmlUrl() {
         return $this->html_url;
     }
 
@@ -99,8 +92,7 @@ class GitHubIssueComment extends GitHubObject
      *
      * @return string
      */
-    public function getBody()
-    {
+    public function getBody() {
         return $this->body;
     }
 
@@ -108,8 +100,7 @@ class GitHubIssueComment extends GitHubObject
      *
      * @return GitHubUser
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->user;
     }
 
@@ -117,8 +108,7 @@ class GitHubIssueComment extends GitHubObject
      *
      * @return string
      */
-    public function getCreatedAt()
-    {
+    public function getCreatedAt() {
         return $this->created_at;
     }
 
@@ -126,8 +116,7 @@ class GitHubIssueComment extends GitHubObject
      *
      * @return string
      */
-    public function getUpdatedAt()
-    {
+    public function getUpdatedAt() {
         return $this->updated_at;
     }
 }
