@@ -62,7 +62,7 @@ var App = (function(App) {
 			});
 		};
 		
-		App.hideLoader();
+		this.hideLoader();
 		return this;
 	};
 	
