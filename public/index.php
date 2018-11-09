@@ -10,12 +10,22 @@ if (PHP_SAPI == 'cli-server') {
 }
 
 require __DIR__ . '/../vendor/autoload.php';
-require __DIR__ . '/../vendor/webtop/github-php-client/client/GitHubClient.php';
+
+define('BASE_PATH', realpath(__DIR__));
 
 session_start();
 
+//ini_set('display_errors', 0);
+
 // Instantiate the app
 $settings = require __DIR__ . '/../src/settings.php';
+
+// if ($settings['settings']['mode'] == 'development') {
+//     error_reporting(E_ALL);
+// } else {
+//     error_reporting(E_ALL & ~E_NOTICE & ~E_ERROR);
+// }
+
 $app = new \Slim\App($settings);
 
 // Set up dependencies

@@ -1,8 +1,7 @@
 .buildpath
 .project
 .settings/*
-src/private/*
 deployment.properties
 deployment.xml
 logs/*
-vendor/*
+/private/

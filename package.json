@@ -1,0 +1,42 @@
+{
+  "name": "release-manager",
+  "version": "1.0.0",
+  "description": "Deployment tool",
+  "private": true,
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webtop/release-manager.git"
+  },
+  "keywords": [
+    "deployment",
+    "release",
+    "git"
+  ],
+  "author": "Paul Allsopp <paul.allsopp@digital-pig.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/webtop/release-manager/issues"
+  },
+  "homepage": "https://github.com/webtop/release-manager#readme",
+  "dependencies": {
+    "@mdi/font": "^2.4.85",
+    "ajv": "^6.5.1",
+    "bootstrap": "^4.0",
+    "grunt-contrib-uglify-es": "^3.3.0",
+    "jquery": "^3.3.1",
+    "muicss": "^0.9.39",
+    "popper.js": "^1.14.3",
+    "select2": "^4.0.6-rc.1"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.3",
+    "grunt-contrib-less": "^2.0.0",
+    "grunt-contrib-watch": "^1.1.0"
+  }
+}
