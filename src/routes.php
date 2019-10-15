@@ -9,6 +9,7 @@ use Library\GitFascade;
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Config\GitConfig;
+use classes\Storage;
 
 /**
  * ========================
@@ -52,29 +53,18 @@ $app->get('/oauth', function(Request $request, Response $response, array $args) 
 });
 
 $app->post('/test-connection', function(Request $request, Response $response, array $args) use($app) {
-    $connectResult = [
-        'success' => false,
-        'severity' => 'error',
-        'msgs' => [],
-        'warnings' => ''
-    ];
-    
-    GitConfig::validateConfig($connectResult, $request);
-    
-    if (!empty($connectResult['msgs'])) {
-        return $response->withJson($connectResult);
-    }
-    
-    $gitConfig = GitConfig::build($request);
-    
-    $connectResult = GitFascade::getInstance($gitConfig)->connect();
-    $connectResult['warnings'] = $gitConfig::$warning;
+    $connectResult = Connector::testConnection($request);
     
     return $response->withJson($connectResult);
 });
 
 $app->post('/save-connection-params', function(Request $request, Response $response, array $args) use($app) {
-    
+    $connectResult = Connector::testConnection($request);
+    if ($connectResult['success']) {
+        $gitConfig = GitConfig::build($request);
+        $storage = Storage::getInstance();
+        $result =  $storage->saveConnectionParams($gitConfig);
+    }
 });
 
 
