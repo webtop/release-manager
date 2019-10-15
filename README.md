@@ -1,5 +1,5 @@
 # release-manager
-A simple release manager for developers.
+A simple release and deployment manager for developers.
 To include:
 * Timed releases
 * Conditional releases
