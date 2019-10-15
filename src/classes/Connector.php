@@ -2,6 +2,10 @@
 
 namespace Classes;
 
+use Slim\Http\Request;
+use Config\GitConfig;
+use Library\GitFascade;
+
 class Connector {
     
     private static $instance = null;
@@ -39,7 +43,27 @@ class Connector {
         }
         return $success;
     }
+    
+    public static function testConnection(Request $request) {
+        $connectResult = [
+            'success' => false,
+            'severity' => 'error',
+            'msgs' => [],
+            'warnings' => ''
+        ];
         
+        GitConfig::validateConfig($connectResult, $request);
+        
+        if (empty($connectResult['msgs'])) {
+            $gitConfig = GitConfig::build($request);
+            
+            $connectResult = GitFascade::getInstance($gitConfig)->connect();
+            $connectResult['warnings'] = $gitConfig::$warning;
+        }
+        
+        return $connectResult;
+    }
+    
     public function getRepos() {
         $repos = [];
         $objects = $this->client->repos->listYourRepositories();
