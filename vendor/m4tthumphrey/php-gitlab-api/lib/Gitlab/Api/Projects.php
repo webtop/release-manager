@@ -23,6 +23,7 @@ class Projects extends AbstractApi
      *     @var bool   $statistics                  Include project statistics.
      *     @var bool   $with_issues_enabled         Limit by enabled issues feature.
      *     @var bool   $with_merge_requests_enabled Limit by enabled merge requests feature.
+     *     @var int    $min_access_level            Limit by current user minimal access level
      * }
      *
      * @throws UndefinedOptionsException If an option name is undefined
@@ -79,12 +80,15 @@ class Projects extends AbstractApi
             ->setAllowedTypes('with_merge_requests_enabled', 'bool')
             ->setNormalizer('with_merge_requests_enabled', $booleanNormalizer)
         ;
+        $resolver->setDefined('min_access_level')
+            ->setAllowedValues('min_access_level', [null, 10, 20, 30, 40, 50])
+        ;
 
         return $this->get('projects', $resolver->resolve($parameters));
     }
 
     /**
-     * @param int $project_id
+     * @param int|string $project_id
      * @param array $parameters {
      *
      *     @var bool   $statistics                    Include project statistics.
@@ -258,6 +262,19 @@ class Projects extends AbstractApi
     }
 
     /**
+     * @param integer $project_id
+     * @param array $parameters
+     * @return mixed
+     */
+    public function allMembers($project_id, $parameters = [])
+    {
+        $resolver = $this->createOptionsResolver();
+        $resolver->setDefined('query');
+
+        return $this->get('projects/'.$this->encodePath($project_id).'/members/all', $resolver->resolve($parameters));
+    }
+
+    /**
      * @param int $project_id
      * @param array $parameters (
      *
@@ -338,7 +355,6 @@ class Projects extends AbstractApi
     /**
      * @param int $project_id
      * @param array $parameters
-     *
      * @return mixed
      */
     public function hooks($project_id, array $parameters = [])
@@ -356,6 +372,40 @@ class Projects extends AbstractApi
     public function hook($project_id, $hook_id)
     {
         return $this->get($this->getProjectPath($project_id, 'hooks/'.$this->encodePath($hook_id)));
+    }
+
+    /**
+     * Get project issues.
+     *
+     * See https://docs.gitlab.com/ee/api/issues.html#list-project-issues for more info.
+     *
+     * @param int $project_id
+     *   Project id.
+     * @param array $parameters
+     *   Url parameters. For example: issue state (opened / closed).
+     *
+     * @return array
+     *   List of project issues.
+     */
+    public function issues($project_id, array $parameters = [])
+    {
+        return $this->get($this->getProjectPath($project_id, 'issues'), $parameters);
+    }
+
+    /**
+     * Get projects board list.
+     *
+     * See https://docs.gitlab.com/ee/api/boards.html for more info.
+     *
+     * @param int $project_id
+     *   Project id.
+     *
+     * @return array
+     *   List of project boards.
+     */
+    public function boards($project_id)
+    {
+        return $this->get($this->getProjectPath($project_id, 'boards'));
     }
 
     /**
@@ -394,6 +444,16 @@ class Projects extends AbstractApi
     public function removeHook($project_id, $hook_id)
     {
         return $this->delete($this->getProjectPath($project_id, 'hooks/'.$this->encodePath($hook_id)));
+    }
+
+    /**
+     * @param int $project_id
+     * @param mixed $namespace
+     * @return mixed
+     */
+    public function transfer($project_id, $namespace)
+    {
+        return $this->put($this->getProjectPath($project_id, 'transfer'), ['namespace' => $namespace]);
     }
 
     /**
@@ -493,11 +553,14 @@ class Projects extends AbstractApi
 
     /**
      * @param int $project_id
+     * @param array $parameters
      * @return mixed
      */
-    public function labels($project_id)
+    public function labels($project_id, array $parameters = [])
     {
-        return $this->get($this->getProjectPath($project_id, 'labels'));
+        $resolver = $this->createOptionsResolver();
+
+        return $this->get($this->getProjectPath($project_id, 'labels'), $resolver->resolve($parameters));
     }
 
     /**
@@ -548,13 +611,15 @@ class Projects extends AbstractApi
      * @param array $params (
      *
      *     @var string $namespace      The ID or path of the namespace that the project will be forked to
+     *     @var string $path           The path of the forked project (optional)
+     *     @var string $name           The name of the forked project (optional)
      * )
      * @return mixed
      */
     public function fork($project_id, array $parameters = [])
     {
         $resolver = new OptionsResolver();
-        $resolver->setDefined('namespace');
+        $resolver->setDefined(['namespace', 'path', 'name']);
 
         $resolved = $resolver->resolve($parameters);
 
@@ -604,7 +669,6 @@ class Projects extends AbstractApi
     /**
      * @param int $project_id
      * @param array $parameters
-     *
      * @return mixed
      */
     public function variables($project_id, array $parameters = [])
@@ -698,7 +762,6 @@ class Projects extends AbstractApi
     /**
      * @param int $project_id
      * @param array $parameters
-     *
      * @return mixed
      */
     public function deployments($project_id, array $parameters = [])
@@ -716,5 +779,93 @@ class Projects extends AbstractApi
     public function deployment($project_id, $deployment_id)
     {
         return $this->get($this->getProjectPath($project_id, 'deployments/'.$this->encodePath($deployment_id)));
+    }
+    
+    /**
+     * @param mixed $project_id
+     * @param array $parameters
+     * @return mixed
+     */
+    public function addShare($project_id, array $parameters = [])
+    {
+        $resolver = $this->createOptionsResolver();
+
+        $datetimeNormalizer = function (OptionsResolver $optionsResolver, \DateTimeInterface $value) {
+            return $value->format('Y-m-d');
+        };
+
+        $resolver->setRequired('group_id')
+            ->setAllowedTypes('group_id', 'int');
+
+        $resolver->setRequired('group_access')
+            ->setAllowedTypes('group_access', 'int')
+            ->setAllowedValues('group_access', [0,10,20,30,40,50]);
+
+        $resolver->setDefined('expires_at')
+            ->setAllowedTypes('expires_at', \DateTimeInterface::class)
+            ->setNormalizer('expires_at', $datetimeNormalizer)
+        ;
+
+        return $this->post($this->getProjectPath($project_id, 'share'), $resolver->resolve($parameters));
+    }
+    
+    /**
+     * @param mixed $project_id
+     * @param int $group_id
+     * @return mixed
+     */
+    public function removeShare($project_id, $group_id)
+    {
+        return $this->delete($this->getProjectPath($project_id, 'services/'.$group_id));
+    }
+
+    /**
+     * @param int $project_id
+     * @return mixed
+     */
+    public function badges($project_id)
+    {
+        return $this->get($this->getProjectPath($project_id, 'badges'));
+    }
+
+    /**
+     * @param int $project_id
+     * @param string $badge_id
+     * @return mixed
+     */
+    public function badge($project_id, $badge_id)
+    {
+        return $this->get($this->getProjectPath($project_id, 'badges/' . $this->encodePath($badge_id)));
+    }
+
+    /**
+     * @param int $project_id
+     * @param array $params
+     * @return mixed
+     */
+    public function addBadge($project_id, array $params = array())
+    {
+        return $this->post($this->getProjectPath($project_id, 'badges'), $params);
+    }
+
+    /**
+     * @param int $project_id
+     * @param string $badge_id
+     * @return mixed
+     */
+    public function removeBadge($project_id, $badge_id)
+    {
+        return $this->delete($this->getProjectPath($project_id, 'badges/' . $this->encodePath($badge_id)));
+    }
+
+    /**
+     * @param int $project_id
+     * @param string $badge_id
+     * @param array $params
+     * @return mixed
+    */
+    public function updateBadge($project_id, $badge_id, array $params = array())
+    {
+        return $this->put($this->getProjectPath($project_id, 'badges/' . $this->encodePath($badge_id)));
     }
 }

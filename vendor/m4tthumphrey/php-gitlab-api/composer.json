@@ -34,7 +34,7 @@
 		"guzzlehttp/psr7": "^1.2",
 		"php-http/guzzle6-adapter": "^1.0",
 		"php-http/mock-client": "^1.0",
-		"phpunit/phpunit": "^5.0"
+		"phpunit/phpunit": "^5.7.27 || ^6.5"
 	},
 	"autoload": {
 		"psr-4": { "Gitlab\\": "lib/Gitlab/" }
@@ -44,7 +44,7 @@
 	},
 	"extra": {
 		"branch-alias": {
-			"dev-master": "9.8.x-dev"
+			"dev-master": "9.12.x-dev"
 		}
 	}
 }
