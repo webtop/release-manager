@@ -48,13 +48,12 @@ $app->get('/config', function(Request $request, Response $response, array $args)
 });
 
 $app->get('/oauth', function(Request $request, Response $response, array $args) use($app) {
-    
+    // This is pending better implementation
     return true;
 });
 
 $app->post('/test-connection', function(Request $request, Response $response, array $args) use($app) {
     $connectResult = Connector::testConnection($request);
-    
     return $response->withJson($connectResult);
 });
 

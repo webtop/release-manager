@@ -6,14 +6,26 @@ use Slim;
 use Slim\Http\Response;
 use Slim\Views\PhpRenderer;
 
+/**
+ * Common class for global/static utility functiuons
+ * @author Paul Allsopp <paul.allsopp@digital-pig.com>
+ *
+ */
 class Common 
 {
     const MODE_DEVELOPMENT = 'development';
     
-    public function updateSettings() {
-        
-    }
+    /**
+     * @stub Update current settings
+     */
+    public function updateSettings() {}
     
+    /**
+     * Print any type of object
+     * 
+     * @param any $what
+     * @param bool $exit
+     */
     public static function debug($what, $exit = false) 
     {
         $output = print_r($what, true);
@@ -24,6 +36,12 @@ class Common
         }
     }
     
+    /**
+     * Determine existence of cache and return it if unchanged
+     * 
+     * @param unknown $path
+     * @return string
+     */
     public static function cache($path) 
     {
         $filePath = BASE_PATH . $path;

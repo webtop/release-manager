@@ -2,6 +2,7 @@
 
 use Classes\Connector;
 
+// dependency injection container
 $container = $app->getContainer();
 
 // view renderer
@@ -10,10 +11,17 @@ $container['view'] = function($c) {
     return new Slim\Views\PhpRenderer($settings['template_path']);
 };
 
-// Git connector class
+// git connector class
 $container['connector'] = function($c) {
     $connector = Connector::getInstance($c->git);
     return $connector;
+};
+
+// git source class
+$container['git'] = function($c) {
+    $sourceClass = '\\Config\\' . $c->get('settings')['git-source'] . 'Config';
+    $git = new $sourceClass;
+    return $git;
 };
 
 // monolog
@@ -23,11 +31,4 @@ $container['logger'] = function($c) {
     $logger->pushProcessor(new Monolog\Processor\UidProcessor());
     $logger->pushHandler(new Monolog\Handler\StreamHandler($settings['path'], $settings['level']));
     return $logger;
-};
-
-// git source
-$container['git'] = function($c) {
-    $sourceClass = '\\Config\\' . $c->get('settings')['git-source'] . 'Config';
-    $git = new $sourceClass;
-    return $git;
 };

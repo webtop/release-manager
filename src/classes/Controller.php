@@ -6,9 +6,8 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 
 /**
- *
+ * Base controller class (to rule them all?)
  * @author Paul Allsopp <paul.allsopp@digital-pig.com>
- *        
  */
 abstract class Controller
 {

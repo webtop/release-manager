@@ -1,3 +1,7 @@
+/**
+ * Main front-end class
+ * @author Paul Allsopp <pallsopp@digital-pig.com>
+ */
 var App = (function(App) {
 	'use strict';
 

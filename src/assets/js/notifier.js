@@ -1,3 +1,9 @@
+/**
+ * This class acts as a user notification system, showing messages posted
+ * from the back-end.
+ * @author Paul Allsopp <pallsopp@digital-pig.com>
+ * 
+ */
 var App = (function(App) {
 	'use strict';
 

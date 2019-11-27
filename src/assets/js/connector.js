@@ -23,6 +23,9 @@ var App = (function(App) {
 		App.hideLoader();
 	});
 	
+	/**
+	 * Source connection class
+	 */
 	App.connector = function() {
 		
 		this.showLoader = function() {

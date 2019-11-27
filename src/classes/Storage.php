@@ -4,6 +4,12 @@ namespace classes;
 use SQLite3;
 use Config\GitConfig;
 
+/**
+ * Lightweight data storage class
+ * @author Paul Allsopp <paul.allsopp@digital-pig.com>
+ * @see \Singleton
+ * @todo UNFINISHED
+ */
 class Storage {
     private static $instance = null;
     private static $instanceError = '';
@@ -50,6 +56,7 @@ class Storage {
 
             CREATE UNIQUE INDEX uidx_api
             ON connections(api_url); 
+SQL;
     }
 }
 
