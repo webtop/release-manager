@@ -1,6 +1,6 @@
 /**
  * This class acts as a user notification system, showing messages posted
- * from the back-end.
+ * from the back-end, as well as direct messages from requests
  * @author Paul Allsopp <pallsopp@digital-pig.com>
  * 
  */

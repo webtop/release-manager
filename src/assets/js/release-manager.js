@@ -54,7 +54,7 @@ var App = (function(App) {
 				params['git-source-auth'] = $('#git-source-auth').val();
 			}
 			
-			return params;
+			return params; 
 		};
 		
 		this.allowConfigSave = function(response) {
