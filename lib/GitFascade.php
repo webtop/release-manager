@@ -3,8 +3,6 @@
 namespace Library;
 
 
-use Gitlab\Client;
-
 /**
  * Class: GitFascade 
  * A front-end for connection to and managing different Git sources
@@ -24,7 +22,7 @@ class GitFascade {
      * Instance of Git client framework
      * @var object 
      */
-    private $client = null;
+    private static $client = null;
     
     /**
      * Instance of self
@@ -35,7 +33,7 @@ class GitFascade {
     /**
      * Singleton constructor
      * 
-     * @param \Library\GitConfig $config
+     * @param \Library\GitConfig $config - Git config class
      * @return GitFascade
      */
     private function __construct($config) {
@@ -46,7 +44,7 @@ class GitFascade {
     /**
      * Static method to return an instance of this fascade
      * 
-     * @param \Library\GitConfig $gitConfig
+     * @param \Library\GitConfig $gitConfig - Git config class
      * @return GitFascade
      */
     public static function getInstance($gitConfig) {
@@ -57,24 +55,37 @@ class GitFascade {
     }
     
     /**
+     * Instantiate a git framework, based on the type of $this->config
+     * @return \Library\GitHubClient\Client\GitHubClient|\Gitlab\Client
+     */
+    public static function getClient() {
+        if (self::$client === null) {
+            self::$client = \Library\GitClient::build(self::$instance->config);
+        }
+        
+        return self::$client;
+    }
+    
+    /**
      * Attempt to connect to a Git source
-     * 
+     * @param string $url - The base URL to connect to the source
      * @return array
      */
-    private function _connect() {
+    private function _connect($url) {
         $connection = [
             'success' => false,
             'msgs' => [],
             'severity' => 'warning'
         ];
         
-        try {
-            $this->client = Client::create($this->config->getApiUrl());
-            $connection['success'] = true;
-            $connection['severity'] = '';
-        } catch (\Exception $e) {
+        $client = self::getClient();
+        if (!empty($client::$connectionFailed) && $client::$connectionFailed === true) {
+            $connection['msgs'][] = $client::$failureMessage;
             $connection['severity'] = 'error';
-            $connection['msgs'][] = $e->getMessage();
+        } else {
+            $connection['success'] = true;
+            $connection['severity'] = 'info';
+            $this->client = $client;
         }
         
         return $connection;
@@ -86,24 +97,7 @@ class GitFascade {
      * @return array
      */
     private function _authenticate() {
-        $connection = $this->_connect($this->config->getApiUrl(), true);
-        
-        if ($connection['success']) {
-            try {
-                $connectionBuilder = $this->client->authenticate($this->config->getToken(), $this->config->getAuthMethod());
-                $connectionBuilder->version()->show();
-            } catch (\Exception $e) {
-                if ($e->getCode() == 401) {
-                    $connection['success'] = false;
-                    $connection['severity'] = 'warning';
-                } else {
-                    $connection['success'] = false;
-                    $connection['severity'] = 'error';
-                    $connection['msgs'][] = $e->getMessage();
-                }
-            }
-        }
-        
+        $connection = $this->_connect($this->config->getApiUrl());
         return $connection;
     }
     

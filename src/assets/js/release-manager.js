@@ -23,6 +23,9 @@ var App = (function(App) {
 		});
 		
 		$('button#connection-test').on('click', function() {
+			$(this).attr('disabled', 'disabled');
+			$(this).text('...testing...');
+			
 			var params = App.buildConnectionParams();
 			App.testConnection(params, App.allowConfigSave);
 		});
@@ -37,9 +40,7 @@ var App = (function(App) {
 		
 		this.buildConnectionParams = function() {
 			var credentials = {};
-			$(this).attr('disabled', 'disabled');
-			$(this).text('...testing...');
-			
+						
 			$('.auth-type-container[data-for="' + $('#git-source-auth').val() + '"]').find('input').map(function() {
 				credentials[this.name] = this.value;
 			}); 
