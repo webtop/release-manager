@@ -8,7 +8,7 @@ module.exports = function(grunt) {
 			},
 			build: {
 				src: 'src/assets/js/*.js',
-				dest: 'public/js/<%= pkg.name %>.js'
+				dest: 'public/js/<%= pkg.name %>.min.js'
 			}
 		},
 		less: {

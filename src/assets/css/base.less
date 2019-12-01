@@ -42,10 +42,32 @@ body {
 		left: 0;
 		bottom: 0;
 		right: 0;
-		height: 32px;
+		height: 34px;
+		padding-top: 1px;
 		text-align: left;
-		verticle-align: middle;
-		background-color: @gray-400-color; 
+		background-color: @gray-400-color;
+		
+		form#footer-search-form {
+			position: fixed;
+			left: 10px;
+		
+			label {
+				margin-right: 4px;
+			}
+			
+			input {
+				border: 1px solid @gray-800-color;
+			}
+			
+			button.btn-tight {
+				padding: 0 5px;
+				max-height: 30px;
+				
+				i.mdi:before {
+					font-size: 20px;
+				}
+			}
+		}
 	}
 	
 	.text-primary {
@@ -68,7 +90,7 @@ body {
 		bottom: 0;
 		left: 0;
 		
-		background-color: #000;
+		background-color: #000; 
 		opacity: 0.5;
 		z-index: 1040;
 		text-align: center;
@@ -80,5 +102,18 @@ body {
 			color: @icon-color;
 		}
 	}
+	
+	.select2, #notifier {
+		width:100% !important;
+	}
 }
 
+@media screen and (max-width: 820px) {
+	#app > .card {
+		margin-top: 22px;
+	}
+	
+	.nav-item a {
+		text-align: center;
+	}
+}

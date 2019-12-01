@@ -38,7 +38,7 @@ class Common {
     /**
      * Determine existence of cache and return it if unchanged
      * 
-     * @param unknown $path
+     * @param string $path
      * @return string
      */
     public static function cache($path) {

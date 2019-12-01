@@ -14,12 +14,6 @@ var App = (function(App) {
 			html: true
 		};
 		
-		$('#notifier').css({
-			left: $('.card:first').offset().left + 'px',
-			right: $('.card:first').offset().left + 'px',
-			maxWidth: $('.card:first').css('width')
-		});
-		
 		$('#notifier').on('click', App.notifier.hide);
 		
 		this.showNotice = function(title, content, status) {
@@ -76,6 +70,14 @@ var App = (function(App) {
 		return this;
 	};
 	
+	App.notifier.resize = function() {
+		$('#notifier').css({
+			left: $('.card:first').offset().left + 'px',
+			right: $('.card:first').offset().left + 'px',
+			maxWidth: $('.card:first').css('width')
+		});
+		return this;
+	};
 	
 	return App;
 })(App || {});

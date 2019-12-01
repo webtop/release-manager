@@ -15,3 +15,32 @@ use Classes\Common;
 </head>
 
 <body>
+
+	<header id="header">
+		<!-- Fixed navbar -->
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+			<a class="navbar-brand" href="/">Release Manager</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbarCollapse" aria-controls="navbarCollapse"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item"><a class="nav-link" href=""><i class="mdi mdi-24px mdi-sitemap mdi-rm"></i>Releases</a></li>
+					<li class="nav-item"><a class="nav-link" href=""><i class="mdi mdi-24px mdi-file-tree mdi-rm"></i>Repositories</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-24px mdi-source-branch mdi-rm"></i>Branches</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-24px mdi-source-commit mdi-rm"></i>Commits</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"><i class="mdi mdi-24px mdi-account-multiple mdi-rm"></i>Users</a></li>
+					<li class="nav-item"><a class="nav-link" href="/config"><i class="mdi mdi-24px mdi-cogs mdi-rm"></i>Config</a></li>
+				</ul>
+			</div>
+		</nav>
+		
+		<div id="notifier" class="p-3 mb-2 bg-danger text-white" role="alert">
+			<h3 class="alert-title"></h3>
+			<div class="alert-body"></div>
+			<div class="text-white float-right">click to dismiss</div>
+		</div>
+        
+	</header>
