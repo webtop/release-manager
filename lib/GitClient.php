@@ -45,7 +45,7 @@ class GitClient {
         }
         
         if (!$client) {
-            return self;
+            return false;
         }
         return $client;
     }
@@ -90,20 +90,24 @@ class GitClient {
     
     /**
      * 
-     * @return boolean
+     * @return boolean|\Library\GitHubClient\Client\GitHubClient
      */
     private static function buildGitHubClient() {
         $client = new GitHubClient();
         $client->setUrl(self::$config->getApiUrl());
         switch (self::$config->getAuthMethod()) {
             case 'user_pass':
-                $authMethod = $client::GITHUB_AUTH_TYPE_BASIC;
+                $client->setAuthType($client::GITHUB_AUTH_TYPE_BASIC);
+                $credentials = self::$config->getAuthCredentials();
+                $client->setCredentials($credentials['username'], $credentials['password']);
                 break;
             case 'http_token':
-                $authMethod = $client::GITHUB_AUTH_TYPE_OAUTH_BASIC;
+                $client->setAuthType($client::GITHUB_AUTH_TYPE_OAUTH_BASIC);
+                $client->setOauthKey(self::$config->getKey());
                 break;
             case 'oauth_token':
-                $authMethod = $client::GITHUB_AUTH_TYPE_OAUTH;
+                $client->setAuthType($client::GITHUB_AUTH_TYPE_OAUTH);
+                $client->setOauthToken(self::$config->getToken());
                 break;
             default:
                 // This should never happen because we set these, but just in case something gets mangled
@@ -111,6 +115,22 @@ class GitClient {
                 return false;
         }
         
+        try {
+            $repos = $client->repos->listYourRepositories();
+            if (is_array($repos)) {
+                self::$connectFailed = false;
+                self::$failureMessage = "";
+                return $client;
+            }
+        } catch (\Library\GitHubClient\Client\GitHubClientException $e) {
+            $contextMsg = $client->getLastErrorMessage();
+            self::$connectFailed = true;
+            self::$failureMessage = (empty($contextMsg)) ? $e->getMessage() : $contextMsg;
+        } catch (\Exception $e) {
+            self::$connectFailed = true;
+            self::$failureMessage = $e->getMessage();
+        }
         
+        return false;
     }
 }

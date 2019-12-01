@@ -3,13 +3,10 @@
 use Classes\Common;
 use Classes\Config;
 use Classes\Connector;
-use Config\GitHubConfig;
-use Config\GitLabConfig;
-use Library\GitFascade;
+use Classes\Storage;
+use Config\GitConfig;
 use Slim\Http\Request;
 use Slim\Http\Response;
-use Config\GitConfig;
-use classes\Storage;
 
 /**
  * ========================

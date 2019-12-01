@@ -5,7 +5,7 @@ use Library\GitHubClient\Client\GitHubClient;
 use Library\GitHubClient\Client\GitHubService;
 use Library\GitHubClient\Client\Services\GitHubOrgsMembers;
 use Library\GitHubClient\Client\Services\GitHubOrgsTeams;
-use Library\GitHubClient\Client\Services\GithubOrgsRepos;
+use Library\GitHubClient\Client\Services\GitHubOrgsRepos;
 use Library\GitHubClient\Client\Objects\GitHubFullOrg;
 
 class GitHubOrgs extends GitHubService {
@@ -34,9 +34,9 @@ class GitHubOrgs extends GitHubService {
     public function __construct(GitHubClient $client) {
         parent::__construct($client);
         
+        $this->repos = new GithubOrgsRepos($client);
         $this->members = new GitHubOrgsMembers($client);
         $this->teams = new GitHubOrgsTeams($client);
-        $this->repos = new GithubOrgsRepos($client);
     }
 
     /**

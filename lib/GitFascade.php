@@ -56,14 +56,23 @@ class GitFascade {
     
     /**
      * Instantiate a git framework, based on the type of $this->config
-     * @return \Library\GitHubClient\Client\GitHubClient|\Gitlab\Client
+     * @return mixed[]
      */
     public static function getClient() {
         if (self::$client === null) {
-            self::$client = \Library\GitClient::build(self::$instance->config);
+            $buildResponse = \Library\GitClient::build(self::$instance->config);
+            if ($buildResponse instanceof \Library\GitHubClient\Client\GitHubClient) {
+                self::$client = $buildResponse;
+                return ['success' => true, 'response' => self::$client];
+            } else {
+                try {
+                    $json = json_decode(\Library\GitClient::$failureMessage);
+                    return ['success' => false, 'response' => $json];
+                } catch (\Exception $e) {
+                    return ['success' => false, 'response' => $e->getMessage()];
+                }
+            }
         }
-        
-        return self::$client;
     }
     
     /**
@@ -71,21 +80,25 @@ class GitFascade {
      * @param string $url - The base URL to connect to the source
      * @return array
      */
-    private function _connect($url) {
+    private function _connect() {
         $connection = [
             'success' => false,
             'msgs' => [],
             'severity' => 'warning'
         ];
         
-        $client = self::getClient();
-        if (!empty($client::$connectionFailed) && $client::$connectionFailed === true) {
-            $connection['msgs'][] = $client::$failureMessage;
-            $connection['severity'] = 'error';
-        } else {
+        $response = self::getClient();
+        if ($response['success'] === true) {
             $connection['success'] = true;
             $connection['severity'] = 'info';
-            $this->client = $client;
+        } else {
+            $connection['success'] = false;
+            if ($response['response'] instanceof \stdClass) {
+                if (property_exists($response['response'], 'documentation_url')) {
+                    $connection['msgs'][] = "Error: {$response['response']->message} (see {$response['response']->documentation_url})";
+                }
+            }
+            $connection['severity'] = 'error';
         }
         
         return $connection;
@@ -97,7 +110,7 @@ class GitFascade {
      * @return array
      */
     private function _authenticate() {
-        $connection = $this->_connect($this->config->getApiUrl());
+        $connection = $this->_connect();
         return $connection;
     }
     

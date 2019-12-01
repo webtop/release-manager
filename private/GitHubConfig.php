@@ -25,9 +25,21 @@ class GitHubConfig extends GitConfig {
     protected  $owner = '';
     
     /**
+     * Git OAuth key
+     * @var string
+     */
+    protected $key = '';
+    
+    /**
      * Git personal access token
      * @var string
      */
     protected $token = '';
+    
+    /**
+     * Credential for authentication method
+     * @var array
+     */
+    protected $authCredentials = [];
 
 }

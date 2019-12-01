@@ -51,6 +51,8 @@ abstract class GitHubClientBase {
     protected $lastReturnIsArray = null;
 
     protected $lastExpectedHttpCode = null;
+    
+    protected $lastErrorMessage = "";
 
     protected $pageData = array();
 
@@ -185,6 +187,10 @@ abstract class GitHubClientBase {
         
         $this->page = $this->lastPage - 1;
         return $this->requestLast($this->lastData);
+    }
+    
+    public function getLastErrorMessage() {
+        return $this->lastErrorMessage;
     }
 
     /**
@@ -400,8 +406,12 @@ abstract class GitHubClientBase {
             }
         }
         
-        if ((is_array($expectedHttpCode) && !in_array($status, $expectedHttpCode)) || (!is_array($expectedHttpCode) && $status !== $expectedHttpCode))
+        if ((is_array($expectedHttpCode) && !in_array($status, $expectedHttpCode)) || (!is_array($expectedHttpCode) && $status !== $expectedHttpCode)) {
+            if (!empty($content)) {
+                $this->lastErrorMessage = $content[0];
+            }
             throw new GitHubClientException("Expected status [" . (is_array($expectedHttpCode) ? implode(', ', $expectedHttpCode) : $expectedHttpCode) . "], actual status [$status], URL [$url]", GitHubClientException::INVALID_HTTP_CODE);
+        }
         
         if ($returnType == 'string')
             return implode("\n", $content);

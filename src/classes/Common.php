@@ -11,8 +11,8 @@ use Slim\Views\PhpRenderer;
  * @author Paul Allsopp <paul.allsopp@digital-pig.com>
  *
  */
-class Common 
-{
+class Common {
+    
     const MODE_DEVELOPMENT = 'development';
     
     /**
@@ -26,8 +26,7 @@ class Common
      * @param any $what
      * @param bool $exit
      */
-    public static function debug($what, $exit = false) 
-    {
+    public static function debug($what, $exit = false) {
         $output = print_r($what, true);
         print "<pre>$output</pre>";
         
@@ -42,8 +41,7 @@ class Common
      * @param unknown $path
      * @return string
      */
-    public static function cache($path) 
-    {
+    public static function cache($path) {
         $filePath = BASE_PATH . $path;
         if (file_exists($filePath)) {
             $cacheHash = md5(filemtime($filePath));
@@ -62,8 +60,7 @@ class Common
      * @param unknown $viewArgs
      * @return \Slim\Http\Response
      */
-    public static function buildView(Response $response, PhpRenderer $viewRenderer, $template, $viewArgs)
-    {
+    public static function buildView(Response $response, PhpRenderer $viewRenderer, $template, $viewArgs) {
         // Render the view
         $body = $viewRenderer->fetch($template, $viewArgs);
         
