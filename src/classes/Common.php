@@ -6,16 +6,27 @@ use Slim;
 use Slim\Http\Response;
 use Slim\Views\PhpRenderer;
 
-class Common 
-{
+/**
+ * Common class for global/static utility functiuons
+ * @author Paul Allsopp <paul.allsopp@digital-pig.com>
+ *
+ */
+class Common {
+    
     const MODE_DEVELOPMENT = 'development';
     
-    public function updateSettings() {
-        
-    }
+    /**
+     * @stub Update current settings
+     */
+    public function updateSettings() {}
     
-    public static function debug($what, $exit = false) 
-    {
+    /**
+     * Print any type of object
+     * 
+     * @param any $what
+     * @param bool $exit
+     */
+    public static function debug($what, $exit = false) {
         $output = print_r($what, true);
         print "<pre>$output</pre>";
         
@@ -24,8 +35,13 @@ class Common
         }
     }
     
-    public static function cache($path) 
-    {
+    /**
+     * Determine existence of cache and return it if unchanged
+     * 
+     * @param string $path
+     * @return string
+     */
+    public static function cache($path) {
         $filePath = BASE_PATH . $path;
         if (file_exists($filePath)) {
             $cacheHash = md5(filemtime($filePath));
@@ -44,8 +60,7 @@ class Common
      * @param unknown $viewArgs
      * @return \Slim\Http\Response
      */
-    public static function buildView(Response $response, PhpRenderer $viewRenderer, $template, $viewArgs)
-    {
+    public static function buildView(Response $response, PhpRenderer $viewRenderer, $template, $viewArgs) {
         // Render the view
         $body = $viewRenderer->fetch($template, $viewArgs);
         

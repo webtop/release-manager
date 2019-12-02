@@ -23,15 +23,16 @@ var App = (function(App) {
 		App.hideLoader();
 	});
 	
+	/**
+	 * Source connection class
+	 */
 	App.connector = function() {
 		
 		this.showLoader = function() {
-			console.log('showing loader');
 			$('#loader').show();
 		};
 		
 		this.hideLoader = function() {
-			console.log('hiding loader');
 			$('#loader').hide();
 		};
 		
@@ -41,6 +42,7 @@ var App = (function(App) {
 				method: 'post',
 				url: '/test-connection',
 				complete: function(xhr) {
+					console.log(xhr.responseText);
 					var response = JSON.parse(xhr.responseText);
 					callback(response);
 				}

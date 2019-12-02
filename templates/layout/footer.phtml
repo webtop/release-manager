@@ -2,6 +2,19 @@
 use Classes\Common;
 ?>
 
+	<footer class="footer" id="footer">
+		<div class="container">
+			<form class="form-inline" id="footer-search-form">
+				<div class="form-group">
+					<label for="object-search">Global Search: </label>
+    				<input class="form-control form-control-sm mr-sm-2" type="text" id="object-search" name="object_search" aria-label="Global Search" 
+    				    title="Search for anything that might be attached to your repos" />
+				</div>
+				<button class="btn btn-tight btn-dark my-2 my-sm-0" type="submit" title="Search">Search</button>
+			</form>
+		</div>
+	</footer>
+	
 	<div id="loader" class="fade" tabindex="-1" aria-labelledby="loaderLabel" aria-hidden="true">
     	<span id="loaderLabel">Loading...</span>
 	</div>
@@ -14,9 +27,22 @@ use Classes\Common;
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
+			// Initialize the application
 			App.releaseManager();
+
+			// Initialize the back-end connector
 			App.connector();
+
+			// Initialize the notifier
 			App.notifier();
+
+			// Set the notifier to the size of the initial card
+			App.notifier.resize();
+		});
+
+		// Keep the notifier to the correct size based on the window
+		$(window).resize(function() {
+			App.notifier.resize();
 		});
 	</script>
 </body>

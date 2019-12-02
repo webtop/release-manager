@@ -1,3 +1,7 @@
+/**
+ * Main front-end class
+ * @author Paul Allsopp <pallsopp@digital-pig.com>
+ */
 var App = (function(App) {
 	'use strict';
 
@@ -19,6 +23,9 @@ var App = (function(App) {
 		});
 		
 		$('button#connection-test').on('click', function() {
+			$(this).attr('disabled', 'disabled');
+			$(this).text('...testing...');
+			
 			var params = App.buildConnectionParams();
 			App.testConnection(params, App.allowConfigSave);
 		});
@@ -33,9 +40,7 @@ var App = (function(App) {
 		
 		this.buildConnectionParams = function() {
 			var credentials = {};
-			$(this).attr('disabled', 'disabled');
-			$(this).text('...testing...');
-			
+						
 			$('.auth-type-container[data-for="' + $('#git-source-auth').val() + '"]').find('input').map(function() {
 				credentials[this.name] = this.value;
 			}); 
@@ -50,7 +55,7 @@ var App = (function(App) {
 				params['git-source-auth'] = $('#git-source-auth').val();
 			}
 			
-			return params;
+			return params; 
 		};
 		
 		this.allowConfigSave = function(response) {

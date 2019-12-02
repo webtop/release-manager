@@ -1,3 +1,9 @@
+/**
+ * This class acts as a user notification system, showing messages posted
+ * from the back-end, as well as direct messages from requests
+ * @author Paul Allsopp <pallsopp@digital-pig.com>
+ * 
+ */
 var App = (function(App) {
 	'use strict';
 
@@ -7,12 +13,6 @@ var App = (function(App) {
 			delay: {show: 250, hide: 500},
 			html: true
 		};
-		
-		$('#notifier').css({
-			left: $('.card:first').offset().left + 'px',
-			right: $('.card:first').offset().left + 'px',
-			maxWidth: $('.card:first').css('width')
-		});
 		
 		$('#notifier').on('click', App.notifier.hide);
 		
@@ -70,6 +70,14 @@ var App = (function(App) {
 		return this;
 	};
 	
+	App.notifier.resize = function() {
+		$('#notifier').css({
+			left: $('.card:first').offset().left + 'px',
+			right: $('.card:first').offset().left + 'px',
+			maxWidth: $('.card:first').css('width')
+		});
+		return this;
+	};
 	
 	return App;
 })(App || {});
