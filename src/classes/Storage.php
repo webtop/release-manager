@@ -34,6 +34,10 @@ class Storage {
         return self::$instance;
     }
     
+    public function getConnectionParameters() {
+            
+    }
+    
     public function saveConnectionParams(GitConfig $gitConfig) {
         
     }
