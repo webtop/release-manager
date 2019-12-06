@@ -4,6 +4,5 @@
 deployment.properties
 deployment.xml
 logs/*
-private/*
 vendor/*
 node_modules/*
