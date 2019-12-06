@@ -21,12 +21,13 @@ $app->get('/', function (Request $request, Response $response, array $args) {
         'pageTitle' => 'Release Manager'
     ];
     
-    return Common::buildView($response, $this->view, 'index.phtml', $viewArgs);
+    return Common::buildView($response, $this->view, 'index', $viewArgs);
 });
 
 $app->get('/config', function(Request $request, Response $response, array $args) use ($app) {
     $configError = '';
     $configData = [];
+    $sourceConnections = Storage::getInstance()->getConnectionOptions();
     
     if (empty($this->settings['git-source'])) {
         $configError = 'Please set up the git source configuration';
@@ -38,10 +39,12 @@ $app->get('/config', function(Request $request, Response $response, array $args)
     $viewArgs = [
         'pageTitle' => 'Configuration',
         'configData' => $configData,
-        'configError' => $configError
+        'configError' => $configError,
+        'connections' => $sourceConnections['connections'],
+        'authTypes' => $sourceConnections['auth_types']
     ];
     
-    return Common::buildView($response, $this->view, 'config.phtml', $viewArgs);
+    return Common::buildView($response, $this->view, 'config', $viewArgs);
 });
 
 $app->get('/oauth', function(Request $request, Response $response, array $args) use($app) {

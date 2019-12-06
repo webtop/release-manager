@@ -60,9 +60,9 @@ class Common {
      * @param unknown $viewArgs
      * @return \Slim\Http\Response
      */
-    public static function buildView(Response $response, PhpRenderer $viewRenderer, $template, $viewArgs) {
+    public static function buildView(Response $response, PhpRenderer $viewRenderer, $template, $viewArgs = []) {
         // Render the view
-        $body = $viewRenderer->fetch($template, $viewArgs);
+        $body = $viewRenderer->fetch($template . '.phtml', $viewArgs);
         
         // Render the layout
         $header = $viewRenderer->fetch('layout/header.phtml', $viewArgs);
@@ -75,5 +75,30 @@ class Common {
         // Write and return the response
         $response->getBody()->write($output);
         return $response;
+    }
+    
+    /**
+     * Fetch a partial template, useful for table rows etc
+     * 
+     * @param string $template
+     * @param array $viewArgs
+     * @return mixed
+     */
+    public static function getPartialView($template, $viewArgs = []) {
+        $app = new \Slim\App();
+        $viewRenderer = $app->getContainer()['view'];
+        $partial = $viewRenderer->fetch('partials/' . $template . 'phtml', $viewArgs);
+        return $partial;
+    }
+    
+    /**
+     * Convert a field name to user-interface text
+     * 
+     * Ex. 'first_name' or 'first-name' becomes 'First Name'
+     * @param string $value
+     * @return string
+     */
+    public static function fieldToUserText($value) {
+        return ucwords(str_replace(['_', '-'], ' ', $value));
     }
 }

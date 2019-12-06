@@ -9,7 +9,7 @@ $settings = [
         
         // Renderer settings
         'view' => [
-            'template_path' => __DIR__ . '/../templates/',
+            'template_path' => __DIR__ . '/../templates/'
         ],
 
         // Monolog settings

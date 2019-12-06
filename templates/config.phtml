@@ -1,4 +1,7 @@
-<?php if (!empty($configError)) { ?>
+<?php 
+use Classes\Common;
+if (!empty($configError)) { 
+?>
 <span class="hidden unseen-notification" data-title="Configuration Notice" data-status="error">
 	<?php print $configError; ?>
 </span>
@@ -15,13 +18,17 @@
 				<label class="control-label" for="git-source-select">Git Source</label>
 				<select class="select form-control" id="git-source-select" name="git-source-select">
 					<option>Select a Git Source...</option>
-					<option value="github" selected>GitHub</option>
-					<option value="gitlab">GitLab</option>
+					
+					<?php foreach ($connections as $idx => $connection) { ?>
+					<option value="<?php print intval($idx) ?>"><?php print $connection['name'] ?> </option>
+					<?php } ?>
+					
 				</select>
 			</div>
+			
 			<div class="form-group">
 				<label class="control-label" for="git-api-url">Git API URL</label>
-				<input class="form-control" type="text" id="git-api-url" name="git-api-url" placeholder="required" value="https://api.github.com" />
+				<input class="form-control" type="text" id="git-api-url" name="git-api-url" placeholder="required" />
 			</div>
 			<div class="form-group">
 				<label class="control-label" for="git-file-url">Git Files URL</label>
@@ -31,43 +38,22 @@
 				<label class="control-label" for="git-source-auth">Authorization Type</label>
 				<select class="select form-control" id="git-source-auth" name="git-source-auth">
 					<option value="none">Select an Authorization method...</option>
-					<option value="user_pass">Username/Password</option>
-					<option value="http_token">Personal Access Token</option>
-					<option value="oauth_token">OAuth 2.0</option>
 				</select>
 			</div>
 			
-			<!-- // Username/Password // -->
-			<div class="auth-type-container border rounded" data-for="user_pass">
-    			<div class="form-group">
-    				<label class="control-label" for="git-auth-username">Username</label>
-    				<input class="form-control" type="text" id="git-auth-username" name="git-auth-username" value="paul.allsopp" placeholder="required" />
-    			</div>
-    			<div class="form-group">
-    				<label class="control-label" for="git-auth-password">Password</label>
-    				<input class="form-control" type="password" id="git-auth-password" name="git-auth-password" value="QnQbB8000$1" placeholder="required" />
-    			</div>
+			<?php foreach ($authTypes as $idx => $authType) { ?>
+			<div class="auth-type-container border rounded" data-for="<?php print $auth_type['auth_name'] ?>">
+				<?php
+				    for ($i = 1; $i < 3; $i ++) {
+				        if (!empty($auth_type['auth_field_' . $i])) {
+				            $authField = $authType['auth_field_' . $i];
+				            $authFieldText = Common::fieldToUserText($authType['auth_field_' . $i]);
+				            print Common::getPartialView('auth_type_field', [$authField, $authFieldText]);
+    				    }
+    			     } 
+    			 ?>
     		</div>
-    		
-    		<!-- // Personal Access Token // -->
-    		<div class="auth-type-container border rounded" data-for="http_token">
-    			<div class="form-group">
-    				<label class="control-label" for="git-auth-token">Token</label>
-    				<input class="form-control" type="text" id="git-auth-token" name="git-auth-token" placeholder="required" value="3417a508180a6c8e4050bde5ae09584663418287" />
-    			</div>
-    		</div>
-    		
-    		<!-- // Oauth 2 // -->
-    		<div class="auth-type-container border rounded" data-for="oauth_token">
-    			<div class="form-group">
-    				<label class="control-label" for="git-auth-app-id">Application Id</label>
-    				<input class="form-control" type="text" id="git-auth-app-id" name="git-auth-app-id" placeholder="required" />
-    			</div>
-    			<div class="form-group">
-    				<label class="control-label" for="git-auth-secret">Secret</label>
-    				<input class="form-control" type="password" id="git-auth-secret" name="git-auth-secret" placeholder="required" />
-    			</div>
-    		</div>
+    		<?php } ?>
     		
     		<div class="button-bar">
     			<button type="button" id="connection-test" class="btn btn-primary">Test Connection</button>
