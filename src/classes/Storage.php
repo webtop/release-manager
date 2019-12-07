@@ -2,7 +2,6 @@
 namespace classes;
 
 use SQLite3;
-use SQLite3Result;
 use Config\GitConfig;
 
 /**
@@ -11,22 +10,18 @@ use Config\GitConfig;
  * @see \Singleton
  * @todo UNFINISHED
  */
-class Storage {
+class Storage extends \SQLite3 {
     private static $instance = null;
     private static $instanceError = '';
     
-    private $db = null;
-    
-    private function __construct($db) {
-        $this->db = $db;
+    public function __construct() {
+        $this->open(BASE_PATH . '/../release_manager.db');
         $this->setup();
     }
     
     public static function getInstance() {
         if (is_null(self::$instance)) {
-            $db = new SQLite3(PRIVATE_PATH . '/release_manager.db');
-            self::$instance = new Storage($db);
-            self::$instance->setup();
+            self::$instance = new Storage();
         }
         return self::$instance;
     }
@@ -44,16 +39,16 @@ class Storage {
         $error = true;
         
         // Fech connectable sources
-        $result = $this->db->query("SELECT * FROM connections");
-        if ($result && SQLite3Result::numColumns() > 0) {
+        $result = $this->query("SELECT * FROM connections");
+        if ($result && $result->numColumns() > 0) {
             while(($connectionData = $result->fetchArray()) !== false) {
                 $results['connections'][] = $connectionData;
             }
         }
         
         // Fetch connection authentication types
-        $result = $this->db->query("SELECT * FROM auth_types");
-        if ($result && SQLite3Result::numColumns() > 0) {
+        $result = $this->query("SELECT * FROM auth_types");
+        if ($result && $result->numColumns() > 0) {
             while(($connectionData = $result->fetchArray()) !== false) {
                 $results['auth_types'][] = $connectionData;
             }
@@ -67,7 +62,7 @@ class Storage {
     }
     
     private function setup() {
-        if (!file_exists(PRIVATE_PATH . 'release_manager.db')) {
+        if (!file_exists(BASE_PATH . '/../release_manager.db')) {
             $query = <<<SQL
                 CREATE TABLE IF NOT EXISTS connections (
                     id INTEGER PRIMARY KEY NOT NULL,
@@ -100,7 +95,7 @@ class Storage {
                 INSERT INTO auth_types VALUES (3, "Personal Access Token", "auth_token", "token", null);
                 INSERT INTO auth_types VALUES (4, "OAuth App", "auth_oauth", "app_id", "app_secret");
 SQL;
-            if (!$this->db->exec($query)) {
+            if (!$this->exec($query)) {
                 throw new \Exception("Failed to setup local DB. Please check folder permissions of /private folder [set to 755]");
                 exit(1);
             }
