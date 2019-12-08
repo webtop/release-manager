@@ -20,7 +20,10 @@ if (!empty($configError)) {
 					<option>Select a Git Source...</option>
 					
 					<?php foreach ($connections as $idx => $connection) { ?>
-					<option value="<?php print intval($idx) ?>"><?php print $connection['name'] ?> </option>
+					<option value="<?php print intval($connection['id']) ?>"
+						data-api-url="<?php print $connection['api_url']; ?>" data-file-url="<?php print $connection['files_url']; ?>">
+						<?php print $connection['name'] ?>
+					</option>
 					<?php } ?>
 					
 				</select>
@@ -38,17 +41,22 @@ if (!empty($configError)) {
 				<label class="control-label" for="git-source-auth">Authorization Type</label>
 				<select class="select form-control" id="git-source-auth" name="git-source-auth">
 					<option value="none">Select an Authorization method...</option>
+					<?php foreach ($authTypes as $idx => $authType) { ?>
+					<option value="<?php print $authType['id']; ?>" data-option="<?php print $authType['auth_name'] ?>"><?php print $authType['name']; ?></option>
+					<?php } ?>
 				</select>
 			</div>
-			
+
 			<?php foreach ($authTypes as $idx => $authType) { ?>
-			<div class="auth-type-container border rounded" data-for="<?php print $auth_type['auth_name'] ?>">
+			<div class="auth-type-container border rounded" data-for="<?php print $authType['id'] ?>">
 				<?php
 				    for ($i = 1; $i < 3; $i ++) {
-				        if (!empty($auth_type['auth_field_' . $i])) {
-				            $authField = $authType['auth_field_' . $i];
-				            $authFieldText = Common::fieldToUserText($authType['auth_field_' . $i]);
-				            print Common::getPartialView('auth_type_field', [$authField, $authFieldText]);
+				        if (!empty($authType['auth_field_' . $i])) {
+				            $data = [
+				                'authField' => $authType['auth_field_' . $i],
+				                'authFieldText' => Common::fieldToUserText($authType['auth_field_' . $i])
+				            ];
+				            print Common::getPartialView($this, 'auth_type_field', $data);
     				    }
     			     } 
     			 ?>

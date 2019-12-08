@@ -18,11 +18,11 @@ $container['connector'] = function($c) {
 };
 
 // git source class
-$container['git'] = function($c) {
-    $sourceClass = '\\Config\\' . $c->get('settings')['git-source'] . 'Config';
-    $git = new $sourceClass;
-    return $git;
-};
+// $container['git'] = function($c) {
+//     $sourceClass = '\\Config\\' . $c->get('settings')['git-source'] . 'Config';
+//     $git = new $sourceClass;
+//     return $git;
+// };
 
 // monolog
 $container['logger'] = function($c) {

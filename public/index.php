@@ -12,7 +12,6 @@ if (PHP_SAPI == 'cli-server') {
 require __DIR__ . '/../vendor/autoload.php';
 
 define('BASE_PATH', realpath(__DIR__));
-define('PRIVATE_PATH', realpath(BASE_PATH . '/../private/'));
 
 session_start();
 

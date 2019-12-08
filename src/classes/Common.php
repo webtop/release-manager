@@ -56,8 +56,8 @@ class Common {
      * 
      * @param Response $response
      * @param PhpRenderer $viewRenderer
-     * @param unknown $template
-     * @param unknown $viewArgs
+     * @param string $template
+     * @param mixed $viewArgs
      * @return \Slim\Http\Response
      */
     public static function buildView(Response $response, PhpRenderer $viewRenderer, $template, $viewArgs = []) {
@@ -80,14 +80,13 @@ class Common {
     /**
      * Fetch a partial template, useful for table rows etc
      * 
+     * @param PhpRenderer $viewRenderer
      * @param string $template
      * @param array $viewArgs
      * @return mixed
      */
-    public static function getPartialView($template, $viewArgs = []) {
-        $app = new \Slim\App();
-        $viewRenderer = $app->getContainer()['view'];
-        $partial = $viewRenderer->fetch('partials/' . $template . 'phtml', $viewArgs);
+    public static function getPartialView(PhpRenderer $viewRenderer, $template, $viewArgs = []) {
+        $partial = $viewRenderer->fetch('partials/' . $template . '.phtml', $viewArgs);
         return $partial;
     }
     

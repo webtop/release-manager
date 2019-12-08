@@ -16,33 +16,43 @@ var App = (function(App) {
 		//	});
 		//});
 		
+		$('#git-source-select').on('change', function(evt) {
+			var option = $('option:selected', evt.target);
+			$('#git-api-url').val($(option).attr('data-api-url'));
+			$('#git-file-url').val($(option).attr('data-file-url'));
+		});
+		
 		$('#git-source-auth').on('change', function() {
 			$('.auth-type-container').hide();
 			$('div[data-for="' + $(this).val() + '"]').show();
-			$('input:first', 'div[data-for="' + $(this).val() + '"]').focus();
 		});
 		
 		$('button#connection-test').on('click', function() {
-			$(this).attr('disabled', 'disabled');
-			$(this).text('...testing...');
-			
-			var params = App.buildConnectionParams();
-			App.testConnection(params, App.allowConfigSave);
+			var result = App.buildConnectionParams();
+			if (result[0] === true) {
+				$(this).attr('disabled', 'disabled');
+				$(this).text('...testing...');
+				App.testConnection(result[1], App.allowConfigSave);
+			} else {
+				App.notifier().showNotice('Missing Data', 'There appears to be data missing to make a connection', 'error');
+			}
 		});
 		
 		$('button#config-save').on('click', function() {
+			var params = App.buildConnectionParams();
 			$(this).attr('disabled', 'disabled');
 			$(this).text('...saving...');
-			
-			var params = App.buildConnectionParams();
 			App.saveConnectionParams(params, App.redirect, {url: 'someurl', p1: 'this', p2: 'that'});
 		});
 		
 		this.buildConnectionParams = function() {
 			var credentials = {};
-						
+			var formValid = false;
+			
 			$('.auth-type-container[data-for="' + $('#git-source-auth').val() + '"]').find('input').map(function() {
-				credentials[this.name] = this.value;
+				if ($(this.value).trim().length > 0) {
+					credentials[this.name] = $.trim(this.value);
+				}
 			}); 
 			
 			var params = {
@@ -55,7 +65,11 @@ var App = (function(App) {
 				params['git-source-auth'] = $('#git-source-auth').val();
 			}
 			
-			return params; 
+			if ($.trim(params['git-api-url']) != '') {
+				formValid = true;
+			}
+			
+			return [formValid, params]; 
 		};
 		
 		this.allowConfigSave = function(response) {

@@ -2,6 +2,7 @@
 namespace classes;
 
 use SQLite3;
+use Classes\Common;
 use Config\GitConfig;
 
 /**
@@ -41,7 +42,7 @@ class Storage extends \SQLite3 {
         // Fech connectable sources
         $result = $this->query("SELECT * FROM connections");
         if ($result && $result->numColumns() > 0) {
-            while(($connectionData = $result->fetchArray()) !== false) {
+            while(($connectionData = $result->fetchArray(SQLITE3_ASSOC)) !== false) {
                 $results['connections'][] = $connectionData;
             }
         }
@@ -49,7 +50,7 @@ class Storage extends \SQLite3 {
         // Fetch connection authentication types
         $result = $this->query("SELECT * FROM auth_types");
         if ($result && $result->numColumns() > 0) {
-            while(($connectionData = $result->fetchArray()) !== false) {
+            while(($connectionData = $result->fetchArray(SQLITE3_ASSOC)) !== false) {
                 $results['auth_types'][] = $connectionData;
             }
         }
