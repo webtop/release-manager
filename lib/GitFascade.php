@@ -98,7 +98,6 @@ class GitFascade {
                     $connection['msgs'][] = "Error: {$response['response']->message} (see {$response['response']->documentation_url})";
                 }
             }
-            $connection['severity'] = 'error';
         }
         
         return $connection;

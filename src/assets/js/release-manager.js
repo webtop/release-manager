@@ -23,11 +23,15 @@ var App = (function(App) {
 		});
 		
 		$('#git-source-auth').on('change', function() {
+			var container = $('div[data-for="' + $(this).val() + '"]');
 			$('.auth-type-container').hide();
-			$('div[data-for="' + $(this).val() + '"]').show();
+			$('input', $(container)).attr('required', 'required');
+			$(container).show();
 		});
 		
-		$('button#connection-test').on('click', function() {
+		
+		$('form#connection-config').on('submit', function(evt) {
+			evt.preventDefault();
 			var result = App.buildConnectionParams();
 			if (result[0] === true) {
 				$(this).attr('disabled', 'disabled');
@@ -36,6 +40,7 @@ var App = (function(App) {
 			} else {
 				App.notifier().showNotice('Missing Data', 'There appears to be data missing to make a connection', 'error');
 			}
+			return false;
 		});
 		
 		$('button#config-save').on('click', function() {
@@ -47,28 +52,26 @@ var App = (function(App) {
 		
 		this.buildConnectionParams = function() {
 			var credentials = {};
-			var formValid = false;
+			var formValid = true;
 			
 			$('.auth-type-container[data-for="' + $('#git-source-auth').val() + '"]').find('input').map(function() {
-				if ($(this.value).trim().length > 0) {
-					credentials[this.name] = $.trim(this.value);
+				if ($.trim(this.value) == '') {
+					formValid = false;
 				}
+				credentials[this.name] = $.trim(this.value);
 			}); 
+			
+			if ($.trim($('#git-api-url').val()) == '') {
+				formValid = false;
+			}
 			
 			var params = {
 				'git-source-select': $('#git-source-select').val(),
+				'git-source-auth': $('#git-source-auth').val(),
 				'git-api-url': $('#git-api-url').val(),
 				'git-credentials': credentials
 			};
-			
-			if ($('#git-source-auth').val() != 'none') {
-				params['git-source-auth'] = $('#git-source-auth').val();
-			}
-			
-			if ($.trim(params['git-api-url']) != '') {
-				formValid = true;
-			}
-			
+						
 			return [formValid, params]; 
 		};
 		
@@ -79,11 +82,13 @@ var App = (function(App) {
 				App.showNotice('Connection Test', 'Connected test succeeded', 'success');
 				allowConfigSave = true;
 			} else {
-				if (response.warnings) {
-					App.showNotice('Connection Test', 'Connected test succeeded: ' + response.warnings, response.severity);
+				// Hard errors first
+				if (response.msgs.length > 0) {
+					App.showNotice('Connection Error', response.msgs.join('<br />'), 'error');
+				} else if (response.warnings.length > 0) {
+					App.showNotice('Connection Test', 'Connected test succeeded: ' + response.warnings, 'warning');
+					// Warnings should not impact saving
 					allowConfigSave = true;
-				} else if (response.msgs) {
-					App.showNotice('Connection Error', response.msgs.join('<br />'), response.severity);
 				} else {
 					App.showNotice('Connection Error', 'Unknown response', 'error');
 				}

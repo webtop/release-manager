@@ -15,6 +15,14 @@ class Common {
     
     const MODE_DEVELOPMENT = 'development';
     
+    const GITHUB_CONFIG = 1;
+    const GITLAB_CONFIG = 2;
+    
+    const GIT_AUTH_NONE = 1;
+    const GIT_AUTH_BASIC = 2;
+    const GIT_AUTH_TOKEN = 3;
+    const GIT_AUTH_OAUTH = 4;
+    
     /**
      * @stub Update current settings
      */

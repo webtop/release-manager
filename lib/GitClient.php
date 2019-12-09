@@ -4,6 +4,7 @@ namespace Library;
 
 use Library\GitHubClient\Client\GitHubClient;
 use Gitlab\Client;
+use Classes\Common;
 
 /**
  * This class acts as an a client factory to produce a fully
@@ -51,25 +52,24 @@ class GitClient {
     }
     
     /**
-     * 
+     * Build an instance of a GitLab configuration model
      * @return boolean|\Gitlab\Client
      */
     private static function buildGitLabClient() {
         $client = Client::create(self::$config->getApiUrl());
         $authMethod = '';
         switch (self::$config->getAuthMethod()) {
-            case 'user_pass':
+            case Common::GIT_AUTH_BASIC:
                 $authMethod = $client::AUTH_URL_TOKEN;
                 break;
-            case 'http_token':
+            case Common::GIT_AUTH_TOKEN:
                 $authMethod = $client::AUTH_HTTP_TOKEN;
                 break;
-            case 'oauth_token':
+            case Common::GIT_AUTH_OAUTH:
                 $authMethod = $client::AUTH_OAUTH_TOKEN;
                 break;
             default:
-                // This should never happen because we set these, but just in case something gets mangled
-                self::$failureMessage = "Unknown auth method";
+                // Public repos only - @todo What happens here?
                 return false;
         }
         
@@ -89,30 +89,29 @@ class GitClient {
     }
     
     /**
-     * 
+     * Build an instance of a GitHub configuration model
      * @return boolean|\Library\GitHubClient\Client\GitHubClient
      */
     private static function buildGitHubClient() {
         $client = new GitHubClient();
         $client->setUrl(self::$config->getApiUrl());
         switch (self::$config->getAuthMethod()) {
-            case 'user_pass':
+            case Common::GIT_AUTH_BASIC:
                 $client->setAuthType($client::GITHUB_AUTH_TYPE_BASIC);
                 $credentials = self::$config->getAuthCredentials();
                 $client->setCredentials($credentials['username'], $credentials['password']);
                 break;
-            case 'http_token':
+            case Common::GIT_AUTH_TOKEN:
                 $client->setAuthType($client::GITHUB_AUTH_TYPE_OAUTH_BASIC);
                 $client->setOauthKey(self::$config->getKey());
                 break;
-            case 'oauth_token':
+            case Common::GIT_AUTH_OAUTH:
                 $client->setAuthType($client::GITHUB_AUTH_TYPE_OAUTH);
                 $client->setOauthToken(self::$config->getToken());
                 break;
             default:
-                // This should never happen because we set these, but just in case something gets mangled
-                self::$failureMessage = "Unknown auth method";
-                return false;
+                // Public repos only
+                
         }
         
         try {

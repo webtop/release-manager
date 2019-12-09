@@ -75,18 +75,27 @@ class Connector {
     public static function testConnection(Request $request) {
         $connectResult = [
             'success' => false,
-            'severity' => 'error',
+            'severity' => 'warning',
             'msgs' => [],
             'warnings' => ''
         ];
         
-        GitConfig::validateConfig($connectResult, $request);
-        
-        if (empty($connectResult['msgs'])) {
-            $gitConfig = GitConfig::build($request);
+        try {
+            GitConfig::validateConfig($connectResult, $request);
             
-            $connectResult = GitFascade::getInstance($gitConfig)->connect();
-            $connectResult['warnings'] = $gitConfig::$warning;
+            if (empty($connectResult['msgs'])) {
+                $gitConfig = GitConfig::build($request);
+                
+                if ($gitConfig instanceof GitConfig) {
+                    $connectResult = GitFascade::getInstance($gitConfig)->connect();
+                    $connectResult['warnings'] = $gitConfig::$warning;
+                } else {
+                    $connectResult['warnings'] = $gitConfig;
+                }
+            }
+        } catch (\Exception $e) {
+            $connectResult['severity'] = 'error';
+            $connectResult['msgs'][] = $e->getMessage();
         }
         
         return $connectResult;

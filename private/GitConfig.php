@@ -3,6 +3,7 @@
 namespace Config;
 
 use Slim\Http\Request;
+use Classes\Common;
 
 /**
  * Git configuration class used to connect to GitHub or GitLab
@@ -20,37 +21,41 @@ class GitConfig {
      */
     public static function build(Request $request) {
         
-        if ($request->getParam('git-source-select') == 'gitlab') {
-            $gitConfig = new GitLabConfig();
-        } elseif ($request->getParam('git-source-select') == 'github') {
+        if ($request->getParam('git-source-select') == Common::GITHUB_CONFIG) {
             $gitConfig = new GitHubConfig();
+        } elseif ($request->getParam('git-source-select') == Common::GITLAB_CONFIG) {
+            $gitConfig = new GitLabConfig();
         } else {
-            self::$warning = 'Unknown Git source model';
-            return self;
+            // @todo Check for user-defined sources
+            throw new \Exception('Unknown Git source model');
         }
         
         $gitConfig->setApiUrl($request->getParam('git-api-url'));
-        if (!empty($request->getParam('git-source-auth'))) {
-            $gitConfig->setAuthMethod($request->getParam('git-source-auth'));
+        
+        if (empty($request->getParam('git-source-auth'))) {
+            throw new \Exception('Cannot determine Git auth method');
         }
         
+        $gitConfig->setAuthMethod($request->getParam('git-source-auth'));
+        
         switch ($request->getParam('git-source-auth')) {
-            case 'user_pass':
+            case Common::GIT_AUTH_BASIC:
                 $gitConfig->setAuthCredentials([
                     'username' => $request->getParam('git-credentials')['git-auth-username'],
                     'password' => $request->getParam('git-credentials')['git-auth-password']
                 ]);
                 break;
-            case 'http_token':
+            case Common::GIT_AUTH_TOKEN:
                 $gitConfig->setToken($request->getParam('git-credentials')['git-auth-token']);
                 break;
-            case 'oauth_token':
+            case Common::GIT_AUTH_OAUTH:
                 $gitConfig->setAuthCredentials([
                     'app-id' => $request->getParam('git-credentials')['git-auth-app-id'],
                     'app-secret' => $request->getParam('git-credentials')['git-auth-secret']
                 ]);
                 break;
             default:
+                // self::GIT_AUTH_NONE
                 self::$warning = 'No auth method selected - only public projects available.';
         }
         
@@ -111,7 +116,7 @@ class GitConfig {
     /**
      * Setter for auth method
      * 
-     * @param string $authMethod
+     * @param int $authMethod
      */
     public function setAuthMethod($authMethod)
     {
