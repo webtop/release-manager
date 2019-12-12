@@ -14,11 +14,16 @@ use Slim\Http\Response;
  * ========================
  */
 $app->get('/', function (Request $request, Response $response, array $args) {
-    if (empty($this->settings['git-source'])) {
+    $sourceParams = Storage::getInstance()->getConnectionParams();
+    if ($sourceParams['success'] === true && sizeof($sourceParams['results']) > 0) {
+        $sources = $sourceParams['results'];
+    } else {
         return $response->withRedirect('/config', 303);
     }
+    
     $viewArgs = [
-        'pageTitle' => 'Release Manager'
+        'pageTitle' => 'Release Manager',
+        'sources' => $sources
     ];
     
     return Common::buildView($response, $this->view, 'index', $viewArgs);
@@ -62,7 +67,9 @@ $app->post('/save-connection-params', function(Request $request, Response $respo
     if ($connectResult['success']) {
         $gitConfig = GitConfig::build($request);
         $storage = Storage::getInstance();
-        $result =  $storage->saveConnectionParams($gitConfig);
+        $result =  $storage->saveConnectionParams($gitConfig, $request->getParam('git-source-select'), $request->getParam('git-source-auth'));
+    } else {
+        
     }
 });
 

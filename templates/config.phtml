@@ -13,7 +13,7 @@ if (!empty($configError)) {
 	</div>
 	<div class="card-body">
 		<p class="card-text">Select the git source type, then confiure it.</p>
-		<form class="form" id="connection-config">
+		<form class="form" id="connection-config" method="post" action="/test-connection">
 			<div class="form-group">
 				<label class="control-label" for="git-source-select">Git Source</label>
 				<select class="select form-control" id="git-source-select" name="git-source-select">

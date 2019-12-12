@@ -1,9 +1,8 @@
 <?php
 namespace classes;
 
-use SQLite3;
-use Classes\Common;
 use Config\GitConfig;
+use SQLite3;
 
 /**
  * Lightweight data storage class
@@ -27,14 +26,96 @@ class Storage extends \SQLite3 {
         return self::$instance;
     }
     
-    public function getConnectionParameters() {
+    /**
+     * Get specific or all connection parameters as designated by $id
+     * 
+     * @param number $id
+     * @return array
+     */
+    public function getConnectionParams($id = 0) {
+        $params = [
+            'success' => false,
+            'error' => '',
+            'results' => []
+        ];
+        $updateTable = false;
+        $id = intval($id);
         
+        $query = "
+            SELECT 
+                cons.name, 
+                auths.name 
+            FROM preferences p
+            JOIN connections cons ON cons.id = p.connection_id
+            JOIN auth_types auths ON auths.id = p.auth_id
+        ";
+        
+        if ($id === 0) {
+            $query .= " ORDER BY last_used DESC";
+        } else {
+            $query .= " WHERE id = $id";
+            $updateTable = true;
+        }
+        
+        try {
+            $results = $this->query($query);
+            if ($results) {
+                $params['success'] = true;
+                if ($results->numColumns() > 0) {
+                    while(($row = $results->fetchArray(SQLITE3_ASSOC)) !== false) {
+                        $params['results'][$row['id']] = [
+                            'source_id' => $row['connection_id'],
+                            'auth_id' => $row['auth_id']
+                        ];
+                    }
+                }
+            }
+        } catch (\Exception $e) {
+            $params['success'] = false;
+            $params['error'] = $e->getMessage();
+        }
+        
+        // Update the tables last_used date for this connection source
+        if ($updateTable) {
+            $now = strftime('%s');
+            $query = "
+                UPDATE preferences
+                SET last_used = $now 
+                WHERE id = $id
+            ";
+            $this->exec($query);
+        }
+        
+        $results = null;
+        return $params;
     }
     
-    public function saveConnectionParams(GitConfig $gitConfig) {
+    /**
+     * @todo Encrypt the database using a key set during first run
+     * @param GitConfig $gitConfig
+     * @param int $sourceId
+     * @param int $authId
+     */
+    public function saveConnectionParams(GitConfig $gitConfig, $sourceId, $authId) {
+        $authFields = serialize($gitConfig->getAuthCredentials());
+        $now = strftime('%s');
+        $query = "
+            INSERT INTO preferences
+            VALUES (null, $sourceId, $authId, '$authFields', $now);
+        ";
         
+        $success = $this->exec($query);
+        if (!$success) {
+            throw new \Exception('Failed to store source preferences'); 
+        }
+        return true;
     }
     
+    /**
+     * Get available connection sources and authentication types
+     * 
+     * @return array
+     */
     public function getConnectionOptions() {
         $results = [];
         $error = true;
@@ -58,10 +139,11 @@ class Storage extends \SQLite3 {
         return $results;
     }
     
-    private function getConnectionProfileId($profile) {
-        
-    }
-    
+    /**
+     * Sets up the connection database on first run
+     * @uses SQLite3
+     * @throws \Exception
+     */
     private function setup() {
         if (!file_exists(BASE_PATH . '/../release_manager.db')) {
             $query = <<<SQL
